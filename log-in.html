@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>N10</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <header>
+      <!-- place navbar here -->
+      <nav class="navbar navbar-expand-sm navbar-light bg-light">
+        <div class="container">
+          <a class="navbar-brand" href="index.html"><b>&lt;/N10&gt;</b></a>
+          <button
+            class="navbar-toggler d-lg-none"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapsibleNavId"
+            aria-controls="collapsibleNavId"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="collapsibleNavId">
+            <ul class="navbar-nav me-auto mt-2 mt-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" href="#" aria-current="page"
+                  >Home <span class="visually-hidden">(current)</span></a
+                >
+              </li>
+
+              <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                  <li class="nav-item dropdown">
+                    <a
+                      class="nav-link dropdown-toggle"
+                      href="#"
+                      id="navbarDropdownMenuLink"
+                      role="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      Catelogy
+                    </a>
+                    <ul
+                      class="dropdown-menu"
+                      aria-labelledby="navbarDropdownMenuLink"
+                    >
+                      <li class="dropdown-submenu">
+                        <!--  dropdown-toggle -->
+                        <a class="dropdown-item" href="#" id="business"
+                          >Business</a
+                        >
+                        <ul class="dropdown-menu">
+                          <li>
+                            <a class="dropdown-item" href="#">Nông sản</a>
+                          </li>
+                          <li>
+                            <a class="dropdown-item" href="#">Hải sản</a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <a
+                          class="dropdown-item"
+                          aria-current="page"
+                          href="#genral"
+                          id="genral"
+                          >Genral</a
+                        >
+                      </li>
+                      <li>
+                        <a class="dropdown-item" href="#sports" id="sport"
+                          >Sports</a
+                        >
+                      </li>
+                      <li>
+                        <a
+                          class="dropdown-item"
+                          aria-current="page"
+                          href="#tehnology"
+                          id="technology"
+                          >Technology</a
+                        >
+                      </li>
+                      <li>
+                        <a
+                          class="dropdown-item"
+                          href="#entertainment"
+                          id="entertainment"
+                          >Entertainment</a
+                        >
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="dropdownIdList"
+                  data-bs-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  >Post list</a
+                >
+                <ul class="dropdown-menu" aria-labelledby="dropdownIdList">
+                  <li><a class="dropdown-item" href="#">Catelogy</a></li>
+                  <li><a class="dropdown-item" href="#">Tag</a></li>
+                </ul>
+              </div>
+            </ul>
+
+            <form class="d-flex my-2 my-lg-0 w-50">
+              <input
+                class="form-control me-sm-2"
+                type="text"
+                placeholder="Enter what you want to search for..."
+              />
+              <button
+                class="btn btn-dark my-2 my-sm-0 w-25"
+                type="submit"
+                id="searchBtn"
+              >
+                Search
+              </button>
+            </form>
+            <div class="dropdown user">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="dropdownIdUser"
+                data-bs-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+                ><i class="bi bi-person-circle ms-4 fs-2 text-dark"></i
+              ></a>
+              <ul class="dropdown-menu me-6" aria-labelledby="dropdownIdUser">
+                <li><a class="dropdown-item" href="#">Log In</a></li>
+                <li><a class="dropdown-item" href="#">Sign Up</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <div class="container mt-5">
+        <div class="row d-flex justify-content-center">
+          <div class="col-md-6">
+            <div class="card px-3 py-3" id="form1">
+              <h3>Log In</h3>
+              <p class="mb-5">
+                Please fill your detail to access your account.
+              </p>
+              <div class="form-data" v-if="!submitted">
+                <div class="forms-inputs mb-4">
+                  <span>Email</span>
+                  <input
+                    class="w-100"
+                    autocomplete="off"
+                    type="text"
+                    v-model="email"
+                    v-bind:class="{'form-control':true, 'is-invalid' : !validEmail(email) && emailBlured}"
+                    v-on:blur="emailBlured = true"
+                  />
+                  <div class="invalid-feedback">A valid email is required!</div>
+                </div>
+                <div class="forms-inputs mb-4">
+                  <span>Password</span>
+                  <input
+                    class="w-100"
+                    autocomplete="off"
+                    type="password"
+                    v-model="password"
+                    v-bind:class="{'form-control':true, 'is-invalid' : !validPassword(password) && passwordBlured}"
+                    v-on:blur="passwordBlured = true"
+                  />
+                  <div class="invalid-feedback">
+                    Password must be 8 character!
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-8">
+                    <a href="#"><i class="bi bi-app"></i> </a> Remember me
+                  </div>
+                  <div class="col-4">Forgot Password?</div>
+                </div>
+                <div class="mb-3">
+                  <button
+                    v-on:click.stop.prevent="submit"
+                    class="btn btn-dark w-100"
+                  >
+                    Login
+                  </button>
+                </div>
+              </div>
+              <div class="success-data" v-else>
+                <div class="text-center d-flex flex-column">
+                  <i class="bx bxs-badge-check"></i>
+                  <span class="text-center fs-1"
+                    >You have been logged in <br />
+                    Successfully</span
+                  >
+                </div>
+              </div>
+              <div class="row">
+                Don’t have an account?
+                <b><a href="sign-up.html" cl>Sign up</a></b>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <img
+              class="img-thumbnail"
+              src="https://i1-vnexpress.vnecdn.net/2019/12/11/doc-bao-3915-1576032105.jpg?w=1020&h=0&q=100&dpr=1&fit=crop&s=JHB82b3_YgoYmPUPhx_gFg"
+              alt=""
+            />
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <!-- place footer here -->
+    </footer>
+    <!-- Bootstrap JavaScript Libraries -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+      integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+      crossorigin="anonymous"
+    ></script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+      integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <script src="log-in.js"></script>
+  </body>
+</html>
