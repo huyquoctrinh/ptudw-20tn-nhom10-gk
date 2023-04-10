@@ -1,9 +1,9 @@
 // Thêm class "dropdown-submenu" vào các menu có submenu
-document.querySelectorAll(".dropdown-menu").forEach(function (element) {
-  if (element.querySelector(".dropdown-menu")) {
-    element.parentNode.classList.add("dropdown-submenu");
-  }
-});
+// document.querySelectorAll(".dropdown-menu").forEach(function (element) {
+//   if (element.querySelector(".dropdown-menu")) {
+//     element.parentNode.classList.add("dropdown-submenu");
+//   }
+// });
 
 // Bật submenu khi click vào dropdown menu
 document.querySelectorAll(".dropdown-submenu > a").forEach(function (element) {
@@ -22,95 +22,103 @@ document.querySelectorAll(".dropdown-submenu > a").forEach(function (element) {
 // =================================================================================================================================
 
 // Lấy API Key từ trang web NewsAPI
-const apiKey = "4faaaecb29ed418585c2dc5ca0799025";
-window.onload = function () {
-  // Tạo yêu cầu Fetch API
-  fetch(
-    `https://newsapi.org/v2/top-headlines?country=us&category=technology&apiKey=${apiKey}`
-  )
-    .then((response) => response.json()) // chuyển đổi phản hồi sang JSON
-    .then((data) => {
-      // lấy danh sách các bài báo mới nhất từ phản hồi JSON
-      const articles = data.articles;
+// const apiKey = "4faaaecb29ed418585c2dc5ca0799025";
+// window.onload = function () {
+//   // Tạo yêu cầu Fetch API
+//   fetch(
+//     `https://newsapi.org/v2/top-headlines?country=us&category=technology&apiKey=${apiKey}`
+//   )
+//     .then((response) => response.json()) // chuyển đổi phản hồi sang JSON
+//     .then((data) => {
+//       // lấy danh sách các bài báo mới nhất từ phản hồi JSON
+//       const articles = data.articles;
 
-      // lặp qua danh sách các bài báo và thêm chúng vào carousel
-      const carouselInner = document.querySelector(".carousel-inner");
-      let active = true;
-      for (let i = 0; i < articles.length; i++) {
-        const article = articles[i];
-        const item = document.createElement("div");
-        item.classList.add("carousel-item");
-        if (active) {
-          item.classList.add("active");
-          active = false;
-        }
-        item.innerHTML = `
-        <div class="row">
-          <div class="col-md-1"></div>
-          <div class="col-md-5">
-            <img
-              src="${article.urlToImage}"
-              class="d-block w-100"
-              alt="${article.title}"
-            />
-          </div>
-          <div class="col-md-5">
-            <h4>${article.title}</h4>
-            <p>${article.description}</p>
-            <div class="row">
-              <div class="col-10 text-secondary">
-                <b><i>${article.source.name}</i></b>
-              </div>
-              <div class="col-2 text-secondary">
-                <b><i>${new Date(
-                  article.publishedAt
-                ).toLocaleDateString()}</i></b>
-              </div>
-            </div>
-          </div>
-        </div>
-      `;
-        carouselInner.appendChild(item);
-      }
-    })
-    .catch((error) => console.log(error)); // xử lý lỗi (nếu có)
-};
+//       // lặp qua danh sách các bài báo và thêm chúng vào carousel
+//       const carouselInner = document.querySelector(".carousel-inner");
+//       let active = true;
+//       for (let i = 0; i < articles.length; i++) {
+//         const article = articles[i];
+//         const item = document.createElement("div");
+//         item.classList.add("carousel-item");
+//         if (active) {
+//           item.classList.add("active");
+//           active = false;
+//         }
+//         item.innerHTML = `
+//         <div class="row">
+//           <div class="col-md-1"></div>
+//           <div class="col-md-5">
+//             <img
+//               src="${article.urlToImage}"
+//               class="d-block w-100"
+//               alt="${article.title}"
+//             />
+//           </div>
+//           <div class="col-md-5">
+//             <h4>${article.title}</h4>
+//             <p>${article.description}</p>
+//             <div class="row">
+//               <div class="col-10 text-secondary">
+//                 <b><i>${article.source.name}</i></b>
+//               </div>
+//               <div class="col-2 text-secondary">
+//                 <b><i>${new Date(
+//                   article.publishedAt
+//                 ).toLocaleDateString()}</i></b>
+//               </div>
+//             </div>
+//           </div>
+//         </div>
+//       `;
+//         carouselInner.appendChild(item);
+//       }
+//     })
+//     .catch((error) => console.log(error)); // xử lý lỗi (nếu có)
+// };
 
-const form = document.querySelector("#searchForm");
-const newsList = document.querySelector("#newsList");
+// const form = document.querySelector("#searchForm");
+// const newsList = document.querySelector("#newsList");
 
-form.addEventListener("submit", async (event) => {
-  event.preventDefault(); // prevent form submission
+// form.addEventListener("submit", async (event) => {
+//   event.preventDefault(); // prevent form submission
 
-  const query = document.querySelector("#newsQuery").value;
+//   const query = document.querySelector("#newsQuery").value;
 
-  const response = await fetch(
-    `https://newsapi.org/v2/everything?q=${query}&apiKey=${apiKey}`
-  );
+//   const response = await fetch(
+//     `https://newsapi.org/v2/everything?q=${query}&apiKey=${apiKey}`
+//   );
 
-  const data = await response.json();
+//   const data = await response.json();
 
-  // clear previous search results
-  newsList.innerHTML = "";
+//   // clear previous search results
+//   newsList.innerHTML = "";
 
-  // display news articles on the page
-  data.articles.forEach((article) => {
-    const card = document.createElement("div");
-    card.classList.add("col-12", "col-md-6", "col-lg-4", "mb-4");
-    card.innerHTML = `
-    <div class="card h-100">
-    <img src="${article.urlToImage}" class="card-img-top" alt="${article.title}">
-    <div class="card-body">
-      <h5 class="card-title">${article.title}</h5>
-      // <p class="card-text">${article.description}</p>
-      <p class="card-text"><small class="text-muted">${article.publishedAt}</small></p>
-      <p class="card-text"><small class="text-muted">${article.source.name}</small></p>
-    </div>
-  </div>
-`;
-    newsList.appendChild(card);
-  });
-});
+//   // display news articles on the page
+//   data.articles.forEach((article) => {
+//     const card = document.createElement("div");
+//     card.classList.add("col-12", "col-md-6", "col-lg-4", "mb-4");
+//     card.innerHTML = `
+//     <div class="card h-100">
+//     <img src="${article.urlToImage}" class="card-img-top" alt="${article.title}">
+//     <div class="card-body">
+//       <h5 class="card-title">${article.title}</h5>
+//       // <p class="card-text">${article.description}</p>
+//       <p class="card-text"><small class="text-muted">${article.publishedAt}</small></p>
+//       <p class="card-text"><small class="text-muted">${article.source.name}</small></p>
+//     </div>
+//   </div>
+// `;
+//     newsList.appendChild(card);
+//   });
+// });
+
+
+
+
+
+
+
+
 
 // const searchBtn = document.getElementById("searchBtn");
 // const SEARCH_NEWS = "https://newsapi.org/v2/everything?q=";
