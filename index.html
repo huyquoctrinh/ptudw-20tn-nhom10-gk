@@ -25,306 +25,239 @@
 
   <body>
     <header>
-    <!-- place navbar here -->
-    <nav class="navbar sticky-top navbar-expand-sm navbar-light bg-light">
-        <div class="container">
-        <a class="navbar-brand" href="index.html"><b>&lt;/N10&gt;</b></a>
-        <button
-            class="navbar-toggler d-lg-none"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#collapsibleNavId"
-            aria-controls="collapsibleNavId"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-        >
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="collapsibleNavId">
-            <ul class="navbar-nav me-auto mt-2 mt-lg-0">
-            <li class="nav-item">
-                <a class="nav-link active" href="#" aria-current="page"
-                >Home <span class="visually-hidden">(current)</span></a
-                >
-            </li>
-
-            <div class="dropdown">
-                <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                id="navbarDropdownMenuLink"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-                >
-                Category
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" >
-                <li>
-                    <a class="dropdown-item" href="#business" id="business">Business</a>
-                    <ul class="dropdown-menu dropdown-submenu">
-                    <li><a class="dropdown-item" href="#">Agricultural products</a></li>
-                    <li><a class="dropdown-item" href="#">Seafood</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a class="dropdown-item" href="#genral" id="genral"
-                    >Genral</a
-                    >
-                </li>
-                <li>
-                    <a class="dropdown-item" href="#sports" id="sports"
-                    >Sports</a
-                    >
-                </li>
-                <li>
-                    <a
-                    class="dropdown-item"
-                    href="#technology"
-                    id="technology"
-                    >Technology</a
-                    >
-                </li>
-                <li>
-                    <a
-                    class="dropdown-item"
-                    href="#entertainment"
-                    id="entertainment"
-                    >Entertainment</a
-                    >
-                </li>
-                </ul>
-            </div>
-
-            <div class="dropdown">
-                <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                id="dropdownIdList"
-                data-bs-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-                >Post list</a
-                >
-                <ul class="dropdown-menu" aria-labelledby="dropdownIdList">
-                <li><a class="dropdown-item" href="#">Catelogy</a></li>
-                <li><a class="dropdown-item" href="#">Tag</a></li>
-                </ul>
-            </div>
-            </ul>
-
-            <form class="d-flex my-2 my-lg-0 w-50" id="searchForm">
-            <input
-                class="form-control me-sm-2"
-                type="text"
-                id="newsQuery"
-                placeholder="Enter what you want to search for..."
-            />
-            <button
-                class="btn btn-dark my-2 my-sm-0"
-                type="submit"
-                id="searchBtn"
-            >
-                Search
-            </button>
-            </form>
-            
-            
-            <div class="dropdown user">
-            <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                id="dropdownIdUser"
-                data-bs-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-                ><i class="bi bi-person-circle ms-4 fs-2 text-dark"></i
-            ></a>
-            <ul class="dropdown-menu me-6" aria-labelledby="dropdownIdUser">
-                <li><a class="dropdown-item" href="log-in.html">Log In</a></li>
-                <li>
-                <a class="dropdown-item" href="sign-up.html">Sign Up</a>
-                </li>
-            </ul>
-            </div>
-        </div>
-        </div>
-    </nav>
+      <iframe src="navbar.html" width="100%" height="60px" frameborder="0"></iframe>
     </header>
+
     
+    <div id="newsList" class="row container"></div>
+
+    <div
+        id="carouselExampleIndicators"
+        class="container mt-4 carousel slide"
+        data-bs-ride="carousel">
+        <h4 class="text-center bg-dark text-light p-1">Featured news</h4>
+        <div class="carousel-indicators">
+          <button
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide-to="0"
+            class="active"
+            aria-current="true"
+            aria-label="Slide 1"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide-to="1"
+            aria-label="Slide 2"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide-to="2"
+            aria-label="Slide 3"
+          ></button>
+        </div>
+        <div class="carousel-inner"></div> 
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#carouselExampleIndicators"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselExampleIndicators"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div> 
+      
+
+      <section class = "banner">
+        <div class = "banner-main-content">
+            <h2>GET THE WORLD'S LATEST TECH NEWS</h2>
+            <h3>World's Leading Tech News Portal</h3>
+
+            <button>
+                <a href = "#">Know More</a>
+            </button>
+
+            <div class = "current-news-head">
+                <h3>Apple Glasses: What we expect, what we think we are <span>by scott stein</span></h3>
+
+                <h3>What's it's like to have Elon Musk's old phone number <span>by abrar al-heeti</span></h3>
+
+                <h3>Watch the exact moment Chris Pratt accidentally deletes 51, 000 emials <span>by goel fashingbauer</span></h3>
+
+                <h3>Richard Branson's Virgin Orbit will launch a rocket from midair Sunday <span>by eric mack</span></h3>
+            </div>
+        </div>
+
+        <div class = "banner-sub-content">
+            <div class = "hot-topic">
+                <img src = "images/banner-news-1.jpg" alt = "">
+
+                <div class = "hot-topic-content">
+                    <h2>Twitter's New Retweet With Comment Counter Is Now Available On Andriod & Web</h2>
+
+                    <h3>New Topic 1</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore consequatur nostrum minus iusto fugit unde.</p>
+                    <a href = "#">Read More</a>
+                </div>
+            </div>
+
+            <div class = "hot-topic">
+                <img src = "images/banner-news-2.jpg" alt = "">
+
+                <div class = "hot-topic-content">
+                    <h2>Twitter's New Retweet With Comment Counter Is Now Available On Andriod & Web</h2>
+
+                    <h3>New Topic 1</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore consequatur nostrum minus iusto fugit unde.</p>
+                    <a href = "#">Read More</a>
+                </div>
+            </div>
+
+            <div class = "hot-topic">
+                <img src = "images/banner-news-3.jpg" alt = "">
+
+                <div class = "hot-topic-content">
+                    <h2>Twitter's New Retweet With Comment Counter Is Now Available On Andriod & Web</h2>
+
+                    <h3>New Topic 1</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore consequatur nostrum minus iusto fugit unde.</p>
+                    <a href = "#">Read More</a>
+                </div>
+            </div>
+
+            <div class = "hot-topic">
+                <img src = "images/banner-news-4.jpg" alt = "">
+
+                <div class = "hot-topic-content">
+                    <h2>Twitter's New Retweet With Comment Counter Is Now Available On Andriod & Web</h2>
+
+                    <h3>New Topic 1</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore consequatur nostrum minus iusto fugit unde.</p>
+                    <a href = "#">Read More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <hr>
+
     <main>
-        <section class="section">
-            <div class="container">
-                <h2 class="headingh2FeatureNews">Tin nổi bật</h2>
-                <!-- row 1 -->
-                <div class="row justify-content-between">
-                  <div class="col-lg-6 col-sm-6">
-                    <!-- biggest left news -->
-                    <div class="card">
-                      <div class="row justify-content-between align-items-center">
-                        <div class="col-lg-6 col-sm-12">
-                          <img src="/images/hoaminzy.png" class="img-fluid object-fit-cover" alt="..." style="display: block; height: 100%; width: 100%;">
-                        </div>
-                        <div class="col-lg-6 col-sm-12">
-                          <div class="card-body" style="background-color: beige;">
-                            <h5 class="card-title">Sao Việt 'bắt trend' Thị Mầu của Hòa Minzy: Nhan sắc nào cũng khiến netizen mê mệt</h5>
-                            <p class="card-text">Hòa Minzy đăng clip "biến hình" trên trang TikTok cá nhân với nền nhạc ca khúc Thị Mầu. Trong đoạn clip, cô liên tục thay đổi layout trang điểm từ xấu xí cho đến xinh đẹp. </p>
-                            <div class="row news-tag">
-                              <div class="col">
-                                <p class="p-tag-news">Giải trí</p>
-                              </div>
-                              <div class="col">
-                                <p class="p-date-news">18/8/2023</p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- news 2 -->
-                  <div class="col-lg-6 rounded-4 col-sm-6">
-                    <div class="card">
-                      <div class="row justify-content-between align-items-center">
-                        <div class="col-lg-6 col-sm-12">
-                          <img src="/images/hoaminzy.png" class="img-fluid object-fit-cover" alt="..." style="display: block; height: 100%; width: 100%;">
-                        </div>
-                        <div class="col-lg-6 col-sm-12">
-                          <div class="card-body" style="background-color: beige;">
-                            <h5 class="card-title">Sao Việt 'bắt trend' Thị Mầu của Hòa Minzy: Nhan sắc nào cũng khiến netizen mê mệt</h5>
-                            <p class="card-text">Hòa Minzy đăng clip "biến hình" trên trang TikTok cá nhân với nền nhạc ca khúc Thị Mầu. Trong đoạn clip, cô liên tục thay đổi layout trang điểm từ xấu xí cho đến xinh đẹp. </p>
-                            <div class="row news-tag">
-                              <div class="col">
-                                <p class="p-tag-news">Giải trí</p>
-                              </div>
-                              <div class="col">
-                                <p class="p-date-news">18/8/2023</p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- <div class="news-container">
-                      <img class="image-news" src="images/tiepvien.png" alt="tiep vien">
-                      <p class="h5 text-center">Bắt giữ 4 nữ tiếp viên Vietnam Airlines xách ma túy về Việt Nam</p>
-                      <div class="row news-tag">
-                        <div class="col">
-                          <p class="p-tag-news">Giải trí</p>
-                        </div>
-                        <div class="col">
-                          <p class="p-date-news">18/8/2023</p>
-                        </div>
-                      </div>
-                    </div> -->
-                  </div>
-                  <!--  end news 2 -->
-                </div>
-                <!-- carousel news -->
-                <div id="carouselExampleIndicators" class="carousel slide container-carousel-news">
-                  <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                  </div>
-                  <div class="carousel-inner">
-                    <div class="carousel-item active">
-                      <div class="row justify-content-between align-items-center g-2">
-                        <div class="col-3">
-                          <div class="card">
-                            <img src="./images/tiepvien.png" class="card-img-top" alt="...">
-                            <div class="card-body">
-                              <h5 class="card-title">Bắt giữ 4 nữ tiếp viên Vietnam Airlines xách ma túy về Việt Nam</h5>
-                              <div class="row news-tag">
-                                <div class="col">
-                                  <p class="p-tag-news">Giải trí</p>
-                                </div>
-                                <div class="col">
-                                  <p class="p-date-news">18/8/2023</p>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
+        <section class = "main-container-left">
+            <h2>Top Stories</h2>
+            <div class = "container-top-left">
+                <article>
+                    <img src = "images/top-left.jpg">
 
-                        </div>
-                        <div class="col-3">
-                          <div class="card">
-                            <img src="./images/tiepvien.png" class="card-img-top" alt="...">
-                            <div class="card-body">
-                              <h5 class="card-title">Bắt giữ 4 nữ tiếp viên Vietnam Airlines xách ma túy về Việt Nam</h5>
-                              <div class="row news-tag">
-                                <div class="col">
-                                  <p class="p-tag-news">Giải trí</p>
-                                </div>
-                                <div class="col">
-                                  <p class="p-date-news">18/8/2023</p>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
+                    <div>
+                        <h3>Best Used Cars Under $20, 000 for families</h3>
 
-                        <div class="col-3">
-                          <div class="card">
-                            <img src="./images/tiepvien.png" class="card-img-top" alt="...">
-                            <div class="card-body">
-                              <h5 class="card-title">Bắt giữ 4 nữ tiếp viên Vietnam Airlines xách ma túy về Việt Nam</h5>
-                              <div class="row news-tag">
-                                <div class="col">
-                                  <p class="p-tag-news">Giải trí</p>
-                                </div>
-                                <div class="col">
-                                  <p class="p-date-news">18/8/2023</p>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis ea sint, nisi rem earum fugit? Facere veritatis sapiente eveniet quibusdam.</p>
 
+                        <a href = "#">Read More <span>>></span></a>
                     </div>
-                    <div class="carousel-item">
-                      <img src="/images/tiepvien.png" class="d-block w-100" alt="...">
+                </article>
+            </div>
+
+            <div class = "container-bottom-left">
+                <article>
+                    <img src = "images/bottom-left-1.jpg">
+                    <div>
+                        <h3>Best smart speakers for the year</h3>
+                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi iure modi animi cupiditate. Explicabo, nihil?</p>
+
+                        <a href = "#">Read More <span>>></span></a>
                     </div>
-                    <div class="carousel-item">
-                      <img src="/images/hoaminzy.png" class="d-block w-100" alt="...">
+                </article>
+
+                <article>
+                    <img src = "images/bottom-left-2.jpg">
+                    <div>
+                        <h3>iPad Pro, reviewed: Has the iPad become my main computer now?</h3>
+                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi iure modi animi cupiditate. Explicabo, nihil?</p>
+
+                        <a href = "#">Read More <span>>></span></a>
                     </div>
-                  </div>
-                  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                  </button>
-                  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                  </button>
-                </div>
-                <!-- carousel end -->
+                </article>
             </div>
         </section>
-    </main>
 
-
-    <!-- <footer>
-        <div class = "footer-container">
-            <div class = "footer-left">
-                <h2>TECHNEWS</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur molestias aut blanditiis totam quia enim, autem tenetur cum facere, fugit beatae at voluptas ipsum perferendis!</p>
-            </div>
-
-            <div class = "footer-right">
-                <h2>Newletter</h2>
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Provident, autem!</p>
-
+        <section class = "main-container-right">
+            <h2>Latest Stories</h2>
+            
+            <article>
+                <h4>just in </h4>
                 <div>
-                    <input type = "text" placeholder = "Email Address">
-                    <i class = "fas fa-envelope"></i>
-                </div>
-            </div>
-        </div>
+                    <h2>Here's how to track your stimulus check with the IRS Get My Payment Portal</h2>
 
-        <p>Copyright &copy; 2025 All rights reserved | GeekProbin</p>
-    </footer> -->
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, repellendus?</p>
+
+                    <a href = "#">Read More <span>>></span></a>
+                </div>
+                <img src = "images/right-1.jpg">
+            </article>
+
+            <article>
+                <h4>just in </h4>
+                <div>
+                    <h2>The best outdoor games to play with your family</h2>
+
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, repellendus?</p>
+
+                    <a href = "#">Read More <span>>></span></a>
+                </div>
+                <img src = "images/right-2.jpg">
+            </article>
+
+            <article>
+                <h4>just in </h4>
+                <div>
+                    <h2>Why walk? Check out the best electric scooters and e-bikes for 2020</h2>
+
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, repellendus?</p>
+
+                    <a href = "#">Read More <span>>></span></a>
+                </div>
+                <img src = "images/right-3.jpg">
+            </article>
+
+            <article>
+                <h4>just in </h4>
+                <div>
+                    <h2>Disneyland Paris will stream its Lion King stage show Friday night</h2>
+
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, repellendus?</p>
+
+                    <a href = "#">Read More <span>>></span></a>
+                </div>
+                <img src = "images/right-4.jpg">
+            </article>
+
+            <article>
+                <h4>just in </h4>
+                <div>
+                    <h2>Looking at a phone's lock screen also requries a warrant, judge rules</h2>
+
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, repellendus?</p>
+
+                    <a href = "#">Read More <span>>></span></a>
+                </div>
+                <img src = "images/right-5.jpg">
+            </article>
+        </section>
+    </main>
+    
       <!-- Lastest News  -->
       <!-- <h4 class="text-center bg-dark text-light p-1 mt-5 container">
         Lastest news
@@ -364,7 +297,7 @@
       </div> -->
     
       <!-- 10 tin xem nhiều nhất -->
-      <!-- <div class="container">
+      <div class="container">
         <div class="row">
           <div class="col-md-12 d-flex justify-content-center right-bck">
             <div class="registration-right">
@@ -484,10 +417,11 @@
             </div>
           </div>
         </div>
-      </div> -->
-    <footer>
-      <!-- place footer here -->
-    </footer>
+      </div>
+    </main>
+    
+    <!-- <iframe src="footer.html" width="100%" height="300px" frameborder="0"></iframe> -->
+
     <!-- Bootstrap JavaScript Libraries -->
     <script
       src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
