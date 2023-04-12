@@ -170,8 +170,10 @@
                 ><i class="bi bi-person-circle ms-4 fs-2 text-dark"></i
               ></a>
               <ul class="dropdown-menu me-6" aria-labelledby="dropdownIdUser">
-                <li><a class="dropdown-item" href="#">Log In</a></li>
-                <li><a class="dropdown-item" href="#">Sign Up</a></li>
+                <li><a class="dropdown-item" href="log-in.html">Log In</a></li>
+                <li>
+                  <a class="dropdown-item" href="sign-up.html">Sign Up</a>
+                </li>
               </ul>
             </div>
           </div>
@@ -182,12 +184,12 @@
       <div class="container mt-5">
         <div class="row d-flex justify-content-center">
           <div class="col-md-6">
-            <div class="card px-3 py-3" id="form1">
+            <div class="card px-3 py-3" id="form2">
               <h3>Log In</h3>
               <p class="mb-5">
                 Please fill your detail to access your account.
               </p>
-              <div class="form-data" v-if="!submitted">
+              <div class="form-data text-dark" v-if="!submitted">
                 <div class="forms-inputs mb-4">
                   <span>Email</span>
                   <input
@@ -214,11 +216,8 @@
                     Password must be 8 character!
                   </div>
                 </div>
-                <div class="row">
-                  <div class="col-8">
-                    <a href="#"><i class="bi bi-app"></i> </a> Remember me
-                  </div>
-                  <div class="col-4">Forgot Password?</div>
+                <div class="row mb-2 ms-2 text-end text-dark">
+                  <a href="forgotpass.html">Forgot Password?</a>
                 </div>
                 <div class="mb-3">
                   <button
@@ -238,9 +237,12 @@
                   >
                 </div>
               </div>
-              <div class="row">
-                Don’t have an account?
-                <b><a href="sign-up.html" cl>Sign up</a></b>
+              <!-- class="row text-center" -->
+              <div class="text-center">
+                <span>Don’t have an account?</span>
+                <span
+                  ><b><a href="sign-up.html" cl>Sign up</a></b></span
+                >
               </div>
             </div>
           </div>

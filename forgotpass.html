@@ -49,24 +49,14 @@
       <div class="container mt-5">
         <div class="row d-flex justify-content-center">
           <div class="col-md-6">
-            <div class="card px-3 py-3" id="form1">
-              <h3>Sign Up</h3>
-
-              <div class="form-data" v-if="!submitted">
-                <div class="forms-inputs mb-4 mt-4">
-                  <span>Username</span>
-                  <input
-                    class="w-100"
-                    autocomplete="off"
-                    type="text"
-                    v-model="text"
-                    v-bind:class="{'form-control':true, 'is-invalid' : !validEmail(email) && emailBlured}"
-                    v-on:blur="emailBlured = true"
-                  />
-                  <div class="invalid-feedback">A username is required!</div>
-                </div>
+            <div class="card px-3 py-3" id="form3">
+              <h3>Fotgot Password</h3>
+              <p class="mb-5">Have you forgotten your password? Reset here!</p>
+              <div class="form-data text-dark" v-if="!submitted">
                 <div class="forms-inputs mb-4">
-                  <span>Email</span>
+                  <span id="email-label"
+                    >Enter email address and we will send you a OTP code.</span
+                  >
                   <input
                     class="w-100"
                     autocomplete="off"
@@ -77,27 +67,14 @@
                   />
                   <div class="invalid-feedback">A valid email is required!</div>
                 </div>
-                <div class="forms-inputs mb-4">
-                  <span>Password</span>
-                  <input
-                    class="w-100"
-                    autocomplete="off"
-                    type="password"
-                    v-model="password"
-                    v-bind:class="{'form-control':true, 'is-invalid' : !validPassword(password) && passwordBlured}"
-                    v-on:blur="passwordBlured = true"
-                  />
-                  <div class="invalid-feedback">
-                    Password must be 8 character!
-                  </div>
-                </div>
 
                 <div class="mb-3">
                   <button
+                    onclick="ChangeText(this)"
                     v-on:click.stop.prevent="submit"
                     class="btn btn-dark w-100"
                   >
-                    Sign up
+                    Send password reset email
                   </button>
                 </div>
               </div>
@@ -105,9 +82,9 @@
                 <div class="text-center d-flex flex-column">
                   <i class="bx bxs-badge-check"></i>
                   <span class="text-center fs-1"
-                    >You have been signed up <br />
-                    Successfully</span
+                    >You changed your password.</span
                   >
+                  <a href="index.html">Return to homepage</a>
                 </div>
               </div>
             </div>
@@ -116,7 +93,7 @@
           <div class="col-md-6">
             <img
               class="img-thumbnail"
-              src="https://tuyensinhdonga.edu.vn/wp-content/uploads/2021/08/tu-vung-tieng-anh-ve-bao-chi-va-truyen-thong.jpg"
+              src="https://t3.ftcdn.net/jpg/01/37/26/32/360_F_137263233_9sEpw5hHFZnwkzX3lULuH56Xmw8tukwt.jpg"
               alt=""
             />
           </div>
@@ -139,8 +116,6 @@
       crossorigin="anonymous"
     ></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
-    <!-- <script src="sign-up.js"></script> -->
     <script src="log-in.js"></script>
-    <!-- <script src="firebase.js"></script> -->
   </body>
 </html>

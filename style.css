@@ -16,6 +16,77 @@ main{
 .navbar {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
+.dropdown-submenu {
+  position: relative;
+}
+
+.dropdown-submenu > .dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+}
+
+.dropdown-submenu:hover > .dropdown-menu {
+  display: block;
+}
+
+footer {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.carousel-item img {
+  width: 50vw;
+  height: 50vh;
+  overflow: auto;
+}
+
+.forms-inputs {
+  position: relative;
+}
+.forms-inputs span {
+  position: absolute;
+  top: -18px;
+  left: 10px;
+  background-color: #fff;
+  padding: 5px 10px;
+  font-size: 15px;
+}
+.forms-inputs input {
+  height: 50px;
+  border: 2px solid #eee;
+}
+.forms-inputs input:focus {
+  box-shadow: none;
+  outline: none;
+  border: 2px solid #000;
+}
+
+.success-data {
+  display: flex;
+  flex-direction: column;
+}
+.bxs-badge-check {
+  font-size: 90px;
+}
+* {
+  box-sizing: border-box;
+  color: #000;
+  text-decoration: none;
+}
+
+main{
+  width: 70%;
+  margin: auto;
+}
+
+
+.card{
+  margin-top: 10px;
+}
+.navbar {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
 
 .dropdown-menu li {
   position: relative;
