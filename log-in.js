@@ -97,16 +97,9 @@ var app = new Vue({
     },
 
     submit: function () {
-      // this.validate();
-      // if (this.valid) {
-      //   this.submitted = true;
-      //   setTimeout(function () {
-      //     window.location.href = "/index.html";
-      //   }, 1000);
-      // }
       this.submitted = true;
       setTimeout(function () {
-        window.location.href = "/index.html";
+        window.location.href = "/user.html";
       }, 1000);
     },
   },
