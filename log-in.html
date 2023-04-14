@@ -72,45 +72,39 @@
                       data-bs-toggle="dropdown"
                       aria-expanded="false"
                     >
-                      Catelogy
+                      Category
                     </a>
                     <ul
                       class="dropdown-menu"
                       aria-labelledby="navbarDropdownMenuLink"
                     >
                       <li class="dropdown-submenu">
-                        <!--  dropdown-toggle -->
-                        <a class="dropdown-item" href="#" id="business"
+                        <a class="dropdown-item" href="#business" id="business"
                           >Business</a
                         >
                         <ul class="dropdown-menu">
                           <li>
-                            <a class="dropdown-item" href="#">Nông sản</a>
+                            <a class="dropdown-item" href="#"
+                              >Agricultural products</a
+                            >
                           </li>
-                          <li>
-                            <a class="dropdown-item" href="#">Hải sản</a>
-                          </li>
+                          <li><a class="dropdown-item" href="#">Seafood</a></li>
                         </ul>
                       </li>
                       <li>
-                        <a
-                          class="dropdown-item"
-                          aria-current="page"
-                          href="#genral"
-                          id="genral"
+                        <a class="dropdown-item" href="#genral" id="genral"
                           >Genral</a
                         >
                       </li>
                       <li>
-                        <a class="dropdown-item" href="#sports" id="sport"
+                        <a class="dropdown-item" href="#sports" id="sports"
                           >Sports</a
                         >
                       </li>
                       <li>
                         <a
                           class="dropdown-item"
-                          aria-current="page"
-                          href="#tehnology"
+                          href="#technology"
                           id="technology"
                           >Technology</a
                         >
@@ -145,20 +139,22 @@
               </div>
             </ul>
 
-            <form class="d-flex my-2 my-lg-0 w-50">
+            <form class="d-flex my-2 my-lg-0 w-50" id="searchForm">
               <input
                 class="form-control me-sm-2"
                 type="text"
+                id="newsQuery"
                 placeholder="Enter what you want to search for..."
               />
               <button
-                class="btn btn-dark my-2 my-sm-0 w-25"
+                class="btn btn-dark my-2 my-sm-0"
                 type="submit"
                 id="searchBtn"
               >
                 Search
               </button>
             </form>
+
             <div class="dropdown user">
               <a
                 class="nav-link dropdown-toggle"
@@ -167,9 +163,10 @@
                 data-bs-toggle="dropdown"
                 aria-haspopup="true"
                 aria-expanded="false"
-                ><i class="bi bi-person-circle ms-4 fs-2 text-dark"></i
+              >
+                <i class="bi bi-person-circle fs-2 ms-5"></i
               ></a>
-              <ul class="dropdown-menu me-6" aria-labelledby="dropdownIdUser">
+              <ul class="dropdown-menu me-1" aria-labelledby="dropdownIdUser">
                 <li><a class="dropdown-item" href="log-in.html">Log In</a></li>
                 <li>
                   <a class="dropdown-item" href="sign-up.html">Sign Up</a>

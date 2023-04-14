@@ -1,24 +1,3 @@
-// Thêm class "dropdown-submenu" vào các menu có submenu
-document.querySelectorAll(".dropdown-menu").forEach(function (element) {
-  if (element.querySelector(".dropdown-menu")) {
-    element.parentNode.classList.add("dropdown-submenu");
-  }
-});
-
-// Bật submenu khi click vào dropdown menu
-document.querySelectorAll(".dropdown-submenu > a").forEach(function (element) {
-  element.addEventListener("click", function (e) {
-    e.preventDefault();
-    var subMenu = this.nextElementSibling;
-    if (subMenu.classList.contains("show")) {
-      subMenu.classList.remove("show");
-      subMenu.parentElement.classList.remove("show");
-    } else {
-      subMenu.classList.add("show");
-      subMenu.parentElement.classList.add("show");
-    }
-  });
-});
 // =================================================================================================================================
 
 // Lấy API Key từ trang web NewsAPI
