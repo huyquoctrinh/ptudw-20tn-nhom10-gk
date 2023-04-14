@@ -5,4 +5,4 @@ You can access here to visit our website 👇.
 
 Demo Website: https://github.com/huyquoctrinh/Newspaper-Web
 
-Link API: [themoviedb.org](https://www.themoviedb.org/settings/api)
+Link API: 
