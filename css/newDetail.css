@@ -1,0 +1,126 @@
+.heading-title-news-detail{
+    font-family: 'Playfair Display';
+    font-size: 40px;
+}
+.vl{
+    background-color: black;
+    width: 1px;
+    height: 100%;
+    margin: auto;
+}
+
+.new-detail{
+    width: 65%;
+}
+
+.news-tag{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.p-tag-news{
+    font-weight: 600;
+    margin-bottom: 0px;
+}
+
+.p-date-news{
+    text-align: right;
+    margin-bottom: 0px;
+
+}
+
+.relevant-news-container{
+    background-color: #F8F8F8;
+    overflow: auto;
+}
+
+.shape-title-relevant-news{
+    background-color: #00AEEF;
+    height: 35px;
+    width: 15px;
+    display: flex;
+    float: left;
+    margin-right: 10px;
+}
+
+.title-relevant-news > h4{
+    padding: 5px;
+}
+
+
+.container-carousel-news{
+    margin-bottom: 50px;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  height: 80px;
+  width: 40px;
+  background-size: 100%, 100%;
+  border-radius: 4px;
+  background-color: #00AEEF;
+}
+.carousel-control-next-icon  {
+    position: absolute;
+    right: 0;
+}
+.carousel-control-prev-icon  {
+    position: absolute;
+    left: 0;
+}
+
+.carousel-indicator-first-new {
+    position: absolute;
+    bottom: -50px;
+}
+
+.carousel .carousel-indicator-first-new button{
+    background-color: gray;
+}
+
+.carousel .carousel-indicators button {
+    width: 10px;
+   height: 10px;
+   border-radius: 100%;
+}
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.comment-container{
+    margin-top: 20px;
+}
+
+.comment-item p{
+    margin-bottom: 0px;
+}
+.list-groupitem{
+    margin-bottom: 10px;
+    border-radius: 4px;
+    background: #F4F4F4;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.pTime{
+    color: gray;
+    font-size: 0.7rem;
+}
+#myList{
+    list-style-type: none;
+
+}
+
+.pName, .pComment, .pTime{
+    padding: 5px;
+}
+
+.pName{
+    margin-left: 10px;
+    font-weight: 500;
+}
+
+footer{
+    background-color: #ebf1b3;
+    margin-top: 20px;
+}
