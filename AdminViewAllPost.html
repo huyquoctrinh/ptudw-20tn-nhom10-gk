@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>N10</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="./css/AdminManageCategories.css" />
+  </head>
+
+  <body>
+    <header>
+    <!-- place navbar here -->
+    <nav class="navbar sticky-top navbar-expand-sm navbar-light bg-light">
+        <div class="container">
+        <a class="navbar-brand" href="index.html"><b>&lt;/N10&gt;</b></a>
+        <button
+            class="navbar-toggler d-lg-none"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapsibleNavId"
+            aria-controls="collapsibleNavId"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+        >
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavId">
+            <ul class="navbar-nav me-auto mt-2 mt-lg-0">
+            <li class="nav-item">
+                <a class="nav-link active" href="#" aria-current="page"
+                >Home <span class="visually-hidden">(current)</span></a
+                >
+            </li>
+
+            <div class="dropdown">
+                <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdownMenuLink"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                >
+                Category
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" >
+                <li>
+                    <a class="dropdown-item" href="./Categories.html" id="business">Business</a>
+                    <ul class="dropdown-menu dropdown-submenu">
+                    <li><a class="dropdown-item" href="#">Agricultural products</a></li>
+                    <li><a class="dropdown-item" href="#">Seafood</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="dropdown-item" href="#genral" id="genral"
+                    >Genral</a
+                    >
+                </li>
+                <li>
+                    <a class="dropdown-item" href="#sports" id="sports"
+                    >Sports</a
+                    >
+                </li>
+                <li>
+                    <a
+                    class="dropdown-item"
+                    href="#technology"
+                    id="technology"
+                    >Technology</a
+                    >
+                </li>
+                <li>
+                    <a
+                    class="dropdown-item"
+                    href="#entertainment"
+                    id="entertainment"
+                    >Entertainment</a
+                    >
+                </li>
+                </ul>
+            </div>
+
+            <div class="dropdown">
+                <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="dropdownIdList"
+                data-bs-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+                >Post list</a
+                >
+                <ul class="dropdown-menu" aria-labelledby="dropdownIdList">
+                <li><a class="dropdown-item" href="#">Catelogy</a></li>
+                <li><a class="dropdown-item" href="#">Tag</a></li>
+                </ul>
+            </div>
+            </ul>
+
+            <form class="d-flex my-2 my-lg-0 w-50" id="searchForm">
+            <input
+                class="form-control me-sm-2"
+                type="text"
+                id="newsQuery"
+                placeholder="Enter what you want to search for..."
+            />
+            <button
+                class="btn btn-dark my-2 my-sm-0"
+                type="submit"
+                id="searchBtn"
+            >
+                Search
+            </button>
+            </form>
+            
+            
+            <div class="dropdown user">
+            <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="dropdownIdUser"
+                data-bs-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+                ><i class="bi bi-person-circle ms-4 fs-2 text-dark"></i
+            ></a>
+            <ul class="dropdown-menu me-6" aria-labelledby="dropdownIdUser">
+                <li><a class="dropdown-item" href="log-in.html">Log In</a></li>
+                <li>
+                <a class="dropdown-item" href="sign-up.html">Sign Up</a>
+                </li>
+            </ul>
+            </div>
+        </div>
+        </div>
+    </nav>
+    </header>
+    
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col-3">
+                    <h1>Quản lý</h1>
+                    <a href=""><p class="active">Xem danh sách bài viết</p></a>
+                    <a href=""><p>Quản lý chuyên mục</p></a>
+                    <a href=""><p>Quản lý nhãn tag</p></a>
+                    <a href=""><p>Quản lý biên tập viên</p></a>
+                    <a href=""><p>Quản lý người dùng</p></a>
+                </div>
+                <div class="col-9 left-col">
+                    <div class="row">
+                        <div class="col-1">
+                            <div class="vl"></div>
+                        </div>
+                        <div class="col-11">
+                            <h3 class="text-black">
+                                Danh sách bài viết
+                            </h3>
+                            
+                            <div class="container">
+                                <div class="row justify-content-center g-2">
+                                    <div class="col">
+                                        <div class="mb-3 icon-input">
+                                            <i class="bi bi-search icon"></i>
+                                          <input
+                                            type="text"
+                                            class="form-control"
+                                            name="keyword"
+                                            id="keyword"
+                                            aria-describedby="helpId"
+                                            placeholder=""
+                                            required
+                                            onkeyup="filter(this.value)"
+                                          />
+                                        </div>
+                                    </div>
+                                </div>
+                                <ul class="list-group" id="myList">
+                                  
+                                  <li class="list-groupitem">
+                                        <div class="row align-items-center g-2 category-item">
+                                            <div class="col-3">
+                                                <img src="https://toquoc.mediacdn.vn/zoom/480_300/280518851207290880/2023/3/17/edit-3fb41e90fa4a27147e5b-1679054076628741411824-16790679331601970265469-0-0-420-672-crop-1679067937956366788138.png" 
+                                                class="img-thumbnail img-fluid rounded float-start" alt=""
+                                                style="width: 100%; height: 100%;">
+                                            </div>
+                                            <div class="col-7">
+                                                <h4>Bắt giữ 4 nữ tiếp viên</h4>
+                                                <a>Phạm Việt</a>
+                                                <br>
+                                                <a>12:30 16/04/2023</a>
+                                                <br>
+                                                <p>Hôm qua 14/4, đã bắt được</p>
+                                                
+                                            </div>
+                                            <div class="col-2 button-div">
+                                                <div class="dropdown open">
+                                                    <button class="btn btn-primary dropdown-toggle" type="button" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true"
+                                                            aria-expanded="false">
+                                                                Nháp
+                                                            </button>
+                                                    <div class="dropdown-menu" aria-labelledby="triggerId">
+                                                        <button class="dropdown-item" href="#">Nháp</button>
+                                                        <button class="dropdown-item" href="#">Duyệt</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                  </li>
+                                  <li class="list-groupitem">
+                                        <div class="row align-items-center g-2 category-item">
+                                            <div class="col-3">
+                                                <img src="https://toquoc.mediacdn.vn/zoom/480_300/280518851207290880/2023/3/17/edit-3fb41e90fa4a27147e5b-1679054076628741411824-16790679331601970265469-0-0-420-672-crop-1679067937956366788138.png" 
+                                                class="img-thumbnail img-fluid rounded float-start" alt=""
+                                                style="width: 100%; height: 100%;">
+                                            </div>
+                                            <div class="col-7">
+                                                <h4>Bắt giữ 4 nữ tiếp viên</h4>
+                                                <a>Phạm Việt</a>
+                                                <br>
+                                                <a>12:30 16/04/2023</a>
+                                                <br>
+                                                <p>Hôm qua 14/4, đã bắt được</p>
+                                                
+                                            </div>
+                                            <div class="col-2 button-div">
+                                                <div class="dropdown open">
+                                                    <button class="btn btn-primary dropdown-toggle" type="button" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true"
+                                                            aria-expanded="false">
+                                                                Nháp
+                                                            </button>
+                                                    <div class="dropdown-menu" aria-labelledby="triggerId">
+                                                        <button class="dropdown-item" href="#">Nháp</button>
+                                                        <button class="dropdown-item" href="#">Duyệt</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                  </li>
+                                  <li class="list-groupitem">
+                                        <div class="row align-items-center g-2 category-item">
+                                            <div class="col-3">
+                                                <img src="https://toquoc.mediacdn.vn/zoom/480_300/280518851207290880/2023/3/17/edit-3fb41e90fa4a27147e5b-1679054076628741411824-16790679331601970265469-0-0-420-672-crop-1679067937956366788138.png" 
+                                                class="img-thumbnail img-fluid rounded float-start" alt=""
+                                                style="width: 100%; height: 100%;">
+                                            </div>
+                                            <div class="col-7">
+                                                <h4>Bắt giữ 4 nữ tiếp viên</h4>
+                                                <a>Phạm Việt</a>
+                                                <br>
+                                                <a>12:30 16/04/2023</a>
+                                                <br>
+                                                <p>Hôm qua 14/4, đã bắt được</p>
+                                                
+                                            </div>
+                                            <div class="col-2 button-div">
+                                                <div class="dropdown open">
+                                                    <button class="btn btn-primary dropdown-toggle" type="button" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true"
+                                                            aria-expanded="false">
+                                                                Nháp
+                                                            </button>
+                                                    <div class="dropdown-menu" aria-labelledby="triggerId">
+                                                        <button class="dropdown-item" href="#">Nháp</button>
+                                                        <button class="dropdown-item" href="#">Duyệt</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                  </li>
+                                </ul>
+                              </div>
+                            
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+  <!-- Footer -->
+    <!-- Bootstrap JavaScript Libraries -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+      integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+      crossorigin="anonymous"
+    ></script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+      integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
+      crossorigin="anonymous"
+    ></script>
+    <script src="./javascript/AdminManageCategories.js"></script>
+    <script>
+        function filter(keyword) {
+          document
+            .querySelectorAll("li.list-groupitem")
+            .forEach((item) => {
+              if (item.innerText.indexOf(keyword) >= 0) {
+                item.style.display = "block";
+              } else {
+                item.style.display = "none";
+              }
+            });
+        }
+        
+        document.querySelectorAll(".dropdown-item").forEach((item) => {
+            item.addEventListener("click", (e) => {
+                let value = e.target.innerText
+                e.target.parentElement.parentElement.firstChild.nextSibling.innerText = value
+            })
+        })
+
+      </script>
+      
+  </body>
+</html>
