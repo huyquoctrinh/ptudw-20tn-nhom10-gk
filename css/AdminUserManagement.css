@@ -82,16 +82,7 @@ p.active{
     font-weight: 600;
 }
 
-.overlay{
-    height: 100%;
-    width: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background-color: #6a6a6a;
-    display: none;
-    z-index: 8;
-}
+
 
 
 /* The popup form - hidden by default */
@@ -102,43 +93,16 @@ p.active{
     left: 50%;
     /* bring your own prefixes */
     transform: translate(-50%, -50%);
-    border: 3px solid #f1f1f1;
-    z-index: 9;
-}
-
-/* The popup form - hidden by default */
-.form-popup-add {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    /* bring your own prefixes */
-    transform: translate(-50%, -50%);
-    border: 3px solid #f1f1f1;
+    border: solid #f1f1f1;
     z-index: 9;
 }
 
 /* Add styles to the form container */
 .form-container {
   /* max-width: 300px; */
-  padding: 10px;
+  /* padding: 10px; */
   background-color: white;
   /* max-height: 500px; */
-}
-
-/* Full-width input fields */
-.form-container input[type=text] {
-  width: 100%;
-  padding: 15px;
-  margin: 5px 0 22px 0;
-  border: none;
-  background: #f1f1f1;
-}
-
-/* When the inputs get focus, do something */
-.form-container input[type=text]:focus {
-  background-color: #c4c4c4;
-  outline: none;
 }
 
 /* Set a style for the submit/login button */
@@ -151,4 +115,71 @@ p.active{
   margin-bottom:10px;
 }
 
+
+* {box-sizing: border-box;}
+ul {list-style-type: none;}
+
+.month {
+  padding: 70px 25px;
+  width: 100%;
+  background: #1a3dbc;
+  text-align: center;
+}
+
+.month ul {
+  margin: 0;
+  padding: 0;
+}
+
+.month ul li {
+  color: white;
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+.month .prev {
+  float: left;
+  padding-top: 10px;
+}
+
+.month .next {
+  float: right;
+  padding-top: 10px;
+}
+
+.weekdays {
+  margin: 0;
+  padding: 10px 0;
+  background-color: #ddd;
+}
+
+.weekdays li {
+  display: inline-block;
+  width: 13%;
+  color: #666;
+  text-align: center;
+}
+
+.days {
+  padding: 10px 0;
+  background: #eee;
+  margin: 0;
+}
+
+.days li {
+  list-style-type: none;
+  display: inline-block;
+  width: 13%;
+  text-align: center;
+  margin-bottom: 5px;
+  font-size:12px;
+  color: #777;
+}
+
+.days li .active {
+  padding: 5px;
+  background: #1a3dbc;
+  color: white !important
+}
 
