@@ -25,132 +25,133 @@
 
   <body>
     <header>
-    <!-- place navbar here -->
-    <nav class="navbar sticky-top navbar-expand-sm navbar-light bg-light">
-        <div class="container">
-        <a class="navbar-brand" href="index.html"><b>&lt;/N10&gt;</b></a>
-        <button
-            class="navbar-toggler d-lg-none"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#collapsibleNavId"
-            aria-controls="collapsibleNavId"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-        >
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="collapsibleNavId">
-            <ul class="navbar-nav me-auto mt-2 mt-lg-0">
-            <li class="nav-item">
-                <a class="nav-link active" href="#" aria-current="page"
-                >Home <span class="visually-hidden">(current)</span></a
-                >
-            </li>
-
-            <div class="dropdown">
-                <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                id="navbarDropdownMenuLink"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-                >
-                Category
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" >
+      <!-- place navbar here -->
+      <nav class="navbar sticky-top navbar-expand-sm navbar-light bg-light">
+          <div class="container">
+          <a class="navbar-brand" href="index.html"><b>&lt;/N10&gt;</b></a>
+          <button
+              class="navbar-toggler d-lg-none"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapsibleNavId"
+              aria-controls="collapsibleNavId"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+          >
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="collapsibleNavId">
+              <ul class="navbar-nav me-auto mt-2 mt-lg-0">
+              <li class="nav-item">
+                  <a class="nav-link active" href="index.html" aria-current="page"
+                  ><i class="bi bi-house"></i> <span class="visually-hidden">(current)</span></a
+                  >
+              </li>
+  
+              <div class="dropdown">
+                  <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="navbarDropdownMenuLink"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                  >
+                  Chuyên mục
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" >
+                  <li>
+                      <a class="dropdown-item" href="./Categories.html" id="business">Thời sự</a>
+                      <ul class="dropdown-menu dropdown-submenu">
+                      <li><a class="dropdown-item" href="#">Nông sản</a></li>
+                      <li><a class="dropdown-item" href="#">Hải sản</a></li>
+                      </ul>
+                  </li>
+                  <li>
+                      <a class="dropdown-item" href="#genral" id="genral"
+                      >Chung</a
+                      >
+                  </li>
+                  <li>
+                      <a class="dropdown-item" href="#sports" id="sports"
+                      >Thể thao</a
+                      >
+                  </li>
+                  <li>
+                      <a
+                      class="dropdown-item"
+                      href="#technology"
+                      id="technology"
+                      >Công nghệ</a
+                      >
+                  </li>
+                  <li>
+                      <a
+                      class="dropdown-item"
+                      href="#entertainment"
+                      id="entertainment"
+                      >Giải trí</a
+                      >
+                  </li>
+                  </ul>
+              </div>
+  
+              <div class="dropdown">
+                  <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="dropdownIdList"
+                  data-bs-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  >Danh sách bài viết</a
+                  >
+                  <ul class="dropdown-menu" aria-labelledby="dropdownIdList">
+                  <li><a class="dropdown-item" href="#">Theo chuyên mục</a></li>
+                  <li><a class="dropdown-item" href="#">Theo nhãn</a></li>
+                  </ul>
+              </div>
+              </ul>
+  
+              <form class="d-flex my-2 my-lg-0 w-50" id="searchForm">
+              <input
+                  class="form-control me-sm-2"
+                  type="text"
+                  id="newsQuery"
+                  placeholder="Bạn đang tìm gì..."
+              />
+              <button
+                  class="btn btn-dark my-2 my-sm-0"
+                  type="submit"
+                  id="searchBtn"
+              >
+                  Tìm
+              </button>
+              </form>
+              
+              
+              <div class="dropdown user">
+              <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="dropdownIdUser"
+                  data-bs-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  ><i class="bi bi-person-circle ms-4 fs-2 text-dark"></i
+              ></a>
+              <ul class="dropdown-menu me-6" aria-labelledby="dropdownIdUser">
+                <li><a class="dropdown-item" href="AdminViewAllPost.html">Quản lý</a></li>
+                <li><a class="dropdown-item" href="mylist.html">Phóng viên</a></li>
                 <li>
-                    <a class="dropdown-item" href="./Categories.html" id="business">Business</a>
-                    <ul class="dropdown-menu dropdown-submenu">
-                    <li><a class="dropdown-item" href="#">Agricultural products</a></li>
-                    <li><a class="dropdown-item" href="#">Seafood</a></li>
-                    </ul>
+                <a class="dropdown-item" href="checkStatus.html">Biên tập viên</a>
                 </li>
-                <li>
-                    <a class="dropdown-item" href="#genral" id="genral"
-                    >Genral</a
-                    >
-                </li>
-                <li>
-                    <a class="dropdown-item" href="#sports" id="sports"
-                    >Sports</a
-                    >
-                </li>
-                <li>
-                    <a
-                    class="dropdown-item"
-                    href="#technology"
-                    id="technology"
-                    >Technology</a
-                    >
-                </li>
-                <li>
-                    <a
-                    class="dropdown-item"
-                    href="#entertainment"
-                    id="entertainment"
-                    >Entertainment</a
-                    >
-                </li>
-                </ul>
-            </div>
-
-            <div class="dropdown">
-                <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                id="dropdownIdList"
-                data-bs-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-                >Post list</a
-                >
-                <ul class="dropdown-menu" aria-labelledby="dropdownIdList">
-                <li><a class="dropdown-item" href="#">Catelogy</a></li>
-                <li><a class="dropdown-item" href="#">Tag</a></li>
-                </ul>
-            </div>
-            </ul>
-
-            <form class="d-flex my-2 my-lg-0 w-50" id="searchForm">
-            <input
-                class="form-control me-sm-2"
-                type="text"
-                id="newsQuery"
-                placeholder="Enter what you want to search for..."
-            />
-            <button
-                class="btn btn-dark my-2 my-sm-0"
-                type="submit"
-                id="searchBtn"
-            >
-                Search
-            </button>
-            </form>
-            
-            
-            <div class="dropdown user">
-            <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                id="dropdownIdUser"
-                data-bs-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-                ><i class="bi bi-person-circle ms-4 fs-2 text-dark"></i
-            ></a>
-            <ul class="dropdown-menu me-6" aria-labelledby="dropdownIdUser">
-                <li><a class="dropdown-item" href="log-in.html">Log In</a></li>
-                <li>
-                <a class="dropdown-item" href="sign-up.html">Sign Up</a>
-                </li>
-            </ul>
-            </div>
-        </div>
-        </div>
-    </nav>
-    </header>
+              </ul>
+              </div>
+          </div>
+          </div>
+      </nav>
+      </header>
     
     <main>
         <div class="container">
