@@ -158,10 +158,10 @@
                 <div class="col-3">
                     <h1>Quản lý</h1>
                     <a href=""><p>Xem danh sách bài viết</p></a>
-                    <a href=""><p>Quản lý chuyên mục</p></a>
-                    <a href=""><p>Quản lý nhãn tag</p></a>
+                    <a href="AdminManageCategories.html"><p>Quản lý chuyên mục</p></a>
+                    <a href="AdminTag.html"><p>Quản lý nhãn tag</p></a>
                     <a href=""><p>Quản lý biên tập viên</p></a>
-                    <a href=""><p class="active">Quản lý người dùng</p></a>
+                    <a href="AdminUserManagement.html"><p  class="active">Quản lý người dùng</p></a>
                 </div>
                 <div class="col-9 left-col">
                     <div class="row">
@@ -193,10 +193,10 @@
                                                 
                                             </div>
                                             <div class="col-5 button-div">
-                                                <button class="btn btn-primary extend" onclick="openCalendar()">01/04/2024</button>
+                                                <button class="btn btn-primary" id="extend" onclick="openCalendar()">01/04/2024</button>
                                                 <button class="btn btn-warning text-light">VIP</i></button>
-                                                <div class="form-popup" id="calendarForm" onsubmit="addItem(event)">
-                                                    <form action="#" method="post" class="form-container" onsubmit="addItem(event)">
+                                                <div class="form-popup" id="calendarForm">
+                                                    <form action="#" method="post" class="form-container" onsubmit="changeDate(event)">
                                                         <div>
                                                             <button type="button" onclick="closeCalendar()">x</button>
                                                             <div class="month">      
@@ -218,12 +218,12 @@
                                                             </ul>
 
                                                             <ul class="days">  
-                                                                <li><span></span></span></li>
                                                                 <li><span></span></li>
                                                                 <li><span></span></li>
                                                                 <li><span></span></li>
                                                                 <li><span></span></li>
-                                                                <li><span>1</span></li>
+                                                                <li><span></span></li>
+                                                                <li><span class="active">1</span></li>
                                                                 <li><span>2</span></li>
                                                                 <li><span>3</span></li>
                                                                 <li><span>4</span></li>
@@ -244,7 +244,7 @@
                                                                 <li><span>19</span></li>
                                                                 <li><span>20</span></li>
                                                                 <li><span>21</span></li>
-                                                                <li><span class="active">22</span></li>
+                                                                <li><span>22</span></li>
                                                                 <li><span>23</span></li>
                                                                 <li><span>24</span></li>
                                                                 <li><span>25</span></li>
@@ -255,20 +255,16 @@
                                                                 <li><span>30</span></li>
                                                             </ul>
                                                         </div>
-                                                        <button type="button" class="btn btn-primary justify-content-center" onclick="closeCalendar()">Gia hạn</button>
+                                                        <button type="button" class="btn btn-primary justify-content-center" onclick="changeDate(event)">Gia hạn</button>
                                                     </form>
                                                 </div>
                                             </div>
                                         </div>
                                   </li>
-                                  
-                                  
                                 </ul>
                               </div>
-                            
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -312,6 +308,14 @@
         }
         function openCalendar(){
             document.getElementById("calendarForm").style.display = "block";
+        }
+
+        function changeDate(e){
+            let value = document.querySelectorAll("span.active")[0].innerText
+            console.log(e.target.parentElement.parentElement.parentElement.firstChild.nextSibling)
+            let button = e.target.parentElement.parentElement.parentElement.firstChild.nextSibling
+            button.innerText = `${value}/04/2022`
+            closeCalendar()
         }
       </script>
       
