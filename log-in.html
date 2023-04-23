@@ -45,6 +45,46 @@
         $("#footer").load("footer.html");
       });
     </script>
+
+    <style>
+      /* Định dạng cho cửa sổ nổi */
+      .popup {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.4);
+      }
+
+      /* Định dạng cho nội dung của cửa sổ nổi */
+      .popup-content {
+        background-color: #fefefe;
+        margin: 10% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        max-width: 500px;
+      }
+
+      /* Định dạng cho nút đóng cửa sổ nổi */
+      .close-button {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+      }
+
+      .close-button:hover,
+      .close-button:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+      }
+    </style>
   </head>
 
   <body>
@@ -126,9 +166,23 @@
         </div>
       </div>
     </main>
-    <footer>
-      <!-- place footer here -->
-    </footer>
+    <div class="row float-end"><a href="#" id="adminLink">Admin?</a></div>
+
+    <div id="adminPopup" class="popup">
+      <div class="popup-content">
+        <span class="close-button">&times;</span>
+        <form action="AdminViewAllPost.html">
+          <h2>Bạn là admin?</h2>
+          <label for="username" class="label-primary">Tên đăng nhập:</label>
+          <input type="text" id="username" name="username" />
+          <br /><br />
+          <label for="password">Mật khẩu:</label>
+          <input type="password" id="password" name="password" />
+          <br /><br />
+          <button type="">Đăng nhập</button>
+        </form>
+      </div>
+    </div>
     <!-- Bootstrap JavaScript Libraries -->
     <script
       src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
@@ -143,5 +197,27 @@
     ></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
     <script src="log-in.js"></script>
+
+    <script>
+      var adminLinkEl = document.getElementById("adminLink");
+      var adminPopupEl = document.getElementById("adminPopup");
+      var closeBtnEl = document.querySelector(".close-button");
+
+      adminLinkEl.addEventListener("click", function (event) {
+        event.preventDefault();
+
+        adminPopupEl.style.display = "block";
+      });
+
+      closeBtnEl.addEventListener("click", function () {
+        adminPopupEl.style.display = "none";
+      });
+
+      window.addEventListener("click", function (event) {
+        if (event.target == adminPopupEl) {
+          adminPopupEl.style.display = "none";
+        }
+      });
+    </script>
   </body>
 </html>

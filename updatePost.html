@@ -33,6 +33,15 @@
         $("#footer").load("footer.html");
       });
     </script>
+    <style>
+        a{
+            text-decoration:none !important;
+        }
+        button a{
+            color: #fff !important;
+
+        }
+    </style>
   </head>
 
   <body>
@@ -96,9 +105,13 @@
         </div>
 
 
-        <a href="mylist.html"><button type="submit" class="btn btn-dark float-end">Cập nhật</button></a>
-
-
+        <div class="row d-flex justify-content-end">
+            <button class="btn btn-secondary col-1" type="submit"><a href="mylist.html">Draft</a></button>
+           <button class="btn btn-dark col-1 ms-1" type="submit"><a href="mylist.html">Đăng bài</a></button>
+        </div>
+<!--  <div class="col-1"><a href="mylist.html"><button  class="btn btn-secondary">Draft</button></a></div>
+            <div class="col-2"><a href="mylist.html"><button type="submit" class="btn btn-dark">Đăng bài</button></a></div>
+ -->
     </div>
 
   </main>

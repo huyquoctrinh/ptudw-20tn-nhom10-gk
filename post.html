@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>N10</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+      crossorigin="anonymous"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="user.css" />
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.js"
+      integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      $(function () {
+        $("#header").load("header-user.html");
+        $("#footer").load("footer.html");
+      });
+    </script>
+    <style>
+        a{
+            text-decoration:none !important;
+        }
+        button a{
+            color: #fff !important;
+
+        }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <div id="header"></div>
+  <main>
+
+    <div class="container py-5">
+
+        <h1>Đăng bài</h1>
+
+        <div class="mb-3">
+            <label class="form-label">
+                Tiêu đề
+            </label>
+            <div class = "input-group">
+                <input type="text" class="form-control" id = "title" name = "title" required>
+            </div>
+
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">
+                Tóm tắt
+            </label>
+            <div class = "input-group">
+                <input type="text" class="form-control" id = "summary" name = "summary" required>
+            </div>
+
+        </div>
+
+        <div class = "mb-3">
+            <label class="form-label">
+                Chuyên mục
+            </label>
+
+            <div class="dropdown">
+                <button class="btn btn-light dropdown-toggle border-dark" type="button" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Chọn chuyên mục cho bài viết
+                </button>
+                <div class="dropdown-menu" aria-labelledby="triggerId" style="background-color: white;">
+                  <a class="dropdown-item" href="#" onclick="selectCategory('Nông sản')">Nông sản</a>
+                  <a class="dropdown-item" href="#" onclick="selectCategory('Thủy sản')">Thủy sản</a>
+                  <h6 class="dropdown-item">Kinh tế</h6>
+                  <a class="dropdown-item" href="#" onclick="selectCategory('Chính trị')">Chính trị</a>
+                  <a class="dropdown-item" href="#" onclick="selectCategory('After divider action')">After divider action</a>
+                </div>
+              </div>
+            
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">
+                Nội dung
+            </label>
+            <div class="container-fluid">
+                <textarea id="demo" class="container-fluid" style="height: 500px;"></textarea>
+            </div>
+            
+
+        </div>
+
+
+        <div class="row d-flex justify-content-end">
+            <button class="btn btn-secondary col-1" type="submit"><a href="mylist.html">Draft</a></button>
+           <button class="btn btn-dark col-1 ms-1" type="submit"><a href="mylist.html">Đăng bài</a></button>
+        </div>
+<!--  <div class="col-1"><a href="mylist.html"><button  class="btn btn-secondary">Draft</button></a></div>
+            <div class="col-2"><a href="mylist.html"><button type="submit" class="btn btn-dark">Đăng bài</button></a></div>
+ -->
+    </div>
+
+  </main>
+  <footer>
+    <div id="footer"></div>
+  </footer>
+  <!-- Bootstrap JavaScript Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+    integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+  </script>
+  <script>
+    function selectCategory(categoryName) {
+      var dropdownButton = document.getElementById("triggerId");
+      dropdownButton.innerHTML = categoryName;
+    }
+    </script>
+</body>
+
+</html>
