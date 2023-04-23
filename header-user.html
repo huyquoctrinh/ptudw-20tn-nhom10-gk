@@ -45,8 +45,9 @@
         <div class="collapse navbar-collapse" id="collapsibleNavId">
           <ul class="navbar-nav me-auto mt-2 mt-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" href="#" aria-current="page"
-                >Home <span class="visually-hidden">(current)</span></a
+              <a class="nav-link active" href="index.html" aria-current="page"
+                ><i class="bi bi-house"></i>
+                <span class="visually-hidden">(current)</span></a
               >
             </li>
 
@@ -61,7 +62,7 @@
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
                   >
-                    Category
+                    Chuyên mục
                   </a>
                   <ul
                     class="dropdown-menu"
@@ -69,25 +70,23 @@
                   >
                     <li class="dropdown-submenu">
                       <a class="dropdown-item" href="#business" id="business"
-                        >Business</a
+                        >Kinh doanh</a
                       >
                       <ul class="dropdown-menu">
                         <li>
-                          <a class="dropdown-item" href="#"
-                            >Agricultural products</a
-                          >
+                          <a class="dropdown-item" href="#">Nông sản</a>
                         </li>
-                        <li><a class="dropdown-item" href="#">Seafood</a></li>
+                        <li><a class="dropdown-item" href="#">Hải sản</a></li>
                       </ul>
                     </li>
                     <li>
                       <a class="dropdown-item" href="#genral" id="genral"
-                        >Genral</a
+                        >Chung</a
                       >
                     </li>
                     <li>
                       <a class="dropdown-item" href="#sports" id="sports"
-                        >Sports</a
+                        >Thể thao</a
                       >
                     </li>
                     <li>
@@ -95,7 +94,7 @@
                         class="dropdown-item"
                         href="#technology"
                         id="technology"
-                        >Technology</a
+                        >Công nghệ</a
                       >
                     </li>
                     <li>
@@ -103,7 +102,7 @@
                         class="dropdown-item"
                         href="#entertainment"
                         id="entertainment"
-                        >Entertainment</a
+                        >Giải trí</a
                       >
                     </li>
                   </ul>
@@ -119,31 +118,30 @@
                 data-bs-toggle="dropdown"
                 aria-haspopup="true"
                 aria-expanded="false"
-                >Post list</a
+                >Danh sách bài viết</a
               >
               <ul class="dropdown-menu" aria-labelledby="dropdownIdList">
-                <li><a class="dropdown-item" href="#">Catelogy</a></li>
-                <li><a class="dropdown-item" href="#">Tag</a></li>
+                <li><a class="dropdown-item" href="#">Theo chuyên mục</a></li>
+                <li><a class="dropdown-item" href="#">Theo nhãn</a></li>
               </ul>
             </div>
           </ul>
 
-          <form class="d-flex my-2 my-lg-0 w-50" id="searchForm">
+          <form class="d-flex my-2 my-lg-0 w-40" id="searchForm">
             <input
               class="form-control me-sm-2"
               type="text"
               id="newsQuery"
-              placeholder="Enter what you want to search for..."
+              placeholder="Nhập nội dung tìm kiếm..."
             />
             <button
               class="btn btn-dark my-2 my-sm-0"
               type="submit"
               id="searchBtn"
             >
-              Search
+              Tìm
             </button>
           </form>
-
           <div class="dropdown user">
             <a
               class="nav-link dropdown-toggle"
@@ -158,27 +156,27 @@
             <ul class="dropdown-menu me-1" aria-labelledby="dropdownIdUser">
               <li>
                 <a class="dropdown-item" href="myprofile.html"
-                  ><i class="bi bi-person-circle"></i> My profile</a
+                  ><i class="bi bi-person-circle"></i> Hồ sơ của tôi</a
                 >
               </li>
               <li>
                 <a class="dropdown-item" href="post.html"
-                  ><i class="bi bi-file-arrow-up"></i> Post</a
+                  ><i class="bi bi-file-arrow-up"></i> Đăng bài</a
                 >
               </li>
               <li>
                 <a class="dropdown-item" href="mylist.html"
-                  ><i class="bi bi-card-list"></i> My list</a
+                  ><i class="bi bi-card-list"></i> Danh sách bài đăng</a
                 >
               </li>
               <li>
                 <a class="dropdown-item" href="update-list.html"
-                  ><i class="bi bi-pencil-square"></i> Update my list</a
+                  ><i class="bi bi-pencil-square"></i> Cập nhật danh sách</a
                 >
               </li>
               <li>
                 <a class="dropdown-item" href="index.html"
-                  ><i class="bi bi-box-arrow-left"></i> Log out</a
+                  ><i class="bi bi-box-arrow-left"></i> Đăng xuất</a
                 >
               </li>
             </ul>
@@ -186,7 +184,6 @@
         </div>
       </div>
     </nav>
-
     <!-- Bootstrap JavaScript Libraries -->
     <script
       src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
@@ -224,6 +221,5 @@
           });
         });
     </script>
-    <script src="index.js"></script>
   </body>
 </html>

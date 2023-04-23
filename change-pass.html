@@ -51,36 +51,36 @@
             />
             <h2 class="username mt-2">ChanChin</h2>
             <div class="list-group-flush  mt-4">
-              <a class="list-group-item" href="myprofile.html">My profile</a>
-              <a class="list-group-item" href="update-profile.html">Update profile</a>
-              <a class="list-group-item active" href="#">Change password</a>
-              <a class="list-group-item" href="mylist.html">My list</a>
+              <a class="list-group-item  " href="#">Hồ sơ của tôi</a>
+              <a class="list-group-item" href="update-profile.html">Cập nhật hồ sơ</a>
+              <a class="list-group-item active" href="change-pass.html">Thay đổi mật khẩu</a>
+              <a class="list-group-item" href="mylist.html">Danh sách bài đăng</a>
               <a class="list-group-item" href="premium.html"> <i class="bi bi-bookmark-star-fill text-warning"></i> Premium</a>
 
             </div>
           </div>
           <div class="col-8">
-            <div class="row"><h4>Change password</h3>
+            <div class="row"><h4>Thay đổi mật khẩu</h3>
             </div>
             <div class="mb-3 mt-3">
-              <label for="password" class="form-label">Current password</label>
+              <label for="password" class="form-label">Nhập mật khẩu mới</label>
               <div class="input-group">
                 <input type="password" class="form-control" id="password" name="password" aria-describedby="passwordHelp" 
                 onchange="validatePassword()" required>
               </div>
-              <div id="passwordHelp" class="form-text">Must be at least 8 characters long.</div>
+              <div id="passwordHelp" class="form-text">Mật khẩu phải dài ít nhất 8 ký tự.</div>
             </div>
             <div class="mb-3">
-              <label for="newPassword" class="form-label">New password</label>
+              <label for="newPassword" class="form-label">Nhập lại mật khẩu </label>
               <div class="input-group">
                 <input type="password" class="form-control" id="newPassword" name="newPassword"
                 onkeyup="validatePassword()" required>
               </div>
             </div>
-            <input type="checkbox" value = "true" onclick="showPassword(this.checked)"> Show Password
+            <input type="checkbox" value = "true" onclick="showPassword(this.checked)"> Hiện mật mẩu
             <div>
               <button type = "submit" class = "btn btn-dark mt-3" onclick="Notification()">
-                Change password
+                Thay đổi
               </button>
             </div>
           </div>
@@ -140,7 +140,7 @@
         }
       }
       function Notification(){
-        alert("Change Password Success!")
+        alert("Thay đổi mật khẩu thành công")
       }
     </script>
   </body>

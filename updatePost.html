@@ -1,28 +1,46 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+  <head>
+    <title>N10</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
 
-<head>
-  <title>N10</title>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+      crossorigin="anonymous"
+    />
 
-  <!-- Bootstrap CSS v5.2.1 -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-    
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="user.css" />
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.js"
+      integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      $(function () {
+        $("#header").load("header-user.html");
+        $("#footer").load("footer.html");
+      });
+    </script>
+  </head>
 
-</head>
-
-</head>
-
-<body>
-  <header>
-    <iframe src="navbar.html" width="100%" height="60px" frameborder="0"></iframe>
-  </header>
+  <body>
+    <header>
+      <div id="header"></div>
   <main>
 
-    <div class="container">
+    <div class="container py-5">
 
         <h1>Đăng bài</h1>
 
@@ -52,18 +70,17 @@
             </label>
 
             <div class="dropdown">
-                <button class="btn btn-light dropdown-toggle border-dark" type="button" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false">
-                            chọn chuyên mục cho bài viết
-                        </button>
+                <button class="btn btn-light dropdown-toggle border-dark" type="button" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Chọn chuyên mục cho bài viết
+                </button>
                 <div class="dropdown-menu" aria-labelledby="triggerId" style="background-color: white;">
-                    <a class="dropdown-item" href="#">Nông sản</a>
-                    <a class="dropdown-item" href="#">Thủy sản</a>
-                    <h6 class="dropdown-item">Kinh tế</h6>
-                    <a class="dropdown-item" href="#">Chính trị</a>
-                    <a class="dropdown-item" href="#">After divider action</a>
+                  <a class="dropdown-item" href="#" onclick="selectCategory('Nông sản')">Nông sản</a>
+                  <a class="dropdown-item" href="#" onclick="selectCategory('Thủy sản')">Thủy sản</a>
+                  <h6 class="dropdown-item">Kinh tế</h6>
+                  <a class="dropdown-item" href="#" onclick="selectCategory('Chính trị')">Chính trị</a>
+                  <a class="dropdown-item" href="#" onclick="selectCategory('After divider action')">After divider action</a>
                 </div>
-            </div>
+              </div>
             
         </div>
 
@@ -79,14 +96,14 @@
         </div>
 
 
-
+        <a href="mylist.html"><button type="submit" class="btn btn-dark float-end">Cập nhật</button></a>
 
 
     </div>
 
   </main>
   <footer>
-    <!-- place footer here -->
+    <div id="footer"></div>
   </footer>
   <!-- Bootstrap JavaScript Libraries -->
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
@@ -96,6 +113,12 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
     integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
   </script>
+  <script>
+    function selectCategory(categoryName) {
+      var dropdownButton = document.getElementById("triggerId");
+      dropdownButton.innerHTML = categoryName;
+    }
+    </script>
 </body>
 
 </html>

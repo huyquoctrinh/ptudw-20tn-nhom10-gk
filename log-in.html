@@ -54,9 +54,9 @@
         <div class="row d-flex justify-content-center">
           <div class="col-md-6">
             <div class="card px-3 py-3" id="form2">
-              <h3>Log In</h3>
+              <h3>Đăng nhập</h3>
               <p class="mb-5">
-                Please fill your detail to access your account.
+                Vui lòng điền thông tin để truy cập vào tài khoản của bạn.
               </p>
               <div class="form-data text-dark" v-if="!submitted">
                 <div class="forms-inputs mb-4">
@@ -69,10 +69,10 @@
                     v-bind:class="{'form-control':true, 'is-invalid' : !validEmail(email) && emailBlured}"
                     v-on:blur="emailBlured = true"
                   />
-                  <div class="invalid-feedback">A valid email is required!</div>
+                  <div class="invalid-feedback">Email hợp lệ là bắt buộc!</div>
                 </div>
                 <div class="forms-inputs mb-4">
-                  <span>Password</span>
+                  <span>Mật khẩu</span>
                   <input
                     class="w-100"
                     autocomplete="off"
@@ -82,18 +82,18 @@
                     v-on:blur="passwordBlured = true"
                   />
                   <div class="invalid-feedback">
-                    Password must be 8 character!
+                    Mật khẩu phải ít nhất 8 ký tự.
                   </div>
                 </div>
                 <div class="row mb-2 ms-2 text-end text-dark">
-                  <a href="forgotpass.html">Forgot Password?</a>
+                  <a href="forgotpass.html">Quên mật khẩu?</a>
                 </div>
                 <div class="mb-3">
                   <button
                     v-on:click.stop.prevent="submit"
                     class="btn btn-dark w-100"
                   >
-                    Login
+                    Đăng nhập
                   </button>
                 </div>
               </div>
@@ -101,16 +101,16 @@
                 <div class="text-center d-flex flex-column">
                   <i class="bx bxs-badge-check"></i>
                   <span class="text-center fs-1"
-                    >You have been logged in <br />
-                    Successfully</span
+                    >Bạn đã đăng nhập <br />
+                    thành công</span
                   >
                 </div>
               </div>
               <!-- class="row text-center" -->
               <div class="text-center">
-                <span>Don’t have an account?</span>
+                <span>Bạn chưa có tài khoản?</span>
                 <span
-                  ><b><a href="sign-up.html" cl>Sign up</a></b></span
+                  ><b><a href="sign-up.html" cl>Đăng ký</a></b></span
                 >
               </div>
             </div>
