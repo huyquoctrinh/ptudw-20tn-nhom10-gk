@@ -1,0 +1,147 @@
+* {
+    box-sizing: border-box;
+    color: #000;
+    text-decoration: none;
+}
+
+main{
+    width: 70%;
+    margin: auto;
+}
+
+
+.card{
+    margin-top: 10px;
+}
+.navbar {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.dropdown-menu li {
+    position: relative;
+}
+.dropdown-menu .dropdown-submenu {
+    display: none;
+    position: absolute;
+    left: 100%;
+    top: -7px;
+}
+.dropdown-menu .dropdown-submenu-left {
+    right: 100%;
+    left: auto;
+}
+.dropdown-menu:hover > li:hover > .dropdown-submenu {
+    display: block;
+}
+  
+
+.headingh2FeatureNews{
+    margin-top: 20px;
+}
+
+
+
+
+/* 
+.div-first-new{
+    background-color: #F5F5F5;
+    padding: 10px;
+}
+.news-content{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+
+.news-container{
+    display: flex;
+    flex-direction: column;
+    background-color: #F7F7F7;
+    padding: 10px;
+    
+}
+
+.image-news{
+    object-fit: scale-down;
+} */
+.news-tag{
+    margin-top: auto;
+    margin-bottom: -10px;
+
+}
+
+.p-tag-news{
+    font-weight: 600;
+    margin-bottom: 0px;
+}
+
+.p-date-news{
+    text-align: right;
+    margin-bottom: 0px;
+
+}
+
+.container-carousel-news{
+    margin-bottom: 50px;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  height: 80px;
+  width: 40px;
+  background-size: 100%, 100%;
+  border-radius: 4px;
+  background-color: #00AEEF;
+}
+.carousel-control-next-icon  {
+    position: absolute;
+    right: 0;
+}
+.carousel-control-prev-icon  {
+    position: absolute;
+    left: 0;
+}
+
+a{
+    text-decoration: none;
+}
+
+
+.carousel-indicator-first-new {
+    position: absolute;
+    bottom: -50px;
+}
+
+.carousel .carousel-indicator-first-new button{
+    background-color: gray;
+}
+
+.carousel .carousel-indicators button {
+    width: 10px;
+   height: 10px;
+   border-radius: 100%;
+}
+  
+
+.img-background-carousel{
+    mask-image: linear-gradient(to left, rgba(0,0,0,0) 10%, rgba(0,0,0,1) 90%);
+    -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,0) 10%, rgba(0,0,0,1) 90%);
+}
+
+.card-title-image-carousel{
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.img-lifeStyle-small{
+    mask-image: linear-gradient(to top, rgba(0,0,0,0) 10%, rgba(0,0,0,1) 90%);
+    -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,0) 10%, rgba(0,0,0,1) 90%);
+
+}
+
+
+footer{
+    background-color: #ebf1b3;
+    margin-top: 20px;
+}
