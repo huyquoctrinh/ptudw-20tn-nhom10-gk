@@ -85,7 +85,7 @@ main{
 }
 .carousel-control-prev-icon  {
     position: absolute;
-    left: 0;
+    left: -20px;
 }
 
 a{
