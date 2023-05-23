@@ -1,0 +1,35 @@
+{
+  "development": {
+    "username": "group10",
+    "password": "vTSCMote8LmDLZ2NV23LAWAE7cSoHoB9",
+    "database": "newspaper_q557",
+    "host": "dpg-chlm3bu7avj217era760-a.oregon-postgres.render.com",
+    "dialect": "postgres",
+    "dialectOptions": {
+      "ssl": {
+        "require": true,
+        "rejectUnauthorized": false
+      }
+    }
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "database_test",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "group10",
+    "password": "vTSCMote8LmDLZ2NV23LAWAE7cSoHoB9",
+    "database": "newspaper_q557",
+    "host": "dpg-chlm3bu7avj217era760-a.oregon-postgres.render.com",
+    "dialect": "postgres",
+    "dialectOptions": {
+      "ssl": {
+        "require": true,
+        "rejectUnauthorized": false
+      }
+    }
+  }
+}
