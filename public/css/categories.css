@@ -15,6 +15,10 @@ span:not(.h2){
     text-decoration: none;
 }
 
+.card:not(.card-hor){
+    height: 350px;
+}
+
 main{
     width: 70%;
     margin: auto;
@@ -49,12 +53,19 @@ main{
 .headingh2FeatureNews{
     margin-top: 20px;
 }
-
-.news-tag{
-    margin-top: auto;
-    margin-bottom: -10px;
-
+.news-heading{
+    height: 350px;
 }
+
+.news-tag:not(.tag-hor){
+    /* margin-top: auto;
+    margin-bottom: -10px; */
+    position:absolute;
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+}
+
 
 .p-tag-news{
     font-weight: 600;
@@ -63,9 +74,8 @@ main{
 
 .p-date-news{
     text-align: right;
-    margin-bottom: 0px;
-
 }
+
 
 .container-carousel-news{
     margin-bottom: 50px;
@@ -125,6 +135,105 @@ a{
 
 }
 
+
+footer{
+    background-color: #ebf1b3;
+    margin-top: 20px;
+}
+
+.card > img{
+    width: 100%;
+    height: 200px;
+}
+
+
+
+
+.card-category{
+    height: 700px;
+}
+
+.card-category > img{
+    height: 100%;
+}
+
+header{
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.static-card{
+    margin-bottom: 30px;
+}
+
+.heading-title-news-detail{
+    font-family: 'Playfair Display';
+    font-size: 40px;
+}
+.vl{
+    background-color: black;
+    width: 1px;
+    height: 100%;
+    margin: auto;
+}
+
+.new-detail{
+    width: 65%;
+}
+
+
+
+.relevant-news-container{
+    background-color: #F8F8F8;
+    overflow: auto;
+}
+
+.shape-title-relevant-news{
+    background-color: #00AEEF;
+    height: 35px;
+    width: 15px;
+    display: flex;
+    float: left;
+    margin-right: 10px;
+}
+
+.title-relevant-news > h4{
+    padding: 5px;
+}
+
+
+.comment-container{
+    margin-top: 20px;
+}
+
+.comment-item p{
+    margin-bottom: 0px;
+}
+.list-groupitem{
+    margin-bottom: 10px;
+    border-radius: 4px;
+    background: #F4F4F4;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.pTime{
+    color: gray;
+    font-size: 0.7rem;
+}
+#myList{
+    list-style-type: none;
+
+}
+
+.pName, .pComment, .pTime{
+    padding: 5px;
+}
+
+.pName{
+    margin-left: 10px;
+    font-weight: 500;
+}
 
 footer{
     background-color: #ebf1b3;

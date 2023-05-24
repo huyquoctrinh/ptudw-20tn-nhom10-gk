@@ -1,0 +1,281 @@
+  <main>
+    <div class="container new-detail mt-5">
+        {{#each article}}
+        <div class="row">
+            <div class="col-8">
+                <!-- Tags -->
+                <p class="fw-bold">{{Category.category_name}}</p>
+                <p class="heading-title-news-detail">{{title}}</p>
+                <div class="row ">
+                    <div class="col-1">
+                        <div class="vl"></div>
+                    </div>
+                    <div class="col-11">
+                        <ul>
+                          {{briefDescription}}
+                        </ul>
+                    </div>
+                    
+                </div>
+                
+            </div>
+            <div class="col-4">
+                <img src="{{image_thumbnail}}" alt="" class="img-fluid">
+            </div>
+        </div>
+
+        <p>{{description}}</p>
+        <div class="row justify-content-between g-2">
+            <div class="col-8">
+                <p>
+                  {{description}}
+                </p>
+                <br>
+                <p>{{description}}</p>
+            </div>
+            <div class="col-3">
+                <img src="{{image_thumbnail}}" alt="" class="img-fluid">
+            </div>
+        </div>
+        <div class="row news-tag">
+            <div class="col">
+              <p class="p-tag-news">{{User.name}}</p>
+            </div>
+            <div class="col">
+              <p class="p-date-news">{{createDay}}</p>
+            </div>
+        </div>
+        {{/each}}
+        <!-- tin cung chuyen muc -->
+        <div class="container relevant-news-container">
+            <div class="title-relevant-news">
+                <div class="shape-title-relevant-news"></div>
+                <h4>Tin cung chuyen muc</h4>
+            </div>
+            <div id="carouselExampleIndicators" class="carousel slide container-carousel-news mt-4">
+                <div class="carousel-indicators carousel-indicator-first-new">
+                  <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                  <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                  <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                  <!-- slide 1 -->
+                  <div class="carousel-item active">
+                    <div class="row justify-content-between align-items-center g-2">
+                      <!-- news 1 -->
+                      <div class="col">
+                        <a href="">
+                          <div class="card">
+                            <img src="../images/tiepvien.png" class="card-img-top" alt="...">
+                            <div class="card-body">
+                              <h5 class="card-title text-center">Bắt giữ 4 nữ tiếp viên Vietnam Airlines xách ma túy về Việt Nam</h5>
+                              <div class="row news-tag">
+                                <div class="col">
+                                  <p class="p-tag-news">Giải trí</p>
+                                </div>
+                                <div class="col">
+                                  <p class="p-date-news">18/8/2023</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </a>
+                      </div>
+                      <!-- news 2 -->
+                      <div class="col">
+                        <a href="">
+                          <div class="card">
+                            <img src="../images/tiepvien.png" class="card-img-top" alt="...">
+                            <div class="card-body">
+                              <h5 class="card-title text-center">Bắt giữ 4 nữ tiếp viên Vietnam Airlines xách ma túy về Việt Nam</h5>
+                              <div class="row news-tag">
+                                <div class="col">
+                                  <p class="p-tag-news">Giải trí</p>
+                                </div>
+                                <div class="col">
+                                  <p class="p-date-news">18/8/2023</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </a>
+                      </div>
+                      <!-- news 3 -->
+                      <div class="col">
+                        <a href="">
+                          <div class="card">
+                            <img src="../images/tiepvien.png" class="card-img-top" alt="...">
+                            <div class="card-body">
+                              <h5 class="card-title text-center">Bắt giữ 4 nữ tiếp viên Vietnam Airlines xách ma túy về Việt Nam</h5>
+                              <div class="row news-tag">
+                                <div class="col">
+                                  <p class="p-tag-news">Giải trí</p>
+                                </div>
+                                <div class="col">
+                                  <p class="p-date-news">18/8/2023</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+
+                  </div>
+                  <!-- slide 2 -->
+                  <div class="carousel-item">
+                    <div class="row justify-content-between align-items-center g-2">
+                      <!-- news 1 -->
+                      <div class="col">
+                        <a href="">
+                          <div class="card">
+                            <img src="../images/tiepvien.png" class="card-img-top" alt="...">
+                            <div class="card-body">
+                              <h5 class="card-title text-center">Bắt giữ 4 nữ tiếp viên Vietnam Airlines xách ma túy về Việt Nam</h5>
+                              <div class="row news-tag">
+                                <div class="col">
+                                  <p class="p-tag-news">Giải trí</p>
+                                </div>
+                                <div class="col">
+                                  <p class="p-date-news">18/8/2023</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </a>
+                      </div>
+                      <!-- news 2 -->
+                      <div class="col">
+                        <a href="">
+                          <div class="card">
+                            <img src="../images/tiepvien.png" class="card-img-top" alt="...">
+                            <div class="card-body">
+                              <h5 class="card-title text-center">Bắt giữ 4 nữ tiếp viên Vietnam Airlines xách ma túy về Việt Nam</h5>
+                              <div class="row news-tag">
+                                <div class="col">
+                                  <p class="p-tag-news">Giải trí</p>
+                                </div>
+                                <div class="col">
+                                  <p class="p-date-news">18/8/2023</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </a>
+                      </div>
+                      <!-- news 3 -->
+                      <div class="col">
+                        <a href="">
+                          <div class="card">
+                            <img src="../images/tiepvien.png" class="card-img-top" alt="...">
+                            <div class="card-body">
+                              <h5 class="card-title text-center">Bắt giữ 4 nữ tiếp viên Vietnam Airlines xách ma túy về Việt Nam</h5>
+                              <div class="row news-tag">
+                                <div class="col">
+                                  <p class="p-tag-news">Giải trí</p>
+                                </div>
+                                <div class="col">
+                                  <p class="p-date-news">18/8/2023</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </a>
+                      </div>
+                  </div>
+                    </div>
+                  <!-- slide 3 -->
+                  <div class="carousel-item">
+                    <div class="row justify-content-between align-items-center g-2">
+                      <!-- news 1 -->
+                      <div class="col">
+                        <a href="">
+                          <div class="card">
+                            <img src="../images/tiepvien.png" class="card-img-top" alt="...">
+                            <div class="card-body">
+                              <h5 class="card-title text-center">Bắt giữ 4 nữ tiếp viên Vietnam Airlines xách ma túy về Việt Nam</h5>
+                              <div class="row news-tag">
+                                <div class="col">
+                                  <p class="p-tag-news">Giải trí</p>
+                                </div>
+                                <div class="col">
+                                  <p class="p-date-news">18/8/2023</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </a>
+                      </div>
+                      <!-- news 2 -->
+                      <div class="col">
+                        <a href="">
+                          <div class="card">
+                            <img src="../images/tiepvien.png" class="card-img-top" alt="...">
+                            <div class="card-body">
+                              <h5 class="card-title text-center">Bắt giữ 4 nữ tiếp viên Vietnam Airlines xách ma túy về Việt Nam</h5>
+                              <div class="row news-tag">
+                                <div class="col">
+                                  <p class="p-tag-news">Giải trí</p>
+                                </div>
+                                <div class="col">
+                                  <p class="p-date-news">18/8/2023</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </a>
+                      </div>
+                      <!-- news 3 -->
+                      <div class="col">
+                        <a href="">
+                          <div class="card">
+                            <img src="../images/tiepvien.png" class="card-img-top" alt="...">
+                            <div class="card-body">
+                              <h5 class="card-title text-center">Bắt giữ 4 nữ tiếp viên Vietnam Airlines xách ma túy về Việt Nam</h5>
+                              <div class="row news-tag">
+                                <div class="col">
+                                  <p class="p-tag-news">Giải trí</p>
+                                </div>
+                                <div class="col">
+                                  <p class="p-date-news">18/8/2023</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </a>
+                      </div>
+                  </div>
+                    </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
+        </div>
+        <!-- tags -->
+        <p>Tags: Hoa Minzy / tiktok / trend / Thi Mau</p>
+    </div>
+    <!-- binh luan -->
+    <div class="container comment-container">
+            <h4>Binh Luan</h4>
+            <form action="" method="post" onSubmit="addItem(event)">
+              <div class="mb-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder=""
+                  required
+                  name="comment"
+                  id="comment"
+                  aria-describedby="helpId"
+                />
+              </div>
+            </form>
+            <ul class="list-group" id="myList"></ul>
+    </div>
+
+  </main>

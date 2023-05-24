@@ -1,0 +1,232 @@
+
+<main>
+    <section class="section">
+        <div class="container">
+            <h2 class="headingh2FeatureNews">Tin nổi bật</h2>
+            <!-- row 1 -->
+            <div class="row justify-content-between">
+              <!-- biggest left news -->
+              <div class="col-lg-8 col-sm-12 col-md-12">
+                <a href="/newsDetail">
+                <div class="card">
+                  <div class="row justify-content-between">
+                    <div class="col-lg-6 col-sm-12">
+                      <img src="../images/hoaminzy.png" class="img-fluid object-fit-cover" alt="..." >
+                    </div>
+                    <div class="col-lg-6 col-sm-12 ">
+                      <div class="card-body container">
+                        <h5 class="card-title">Sao Việt 'bắt trend' Thị Mầu của Hòa Minzy: Nhan sắc nào cũng khiến netizen mê mệt</h5>
+                        <p class="card-text">Hòa Minzy đăng clip "biến hình" trên trang TikTok cá nhân với nền nhạc ca khúc Thị Mầu. Trong đoạn clip, cô liên tục thay đổi layout trang điểm từ xấu xí cho đến xinh đẹp. </p>
+                        <div class="row news-tag">
+                          <div class="col">
+                            <p class="p-tag-news">Giải trí</p>
+                          </div>
+                          <div class="col">
+                            <p class="p-date-news">18/8/2023</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+              </div>
+              <!-- news 2 -->
+              <div class="col-lg-4 rounded-4 col-sm-12 col-md-12">
+                <a href="/newsDetail">
+                  <div class="card ">
+                    <img src="../images/hoaminzy.png" class="img-fluid " alt="..." >
+                    <div class="card-body">
+                      <h5 class="card-title">Sao Việt 'bắt trend' Thị Mầu của Hòa Minzy: Nhan sắc nào cũng khiến netizen mê mệt</h5>
+                      <div class="row news-tag">
+                        <div class="col">
+                          <p class="p-tag-news">Giải trí</p>
+                        </div>
+                        <div class="col">
+                          <p class="p-date-news">18/8/2023</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <!--  end news 2 -->
+            </div>
+            <!-- carousel news -->
+            <div id="carouselExampleIndicators" class="carousel slide container-carousel-news mt-4">
+              <div class="carousel-indicators carousel-indicator-first-new">
+                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+              </div>
+              <div class="carousel-inner">
+                <!-- slide 1 -->
+                {{#each articles}}
+                <div class="carousel-item active">
+                  <div class="row align-items-center g-2">
+                    <!-- news 1 -->
+                    {{#each this}}
+                    {{> carousel-article}}
+                    {{/each}}
+                  </div>
+                </div>
+                {{/each}}
+              </div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
+            <!-- carousel end -->
+        </div>
+    </section>
+    <hr>
+    <!-- tin moi nhat -->
+    <section class="section">
+      <h2>Tin mới nhất</h2>
+      <div id="carouselExampleIndicators2" class="carousel slide container-carousel-news">
+        <div class="carousel-indicators carousel-indicator-first-new">
+          <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+          <!-- slide 1 -->
+          {{#each articles}}
+        <div class="carousel-item active">
+          <div class="row align-items-center g-2">
+            <!-- news 1 -->
+            {{#each this}}
+            {{> carousel-article}}
+            {{/each}}
+          </div>
+        </div>
+        {{/each}}
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </section>
+    <!-- end tin moi nhat -->
+    <hr>
+    <!-- xem nhieu nhat -->
+    <section>
+      <h2>Xem nhiều nhất</h2>
+      <div class="row">
+        <!-- tin -->
+        <div class="col-8">
+          {{#each mostViewArticle}}
+            {{> mostViewArticle}}
+          {{/each}}
+        </div>
+        <!-- quang cao -->
+        <div class="col-4">
+          <img src="../images/qc_1.png" alt="">
+          <img src="../images/qc_2.png" alt="">
+          <img src="../images/qc_3.png" alt="">
+        </div>
+      </div>
+    </section>
+    <hr>
+    <!-- end xem nhieu nhat -->
+    <section class="section">
+      <h2>Thời sự</h2>
+      <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>          
+        <div class="carousel-inner">
+          {{#each thoisu3}}
+          <div class="carousel-item active" data-bs-interval="2000">
+            {{> slider}}
+          </div>
+          {{/each}}
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+      <div class="row row-cols-1 row-cols-md-3 g-4">
+        {{#each thoisu3}}
+        {{> categoryArticle}}
+        {{/each}}
+      </div>
+    </section>
+    <section class="section">
+      <h2>Sức khỏe</h2>
+      <div id="carouselExampleInterval2" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>          
+        <div class="carousel-inner">
+          {{#each health3}}
+          <div class="carousel-item active" data-bs-interval="2000">
+            {{> slider}}
+          </div>
+          {{/each}}
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval2" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval2" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+      <div class="row row-cols-1 row-cols-md-3 g-4">
+        {{#each health3}}
+        {{> categoryArticle}}
+        {{/each}}
+      </div>
+    </section>
+    <section class="section">
+      <h2>Giải trí</h2>
+      <div id="carouselExampleInterval3" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>          
+        <div class="carousel-inner">
+          {{#each entertainment3}}
+          <div class="carousel-item active" data-bs-interval="2000">
+            {{> slider}}
+          </div>
+          {{/each}}
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval3" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval3" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+      <div class="row row-cols-1 row-cols-md-3 g-4">
+        {{#each entertainment3}}
+        {{> categoryArticle}}
+        {{/each}}
+      </div>
+    </section>
+</main>
