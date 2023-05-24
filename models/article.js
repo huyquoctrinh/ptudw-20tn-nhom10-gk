@@ -11,17 +11,22 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Article.hasMany(models.Product, { foreignKey: 'ArticleId' });
+      Article.hasMany(models.Image, { foreignKey: 'article_id' });
+      Article.belongsToMany(models.Tag, { through: 'ArticleTag', foreignKey: 'article_id', otherKey: 'tag_id' });
+      Article.belongsTo(models.Category, { foreignKey: 'category_id'});
+      Article.belongsTo(models.Writer, { foreignKey: 'writer_id'});
+      Article.hasMany(models.ArticleStatus, { foreignKey: 'article_id'});
+      Article.hasMany(models.Comment, { foreignKey: 'article_id'});
     }
   }
   Article.init({
     name: DataTypes.TEXT,
     imagePath: DataTypes.STRING,
     title: DataTypes.TEXT,
-    briedDecription: DataTypes.TEXT,
+    briefDescription: DataTypes.TEXT,
     description: DataTypes.TEXT,
     image_thumbnail: DataTypes.STRING,
-    view_count: DataTypes.DECIMAL,
+    view_count: DataTypes.NUMERIC,
     is_delete: DataTypes.BOOLEAN,
     is_premium: DataTypes.BOOLEAN,
     is_featured: DataTypes.BOOLEAN

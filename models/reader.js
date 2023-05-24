@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Reader.hasMany(models.Product, { foreignKey: 'ReaderId' });
+      Reader.belongsTo(models.User, { foreignKey : "id", targetKey: "id"});
     }
   }
   Reader.init({

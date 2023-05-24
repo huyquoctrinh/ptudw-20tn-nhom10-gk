@@ -11,12 +11,12 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Payment.hasMany(models.Product, { foreignKey: 'PaymentId' });
+      Payment.belongsTo(models.User, { foreignKey: 'user_id' });
     }
   }
   Payment.init({
     status: DataTypes.BOOLEAN,
-    amount: DataTypes.DECIMAL
+    amount: DataTypes.NUMERIC,
   }, {
     sequelize,
     modelName: 'Payment',

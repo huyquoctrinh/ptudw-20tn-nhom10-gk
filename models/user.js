@@ -11,7 +11,11 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      User.hasMany(models.Product, { foreignKey: 'TagId' });
+      User.hasMany(models.Comment, { foreignKey: 'user_id'})
+      User.hasMany(models.Editor, { foreignKey: "id"});
+      User.hasMany(models.Admin, { foreignKey: "id"});
+      User.hasMany(models.Reader, { foreignKey: 'id'});
+      User.hasMany(models.Writer, { foreignKey: "id"});
     }
   }
   User.init({
@@ -20,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
     email: DataTypes.TEXT,
     name: DataTypes.TEXT,
     role: DataTypes.STRING,
-    DOB: DataTypes.DATE
+    dob: DataTypes.DATE
   }, {
     sequelize,
     modelName: 'User',

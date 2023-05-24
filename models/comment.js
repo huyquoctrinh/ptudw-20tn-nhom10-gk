@@ -11,11 +11,12 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Comment.hasMany(models.Product, { foreignKey: 'CommentId' });
+      Comment.belongsTo(models.User, { foreignKey: 'user_id' });
+      Comment.belongsTo(models.Article, { foreignKey: 'article_id' });
     }
   }
   Comment.init({
-    content: DataTypes.TEXT
+    content: DataTypes.TEXT,
   }, {
     sequelize,
     modelName: 'Comment',
