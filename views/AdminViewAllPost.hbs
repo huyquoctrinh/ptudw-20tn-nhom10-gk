@@ -1,0 +1,173 @@
+<main>
+  <div class="container">
+    <div class="row">
+      <div class="col-3 py-5">
+        <h1>Quản lý</h1>
+        <a href="AdminViewAllPost.html"><p class="active">Xem danh sách bài viết</p></a>
+        <a href="AdminManageCategories.html"><p>Quản lý chuyên mục</p></a>
+        <a href="AdminTag.html"><p>Quản lý nhãn tag</p></a>
+        <a href="AdmineditorDetail.html"><p>Quản lý biên tập viên</p></a>
+        <a href="AdminUserManagement.html"><p>Quản lý người dùng</p></a>
+        <a href="admin-addpremium.html"><p>Gia hạn tài khoản cho độc giả</p></a>
+      </div>
+      <div class="col-9 left-col">
+        <div class="row">
+          <div class="col-1">
+            <div class="vl"></div>
+          </div>
+          <div class="col-11">
+            <h3 class="text-black py-3">Danh sách bài viết</h3>
+
+            <div class="container">
+              <div class="row justify-content-center g-2">
+                <div class="col">
+                  <div class="mb-3 icon-input">
+                    <i class="bi bi-search icon"></i>
+                    <input
+                      type="text"
+                      class="form-control ms-5"
+                      name="keyword"
+                      id="keyword"
+                      aria-describedby="helpId"
+                      placeholder=""
+                      required
+                      onkeyup="filter(this.value)"
+                    />
+                  </div>
+                </div>
+              </div>
+              <ul class="list-group" id="myList">
+                <li class="list-groupitem">
+                  <div class="row align-items-center g-2 category-item">
+                    <div class="col-3">
+                      <img
+                        src="https://toquoc.mediacdn.vn/zoom/480_300/280518851207290880/2023/3/17/edit-3fb41e90fa4a27147e5b-1679054076628741411824-16790679331601970265469-0-0-420-672-crop-1679067937956366788138.png"
+                        class="img-thumbnail img-fluid rounded float-start"
+                        alt=""
+                        style="width: 100%; height: 100%"
+                      />
+                    </div>
+                    <div class="col-7">
+                      <h4>Bắt giữ 4 nữ tiếp viên</h4>
+                      <a>Phạm Việt</a>
+                      <br />
+                      <a>12:30 16/04/2023</a>
+                      <br />
+                      <p>Hôm qua 14/4, đã bắt được</p>
+                    </div>
+                    <div class="col-2 button-div">
+                      <div class="dropdown open">
+                        <button
+                          class="btn btn-primary dropdown-toggle"
+                          type="button"
+                          id="triggerId"
+                          data-bs-toggle="dropdown"
+                          aria-haspopup="true"
+                          aria-expanded="false"
+                        >
+                          Nháp
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="triggerId">
+                          <button class="dropdown-item" href="#">
+                            Nháp
+                          </button>
+                          <button class="dropdown-item" href="#">
+                            Duyệt
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li class="list-groupitem">
+                  <div class="row align-items-center g-2 category-item">
+                    <div class="col-3">
+                      <img
+                        src="https://toquoc.mediacdn.vn/zoom/480_300/280518851207290880/2023/3/17/edit-3fb41e90fa4a27147e5b-1679054076628741411824-16790679331601970265469-0-0-420-672-crop-1679067937956366788138.png"
+                        class="img-thumbnail img-fluid rounded float-start"
+                        alt=""
+                        style="width: 100%; height: 100%"
+                      />
+                    </div>
+                    <div class="col-7">
+                      <h4>Bắt giữ 4 nữ tiếp viên</h4>
+                      <a>Phạm Việt</a>
+                      <br />
+                      <a>12:30 16/04/2023</a>
+                      <br />
+                      <p>Hôm qua 14/4, đã bắt được</p>
+                    </div>
+                    <div class="col-2 button-div">
+                      <div class="dropdown open">
+                        <button
+                          class="btn btn-primary dropdown-toggle"
+                          type="button"
+                          id="triggerId"
+                          data-bs-toggle="dropdown"
+                          aria-haspopup="true"
+                          aria-expanded="false"
+                        >
+                          Nháp
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="triggerId">
+                          <button class="dropdown-item" href="#">
+                            Nháp
+                          </button>
+                          <button class="dropdown-item" href="#">
+                            Duyệt
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li class="list-groupitem">
+                  <div class="row align-items-center g-2 category-item">
+                    <div class="col-3">
+                      <img
+                        src="https://toquoc.mediacdn.vn/zoom/480_300/280518851207290880/2023/3/17/edit-3fb41e90fa4a27147e5b-1679054076628741411824-16790679331601970265469-0-0-420-672-crop-1679067937956366788138.png"
+                        class="img-thumbnail img-fluid rounded float-start"
+                        alt=""
+                        style="width: 100%; height: 100%"
+                      />
+                    </div>
+                    <div class="col-7">
+                      <h4>Bắt giữ 4 nữ tiếp viên</h4>
+                      <a>Phạm Việt</a>
+                      <br />
+                      <a>12:30 16/04/2023</a>
+                      <br />
+                      <p>Hôm qua 14/4, đã bắt được</p>
+                    </div>
+                    <div class="col-2 button-div">
+                      <div class="dropdown open">
+                        <button
+                          class="btn btn-primary dropdown-toggle"
+                          type="button"
+                          id="triggerId"
+                          data-bs-toggle="dropdown"
+                          aria-haspopup="true"
+                          aria-expanded="false"
+                        >
+                          Nháp
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="triggerId">
+                          <button class="dropdown-item" href="#">
+                            Nháp
+                          </button>
+                          <button class="dropdown-item" href="#">
+                            Duyệt
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

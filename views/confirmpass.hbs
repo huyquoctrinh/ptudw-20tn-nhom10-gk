@@ -1,0 +1,52 @@
+<main>
+  <div class="container mt-5">
+    <div class="row d-flex justify-content-center">
+      <div class="col-md-6">
+        <div class="card px-3 py-3" id="form3">
+          <h3>Fotgot Password</h3>
+          <p class="mb-5">Have you forgotten your password? Reset here!</p>
+          <div class="form-data text-dark" v-if="!submitted">
+            <div class="forms-inputs mb-4">
+              <span id="email-label">Enter email address and we will send you a
+                OTP code.</span>
+              <input
+                class="w-100"
+                autocomplete="off"
+                type="text"
+                v-model="email"
+                v-bind:class="{'form-control':true, 'is-invalid' : !validEmail(email) && emailBlured}"
+                v-on:blur="emailBlured = true"
+              />
+              <div class="invalid-feedback">A valid email is required!</div>
+            </div>
+
+            <div class="mb-3">
+              <button
+                onclick="ChangeText(this)"
+                v-on:click.stop.prevent="submit"
+                class="btn btn-dark w-100"
+              >
+                Send password reset email
+              </button>
+            </div>
+          </div>
+          <div class="success-data" v-else>
+            <div class="text-center d-flex flex-column">
+              <i class="bx bxs-badge-check"></i>
+              <span class="text-center fs-1">You changed your password.</span>
+              <a href="index.html">Return to homepage</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <img
+          class="img-thumbnail"
+          src="https://t3.ftcdn.net/jpg/01/37/26/32/360_F_137263233_9sEpw5hHFZnwkzX3lULuH56Xmw8tukwt.jpg"
+          alt=""
+        />
+      </div>
+    </div>
+  </div>
+</main>

@@ -1,0 +1,320 @@
+<main>
+  <div class="container">
+    <div class="row">
+      <div class="col-3">
+        <h1>Quản lý</h1>
+        <a href="AdminViewAllPost.html"><p>Xem danh sách bài viết</p></a>
+        <a href="AdminManageCategories.html"><p>Quản lý chuyên mục</p></a>
+        <a href="AdminTag.html"><p>Quản lý nhãn tag</p></a>
+        <a href="AdmineditorDetail.html"><p class="active">Quản lý biên tập viên</p></a>
+        <a href="AdminUserManagement.html"><p>Quản lý người dùng</p></a>
+        <a href="admin-addpremium.html"><p>Gia hạn tài khoản cho độc giả</p></a>
+      </div>
+      <div class="col-9 left-col">
+        <div class="row">
+          <div class="col-1">
+            <div class="vl"></div>
+          </div>
+          <div class="col-11">
+            <h3><a href="AdminManageCategories.html" class="text-black">Quản lý
+                Biên tập viên</a></h3>
+            <div class="container">
+              <div class="row justify-content-center g-2">
+                <div class="col-8 h-100">
+                  <div class="mb-3 icon-input">
+                    <i class="bi bi-search icon"></i>
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="keyword"
+                      id="keyword"
+                      aria-describedby="helpId"
+                      placeholder=""
+                      required
+                      onkeyup="filter(this.value)"
+                    />
+                  </div>
+                </div>
+                <div class="col-4 h-100">
+                  <button class="btn btn-primary h-100" onclick="openAdd()">+
+                    Thêm biên tập viên</button>
+                  <div
+                    class="form-popup"
+                    id="addForm"
+                    onsubmit="addItem(event)"
+                  >
+                    <form
+                      action="#"
+                      method="post"
+                      class="form-container"
+                      onsubmit="addItem(event)"
+                    >
+                      <div class="mb-3">
+                        <button onclick="closeAdd()">x</button>
+                        <h3 class="text-center">Thêm biên tập</h3>
+                        <label for="itemAdd">Nhập tên biên tập viên</label>
+                        <input
+                          type="text"
+                          name="itemAdd"
+                          id="itemAdd"
+                          aria-describedby="helpId"
+                          placeholder=""
+                          required
+                        />
+                        <button
+                          type="submit"
+                          onclick="closeAdd()"
+                          class="btn btn-primary"
+                        >Thêm</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <ul class="list-group" id="myList">
+
+                <li class="list-groupitem">
+                  <div class="row align-items-center g-2 category-item">
+                    <div class="col-7">
+                      <p
+                        class="title-categories text-black"
+                        id="title-categories"
+                      >Nguyễn Văn A </p>
+                      <a>Chuyên mục: thời sự</a>
+
+                    </div>
+                    <div class="col-5 button-div">
+                      <button class="btn btn-danger delete">Xóa
+                        <i class="bi bi-trash-fill"></i></button>
+                      <button
+                        class="btn btn-warning text-light"
+                        onclick="openEdit()"
+                      >Sửa <i class="bi bi-pencil"></i></button>
+                      <!-- The form -->
+                      <div
+                        class="form-popup"
+                        id="myForm"
+                        onsubmit="closeEdit()"
+                      >
+                        <form action="" method="post" class="form-container">
+                          <button onclick="closeEdit()">x</button>
+                          <h3 class="text-center">Sửa tên biên tập</h3>
+                          <p class="text-center">Vui lòng nhập tên biên tập viên</p>
+                          <label for="categories"><b>Nhập tên biên tập viên mới</b></label>
+                          <input
+                            type="text"
+                            placeholder=""
+                            name="categories"
+                            id="categories"
+                            required
+                          />
+                          <button
+                            type="submit"
+                            class="btn btn-primary"
+                            onclick="closeEdit()"
+                          >Sửa</button>
+                        </form>
+                      </div>
+
+                    </div>
+                  </div>
+                </li>
+
+                <li class="list-groupitem">
+                  <div class="row align-items-center g-2 category-item">
+                    <div class="col-7">
+                      <p
+                        class="title-categories text-black"
+                        id="title-categories"
+                      >Thảo béo</p>
+                      <a>Chuyên mục: thời sự</a>
+
+                    </div>
+                    <div class="col-5 button-div">
+                      <button class="btn btn-danger delete">Xóa
+                        <i class="bi bi-trash-fill"></i></button>
+                      <button
+                        class="btn btn-warning text-light"
+                        onclick="openEdit()"
+                      >Sửa <i class="bi bi-pencil"></i></button>
+                      <!-- The form -->
+                      <div
+                        class="form-popup"
+                        id="myForm"
+                        onsubmit="closeEdit()"
+                      >
+                        <form action="" method="post" class="form-container">
+                          <button onclick="closeEdit()">x</button>
+                          <h3 class="text-center">Sửa tên biên tập</h3>
+                          <p class="text-center">Vui lòng nhập tên biên tập viên</p>
+                          <label for="categories"><b>Nhập tên biên tập viên mới</b></label>
+                          <input
+                            type="text"
+                            placeholder=""
+                            name="categories"
+                            id="categories"
+                            required
+                          />
+                          <button
+                            type="submit"
+                            class="btn btn-primary"
+                            onclick="closeEdit()"
+                          >Sửa</button>
+                        </form>
+                      </div>
+
+                    </div>
+                  </div>
+                </li>
+
+                <li class="list-groupitem">
+                  <div class="row align-items-center g-2 category-item">
+                    <div class="col-7">
+                      <p
+                        class="title-categories text-black"
+                        id="title-categories"
+                      >Trang béo </p>
+                      <a>Chuyên mục: thời sự</a>
+
+                    </div>
+                    <div class="col-5 button-div">
+                      <button class="btn btn-danger delete">Xóa
+                        <i class="bi bi-trash-fill"></i></button>
+                      <button
+                        class="btn btn-warning text-light"
+                        onclick="openEdit()"
+                      >Sửa <i class="bi bi-pencil"></i></button>
+                      <!-- The form -->
+                      <div
+                        class="form-popup"
+                        id="myForm"
+                        onsubmit="closeEdit()"
+                      >
+                        <form action="" method="post" class="form-container">
+                          <button onclick="closeEdit()">x</button>
+                          <h3 class="text-center">Sửa tên biên tập</h3>
+                          <p class="text-center">Vui lòng nhập tên biên tập viên</p>
+                          <label for="categories"><b>Nhập tên biên tập viên mới</b></label>
+                          <input
+                            type="text"
+                            placeholder=""
+                            name="categories"
+                            id="categories"
+                            required
+                          />
+                          <button
+                            type="submit"
+                            class="btn btn-primary"
+                            onclick="closeEdit()"
+                          >Sửa</button>
+                        </form>
+                      </div>
+
+                    </div>
+                  </div>
+                </li>
+
+                <li class="list-groupitem">
+                  <div class="row align-items-center g-2 category-item">
+                    <div class="col-7">
+                      <p
+                        class="title-categories text-black"
+                        id="title-categories"
+                      >Nguyễn Văn A </p>
+                      <a>Chuyên mục: thời sự</a>
+
+                    </div>
+                    <div class="col-5 button-div">
+                      <button class="btn btn-danger delete">Xóa
+                        <i class="bi bi-trash-fill"></i></button>
+                      <button
+                        class="btn btn-warning text-light"
+                        onclick="openEdit()"
+                      >Sửa <i class="bi bi-pencil"></i></button>
+                      <!-- The form -->
+                      <div
+                        class="form-popup"
+                        id="myForm"
+                        onsubmit="closeEdit()"
+                      >
+                        <form action="" method="post" class="form-container">
+                          <button onclick="closeEdit()">x</button>
+                          <h3 class="text-center">Sửa tên biên tập</h3>
+                          <p class="text-center">Vui lòng nhập tên biên tập viên</p>
+                          <label for="categories"><b>Nhập tên biên tập viên mới</b></label>
+                          <input
+                            type="text"
+                            placeholder=""
+                            name="categories"
+                            id="categories"
+                            required
+                          />
+                          <button
+                            type="submit"
+                            class="btn btn-primary"
+                            onclick="closeEdit()"
+                          >Sửa</button>
+                        </form>
+                      </div>
+
+                    </div>
+                  </div>
+                </li>
+
+                <li class="list-groupitem">
+                  <div class="row align-items-center g-2 category-item">
+                    <div class="col-7">
+                      <p
+                        class="title-categories text-black"
+                        id="title-categories"
+                      >Nguyễn Văn A </p>
+                      <a>Chuyên mục: thời sự</a>
+
+                    </div>
+                    <div class="col-5 button-div">
+                      <button class="btn btn-danger delete">Xóa
+                        <i class="bi bi-trash-fill"></i></button>
+                      <button
+                        class="btn btn-warning text-light"
+                        onclick="openEdit()"
+                      >Sửa <i class="bi bi-pencil"></i></button>
+                      <!-- The form -->
+                      <div
+                        class="form-popup"
+                        id="myForm"
+                        onsubmit="closeEdit()"
+                      >
+                        <form action="" method="post" class="form-container">
+                          <button onclick="closeEdit()">x</button>
+                          <h3 class="text-center">Sửa tên biên tập</h3>
+                          <p class="text-center">Vui lòng nhập tên biên tập viên</p>
+                          <label for="categories"><b>Nhập tên biên tập viên mới</b></label>
+                          <input
+                            type="text"
+                            placeholder=""
+                            name="categories"
+                            id="categories"
+                            required
+                          />
+                          <button
+                            type="submit"
+                            class="btn btn-primary"
+                            onclick="closeEdit()"
+                          >Sửa</button>
+                        </form>
+                      </div>
+
+                    </div>
+                  </div>
+                </li>
+
+              </ul>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</main>

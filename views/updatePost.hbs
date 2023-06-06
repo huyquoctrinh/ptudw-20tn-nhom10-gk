@@ -1,0 +1,113 @@
+<main>
+
+  <div class="container py-5">
+
+    <h1>Đăng bài</h1>
+
+    <div class="mb-3">
+      <label class="form-label">
+        Tiêu đề
+      </label>
+      <div class="input-group">
+        <input
+          type="text"
+          class="form-control"
+          id="title"
+          name="title"
+          required
+        />
+      </div>
+
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">
+        Tóm tắt
+      </label>
+      <div class="input-group">
+        <input
+          type="text"
+          class="form-control"
+          id="summary"
+          name="summary"
+          required
+        />
+      </div>
+
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">
+        Chuyên mục
+      </label>
+
+      <div class="dropdown">
+        <button
+          class="btn btn-light dropdown-toggle border-dark"
+          type="button"
+          id="triggerId"
+          data-bs-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          Chọn chuyên mục cho bài viết
+        </button>
+        <div
+          class="dropdown-menu"
+          aria-labelledby="triggerId"
+          style="background-color: white;"
+        >
+          <a
+            class="dropdown-item"
+            href="#"
+            onclick="selectCategory('Nông sản')"
+          >Nông sản</a>
+          <a
+            class="dropdown-item"
+            href="#"
+            onclick="selectCategory('Thủy sản')"
+          >Thủy sản</a>
+          <h6 class="dropdown-item">Kinh tế</h6>
+          <a
+            class="dropdown-item"
+            href="#"
+            onclick="selectCategory('Chính trị')"
+          >Chính trị</a>
+          <a
+            class="dropdown-item"
+            href="#"
+            onclick="selectCategory('After divider action')"
+          >After divider action</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">
+        Nội dung
+      </label>
+      <div class="container-fluid">
+        <textarea
+          id="demo"
+          class="container-fluid"
+          style="height: 500px;"
+        ></textarea>
+      </div>
+
+    </div>
+
+    <div class="row d-flex justify-content-end">
+      <button class="btn btn-secondary col-1" type="submit"><a
+          href="mylist.html"
+        >Draft</a></button>
+      <button class="btn btn-dark col-1 ms-1" type="submit"><a
+          href="mylist.html"
+        >Đăng bài</a></button>
+    </div>
+    <!--  <div class="col-1"><a href="mylist.html"><button  class="btn btn-secondary">Draft</button></a></div>
+            <div class="col-2"><a href="mylist.html"><button type="submit" class="btn btn-dark">Đăng bài</button></a></div>
+ -->
+  </div>
+
+</main>

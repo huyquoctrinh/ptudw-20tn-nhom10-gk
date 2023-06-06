@@ -1,0 +1,103 @@
+<main>
+  <div class="container mt-4">
+    <div class="row">
+      <div class="col-3">
+        <img
+          src="https://c1levantamhp.edu.vn/wp-content/uploads/2022/12/1670630656_279_Anh-Avatar-Nu-Cuc-Dep-Cuc-Xinh-%E2%80%93-Hinh-Dai.jpg"
+          alt="avt"
+          id="avatar"
+        />
+        <h2 class="username mt-2">ChanChin</h2>
+        <div class="list-group-flush mt-4">
+          <a class="list-group-item" href="myprofile.html">Hồ sơ của tôi</a>
+          <a class="list-group-item" href="update-profile.html">Cập nhật hồ sơ</a>
+          <a class="list-group-item" href="change-pass.html">Thay đổi mật khẩu</a>
+          <a class="list-group-item active" href="#">
+            <i class="bi bi-bookmark-star-fill text-warning"></i>
+            Premium</a>
+        </div>
+      </div>
+      <div class="col-1">
+        <div class="vl"></div>
+      </div>
+      <div class="col-8">
+        <!-- Main content -->
+        <div class="row mt-3">
+          <div class="col-5">
+            <h3>Premium</h3>
+            <h6 class="mt-4">Bạn nhận gì khi nâng cấp premium?</h6>
+            <ul class="list-unstyled">
+              <li>
+                <i class="bi bi-check-lg text-success fs-3"></i>
+                Trải nghiệm không quảng cáo
+              </li>
+              <li>
+                <i class="bi bi-check-lg text-success fs-3"></i>
+                Thoải mái truy cập không giới hạn
+              </li>
+              <li>
+                <i class="bi bi-check-lg text-success fs-3"></i>
+                Truy cập nhanh chóng
+              </li>
+              <li>
+                <i class="bi bi-check-lg text-success fs-3"></i>
+                Trải nghiệm đọc tốt hơn
+              </li>
+              <li>
+                <i class="bi bi-check-lg text-success fs-3"></i>
+                Lưu trữ và đọc offline
+              </li>
+              <li>
+                <i class="bi bi-check-lg text-success fs-3"></i>
+                Dịch vụ chăm sóc khách hàng
+              </li>
+            </ul>
+          </div>
+          <div class="col-7">
+            <img
+              class=""
+              src="https://www.nicepng.com/png/detail/419-4195992_premium-premium-accounts.png"
+              height="30%"
+              alt="Premium account image"
+            />
+            <div class="buttons mt-4">
+              <button id="monthly">Gia hạn tháng</button>
+              <button id="yearly">Gia hạn năm</button>
+            </div>
+            <div class="payment-options mt-3">
+              <h5>Lựa chọn phương thức thanh toán:</h5>
+              <label><input type="radio" name="payment" value="bank-transfer" />
+                Banking
+              </label>
+              <label><input type="radio" name="payment" value="momo" />
+                Momo
+              </label>
+              <label><input type="radio" name="payment" value="zalopay" />
+                ZaloPay
+              </label>
+            </div>
+            <div class="confirmation mt-2">
+              <button id="confirm">Xác nhận</button>
+            </div>
+            <div class="qr-code mt-4 text-center">
+              <form>
+                <h5>Quét mã QR để hoàn thành thanh toán:</h5>
+                <p id="countdown"></p>
+
+                <img
+                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/QR_code_for_mobile_English_Wikipedia.svg/1200px-QR_code_for_mobile_English_Wikipedia.svg.png"
+                  alt="QR code"
+                  height="300px"
+                />
+                <button type="button" id="paidButton" onclick="checkPayment()">
+                  Đã thanh toán
+                </button>
+                <p id="paymentResult"></p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

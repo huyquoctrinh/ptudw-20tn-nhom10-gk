@@ -1,0 +1,77 @@
+<main>
+  <div class="container mt-5">
+    <div class="row d-flex justify-content-center">
+      <div class="col-md-6">
+        <div class="card px-3 py-3" id="form1">
+          <h3>Đăng ký</h3>
+
+          <div class="form-data" v-if="!submitted">
+            <div class="forms-inputs mb-4 mt-4">
+              <span>Tên </span>
+              <input
+                class="w-100"
+                autocomplete="off"
+                type="text"
+                v-model="text"
+                v-bind:class="{'form-control':true, 'is-invalid' : !validEmail(email) && emailBlured}"
+                v-on:blur="emailBlured = true"
+              />
+              <div class="invalid-feedback">A username is required!</div>
+            </div>
+            <div class="forms-inputs mb-4">
+              <span>Email</span>
+              <input
+                class="w-100"
+                autocomplete="off"
+                type="text"
+                v-model="email"
+                v-bind:class="{'form-control':true, 'is-invalid' : !validEmail(email) && emailBlured}"
+                v-on:blur="emailBlured = true"
+              />
+              <div class="invalid-feedback">A valid email is required!</div>
+            </div>
+            <div class="forms-inputs mb-4">
+              <span>Password</span>
+              <input
+                class="w-100"
+                autocomplete="off"
+                type="password"
+                v-model="password"
+                v-bind:class="{'form-control':true, 'is-invalid' : !validPassword(password) && passwordBlured}"
+                v-on:blur="passwordBlured = true"
+              />
+              <div class="invalid-feedback">
+                Password must be 8 character!
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <button
+                v-on:click.stop.prevent="submit"
+                class="btn btn-dark w-100"
+              >
+                Sign up
+              </button>
+            </div>
+          </div>
+          <div class="success-data" v-else>
+            <div class="text-center d-flex flex-column">
+              <i class="bx bxs-badge-check"></i>
+              <span class="text-center fs-1">You have been signed up
+                <br />
+                Successfully</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <img
+          class="img-thumbnail"
+          src="https://tuyensinhdonga.edu.vn/wp-content/uploads/2021/08/tu-vung-tieng-anh-ve-bao-chi-va-truyen-thong.jpg"
+          alt=""
+        />
+      </div>
+    </div>
+  </div>
+</main>

@@ -1,0 +1,62 @@
+ <main>
+      <div class="container mt-4">
+        <div class="row">
+          <div class="col-3">
+            <img
+              src="https://c1levantamhp.edu.vn/wp-content/uploads/2022/12/1670630656_279_Anh-Avatar-Nu-Cuc-Dep-Cuc-Xinh-%E2%80%93-Hinh-Dai.jpg"
+              alt="avt"
+              id="avatar"
+            />
+            <h2 class="username mt-2">ChanChin</h2>
+            <div class="list-group-flush  mt-4">
+              <a class="list-group-item  " href="#">Hồ sơ của tôi</a>
+              <a class="list-group-item" href="update-profile.html">Cập nhật hồ sơ</a>
+              <a class="list-group-item active" href="change-pass.html">Thay đổi mật khẩu</a>
+              <a class="list-group-item" href="premium.html"> <i class="bi bi-bookmark-star-fill text-warning"></i> Premium</a>
+
+            </div>
+          </div>
+          <div class="col-1">
+            <div class="vl"></div>
+          </div>
+          <div class="col-8">
+            <div class="row"><h4>Thay đổi mật khẩu</h3>
+            </div>
+            <div class="mb-3 mt-3">
+              <label for="password" class="form-label">Nhập mật khẩu mới</label>
+              <div class="input-group">
+                <input type="password" class="form-control" id="password" name="password" aria-describedby="passwordHelp" 
+                onchange="validatePassword()" required>
+              </div>
+              <div id="passwordHelp" class="form-text">Mật khẩu phải dài ít nhất 8 ký tự.</div>
+            </div>
+            <div class="mb-3">
+              <label for="newPassword" class="form-label">Nhập lại mật khẩu </label>
+              <div class="input-group">
+                <input type="password" class="form-control" id="newPassword" name="newPassword"
+                onkeyup="validatePassword()" required>
+              </div>
+            </div>
+            <input type="checkbox" value = "true" onclick="showPassword(this.checked)"> Hiện mật mẩu
+            <div>
+              <button type = "submit" class = "btn btn-dark mt-3" onclick="Notification()">
+                Thay đổi
+              </button>
+            </div>
+          </div>
+           
+            <!-- <ul class="list-group-flush" id="myList">
+              <div class="fulname mt-3 list-group-item">
+                <span>Current password</span>
+                <div class="btn-outline-dark btn w-100 text-start none-hover text-secondary">ChanChin </div>
+              </div>
+
+              <div class="pseudonym mt-3 list-group-item">
+                <span>Cofirm password</span>
+                <div class="btn-outline-dark btn w-100 text-start none-hover text-secondary">Chan Lan Than</div>
+              </div>
+
+            </ul> -->
+        </div>
+      </div>
+    </main>
