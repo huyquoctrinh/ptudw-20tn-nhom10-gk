@@ -42,7 +42,7 @@
               </div>
             </div>
             <div class="row mb-2 ms-2 text-end text-dark">
-              <a href="forgotpass.html">Quên mật khẩu?</a>
+              <a href="/forgotpass">Quên mật khẩu?</a>
             </div>
             <div class="mb-3">
               <button
@@ -65,7 +65,7 @@
           <!-- class="row text-center" -->
           <div class="text-center">
             <span>Bạn chưa có tài khoản?</span>
-            <span><b><a href="sign-up.html" cl>Đăng ký</a></b></span>
+            <span><b><a href="/sign-up">Đăng ký</a></b></span>
           </div>
         </div>
       </div>
@@ -79,4 +79,19 @@
       </div>
     </div>
   </div>
+
 </main>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+<script src="/public/javascript/log-in.js"></script>
+<script>
+  // Đoạn mã JavaScript để lắng nghe sự kiện khi người dùng nhấn nút button
+  const dropdown = document.getElementById("dropdown"); const submitBtn =
+  document.getElementById("submit-btn"); dropdown.addEventListener("change",
+  function () { const selectedOption =
+  dropdown.options[dropdown.selectedIndex].value; console.log(selectedOption);
+  }); const pages = { 0: "/", 1: "/mylist", 2: "/checkStatus", 3:
+  "/AdminViewAllPost", }; submitBtn.addEventListener("click", function () {
+  const selectedOption = dropdown.options[dropdown.selectedIndex].value; const
+  selectedPage = pages[selectedOption]; window.location.href = selectedPage; });
+</script>

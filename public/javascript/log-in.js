@@ -49,7 +49,7 @@ var app = new Vue({
         localStorage.setItem("email", this.email);
         localStorage.setItem("password", this.password);
         setTimeout(function () {
-          window.location.href = "/log-in.html";
+          window.location.href = "/log-in";
         }, 1000);
       }
     },
@@ -99,7 +99,7 @@ var app = new Vue({
     submit: function () {
       this.submitted = true;
       setTimeout(function () {
-        window.location.href = "/user.html";
+        window.location.href = "/";
       }, 1000);
     },
   },
