@@ -5,7 +5,6 @@ const models = require('../models');
 
 controller.showDetail = async (req, res) => {
     let id = isNaN(req.query.id) ? 0 : parseInt(req.query.id)
-    
     let article = await models.Article.findAll({
         where: {id: id},
         include: [{
@@ -35,6 +34,17 @@ controller.showDetail = async (req, res) => {
     ar.createDay = day;
     })
     res.locals.article = article
+    let articles = await models.Article.findAll({include: models.Category});
+    articles.forEach(article => {
+        let y = article.createdAt.getFullYear();
+        let m = article.createdAt.getMonth() + 1;
+        let d = article.createdAt.getDate();
+        let day = d + '/' + m + '/' + y;
+        article.createDay = day;
+        console.log(article.id);
+    })
+    let products = articles;
+    res.locals.featuredProducts = products;
     res.render('newDetail');
 }
 

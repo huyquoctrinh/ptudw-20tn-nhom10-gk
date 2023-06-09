@@ -2,12 +2,10 @@
     margin-top: 20px;
     margin-bottom: 20px;
 } 
-
+a:link { text-decoration: none; }
 span:not(.h2){
     margin-left: 20px;
 } 
-
-
 
 * {
     box-sizing: border-box;
@@ -58,22 +56,22 @@ main{
 }
 
 .news-tag:not(.tag-hor){
-    /* margin-top: auto;
-    margin-bottom: -10px; */
     position:absolute;
     bottom: 10px;
     left: 10px;
     right: 10px;
 }
 
-
 .p-tag-news{
     font-weight: 600;
     margin-bottom: 0px;
+    margin-left: 10px;
+    text-align: left;
 }
 
 .p-date-news{
     text-align: right;
+    margin-right: 10px;
 }
 
 
@@ -146,11 +144,8 @@ footer{
     height: 200px;
 }
 
-
-
-
 .card-category{
-    height: 700px;
+    height: 1500px;
 }
 
 .card-category > img{
@@ -179,10 +174,8 @@ header{
 }
 
 .new-detail{
-    width: 65%;
+    width: 90%;
 }
-
-
 
 .relevant-news-container{
     background-color: #F8F8F8;
@@ -238,4 +231,207 @@ header{
 footer{
     background-color: #ebf1b3;
     margin-top: 20px;
+}
+
+
+.product-item {
+    position: relative;
+    background-color: white;
+    padding-bottom: 15px;
+    height: 350px;
+    border-style: solid;
+    border-radius: 8px;
+    border-width: 0.3px;
+    border-color: #626262;
+    margin-top: 20px;
+}
+
+.product-item .product-image {
+    /* position: relative; */
+    margin-top: 0px;
+    overflow: hidden;
+}
+
+.product-item .product-image a {
+    display: block;
+    background: #3F69AA;
+    margin-bottom: 15px; 
+    transition: .3s;
+}
+
+.product-item:hover .product-image a {
+    background: rgba(63, 105, 170, .5);
+}
+
+.product-item .product-image img {
+    width: 100%; 
+}
+
+.product-item .product-image .product-action {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 40px;
+    left: 0;
+    top: 50%;
+    text-align: center;
+    transition: .5s;
+    opacity: 0; 
+}
+
+.product-item:hover .product-image .product-action {
+    top: calc(50% - 25px);
+    opacity: 1; 
+}
+
+.product-item .product-image .product-action a {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    padding: 6px 0;
+    margin-right: 5px;
+    text-align: center;
+    color: #ffffff;
+    font-size: 18px;
+    background: #3F69AA;
+}
+
+.product-item .product-image .product-action a:last-child {
+    margin-right: 0;
+}
+
+/* .product-item .product-image .product-action a:hover {
+    color: #3F69AA;
+    background: #ffffff;
+} */
+
+.product-item .product-content {
+    position: relative;
+    width: 100%;
+    text-align: center;
+    background: #fff;
+}
+
+.product-item .product-content .title,
+.product-item .product-content .tag,
+.product-item .product-content .price {
+    position: relative;
+    width: 100%;
+}
+
+.product-item .product-content .title {
+    margin-bottom: 5px;
+}
+
+.product-item .product-content .title a {
+    color: #3F69AA;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.product-item .product-content .ratting i {
+    font-size: 14px;
+    color: #3F69AA;
+}
+
+.product-item .product-content .price {
+    font-size: 30px;
+    color: #3F69AA;
+    font-weight: 700; 
+}
+
+.product-item .product-content .price span {
+    margin-left: 12px;
+    text-decoration: line-through;
+    font-weight: 700;
+    color: #666666;
+}
+
+.slick-prev,
+.slick-next {
+    width: 40px;
+    height: 40px;
+    z-index: 1;
+    opacity: 0;
+    transition: .5s;
+    background: #ffffff;
+}
+
+.slick-prev {
+    left: 55px;
+}
+
+.slick-next {
+    right: 55px;
+}
+
+.slick-slider:hover .slick-prev {
+    left: 15px;
+    opacity: 1;
+}
+
+.slick-slider:hover .slick-next {
+    right: 15px;
+    opacity: 1;
+}
+
+.slick-prev:hover,
+.slick-prev:focus,
+.slick-next:hover,
+.slick-next:focus {
+    color: #3F69AA;
+    background: #ffffff;
+}
+
+.slick-prev::before,
+.slick-next::before {
+    font-family: "FontAwesome";
+    font-size: 30px;
+    color: #3F69AA;
+}
+
+.slick-prev::before {
+    content: "\f104";
+}
+
+.slick-next::before {
+    content: "\f105";
+}
+
+.slick-dots li button:before {
+    color: #ffffff;
+    font-size: 15px;
+}
+
+.slick-dots li.slick-active button:before {
+    color: #353535;
+}
+
+.slick-dotted.slick-slider {
+    margin-bottom: 0;
+}
+
+.home-slider {
+    position: relative;
+    width: 100%;
+}
+
+.home-slider .main-slider-item {
+    padding: 0 7.5px;
+}
+
+.home-slider .slick-dots {
+    bottom: 15px;
+}
+
+
+
+.product-slider.slick-slider:hover .slick-prev {
+    left: 30px;
+    opacity: 1;
+}
+
+.product-slider.slick-slider:hover .slick-next {
+    right: 30px;
+    opacity: 1;
 }
