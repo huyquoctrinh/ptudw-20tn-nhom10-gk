@@ -39,12 +39,7 @@ controller.showHomepage = async (req, res) => {
     })
     let products = articles;
     res.locals.featuredProducts = products;
-    let articlesArray = []
-    
-    // while (articles.length >= 4){
-    //     articlesArray.push(articles.splice(0, 4));
-        
-    // }
+
     let mostViewArticle  = await models.Article.findAll({
         include: models.Category,
         order: [['view_count', 'DESC']],
@@ -57,8 +52,6 @@ controller.showHomepage = async (req, res) => {
         let day = d + '/' + m + '/' + y;
         article.createDay = day;
     })
-
-    articlesArray.push(articles)
 
   let thoisu = await models.Article.findAll({
     include: models.Category,
@@ -91,16 +84,38 @@ controller.showHomepage = async (req, res) => {
   res.locals.entertainment3 = entertainment.slice(0, 3);
 
 
-    res.locals.articles = articlesArray;
+    // res.locals.articles = articlesArray;
     res.locals.mostViewArticle = mostViewArticle;
     res.render('index');
 }
 
 controller.showPage = (req, res, next) => {
-    const pages = ['cart', 'checkout', 'contact', 'login', 'my-account', 'product-detail', 'product-list', 'wishlist']
-    if (pages.includes(req.params.page))
-        return res.render(req.params.page);
-    next();
-}
+    const pages = [
+        "log-in",
+        "sign-up",
+        "admin",
+        "admin-addpremium",
+        "AdmineditorDetail",
+        "AdminManageCategories",
+        "AdminViewAllPost",
+        "change-pass",
+        "checkStatus",
+        "confirmpass",
+        "editor",
+        "forgotpass",
+        "mylist",
+        "myprofile",
+        "post",
+        "premium",
+        "reporter",
+        "tags",
+        "update-list",
+        "update-profile",
+        "updatePost",
+      ];
+      if (pages.includes(req.params.page)) return res.render(req.params.page);
+      next();
+};
+
 
 module.exports = controller;

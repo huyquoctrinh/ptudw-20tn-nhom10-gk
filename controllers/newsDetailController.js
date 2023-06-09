@@ -43,8 +43,7 @@ controller.showDetail = async (req, res) => {
         article.createDay = day;
         console.log(article.id);
     })
-    let products = articles;
-    res.locals.featuredProducts = products;
+    res.locals.featuredProducts = articles;
     res.render('newDetail');
 }
 
