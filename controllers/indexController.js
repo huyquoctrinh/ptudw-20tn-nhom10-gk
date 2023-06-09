@@ -1,31 +1,31 @@
-'use strict';
+"use strict";
 
 const controller = {};
-const models = require('../models');
+const models = require("../models");
 
 controller.showNav = async (req, res) => {
-    const categories = await models.Category.findAll();
-    // const secondArray = categories.splice(2, 2);
-    // const thirdArray = categories.splice(1, 1);
-    res.locals.categoryArray = [categories, secondArray, thirdArray];
+  const categories = await models.Category.findAll();
+  // const secondArray = categories.splice(2, 2);
+  // const thirdArray = categories.splice(1, 1);
+  res.locals.categoryArray = [categories, secondArray, thirdArray];
 
-    // const featuredProducts = await models.Product.findAll({
-    //     attributes: ['id', 'name', 'imagePath', 'stars', 'price', 'oldPrice'],
-    //     order: [['stars', 'DESC']],
-    //     limit: 10
-    // });
-    // res.locals.featuredProducts = featuredProducts;
-    // const recentProducts = await models.Product.findAll ({
-    //     attributes: ['id', 'name', 'imagePath', 'stars', 'price', 'oldPrice'],
-    //     order: [['createdAt', 'DESC']],
-    //     limit: 10
-    // })
+  // const featuredProducts = await models.Product.findAll({
+  //     attributes: ['id', 'name', 'imagePath', 'stars', 'price', 'oldPrice'],
+  //     order: [['stars', 'DESC']],
+  //     limit: 10
+  // });
+  // res.locals.featuredProducts = featuredProducts;
+  // const recentProducts = await models.Product.findAll ({
+  //     attributes: ['id', 'name', 'imagePath', 'stars', 'price', 'oldPrice'],
+  //     order: [['createdAt', 'DESC']],
+  //     limit: 10
+  // })
 
-    // res.locals.recentProducts = recentProducts;
-    // const Brand = models.Brand;
-    // const brands = await Brand.findAll();
-    res.render('layout');
-}
+  // res.locals.recentProducts = recentProducts;
+  // const Brand = models.Brand;
+  // const brands = await Brand.findAll();
+  res.render("layout");
+};
 
 controller.showHomepage = async (req, res) => {
     let articles = await models.Article.findAll({include: models.Category});
@@ -58,49 +58,46 @@ controller.showHomepage = async (req, res) => {
         article.createDay = day;
     })
 
-    // articlesArray.push(articles)
+    articlesArray.push(articles)
 
-    let thoisu = await models.Article.findAll({
-        include: models.Category,
-        where: {
-            category_id: 5
-        }
-    })
-    
-    res.locals.thoisu = thoisu
-    res.locals.thoisu3 = thoisu.slice(0,3);
+  let thoisu = await models.Article.findAll({
+    include: models.Category,
+    where: {
+      category_id: 5,
+    },
+  });
 
+  res.locals.thoisu = thoisu;
+  res.locals.thoisu3 = thoisu.slice(0, 3);
 
-    let health = await models.Article.findAll({
-        include: models.Category,
-        where: {
-            category_id: 5
-        }
-    })
-    
-    res.locals.health = health
-    res.locals.health3 = health.slice(0,3);
+  let health = await models.Article.findAll({
+    include: models.Category,
+    where: {
+      category_id: 5,
+    },
+  });
 
+  res.locals.health = health;
+  res.locals.health3 = health.slice(0, 3);
 
-    let entertainment = await models.Article.findAll({
-        include: models.Category,
-        where: {
-            category_id: 6
-        }
-    })
-    
-    res.locals.entertainment = entertainment
-    res.locals.entertainment3 = entertainment.slice(0,3);
+  let entertainment = await models.Article.findAll({
+    include: models.Category,
+    where: {
+      category_id: 6,
+    },
+  });
+
+  res.locals.entertainment = entertainment;
+  res.locals.entertainment3 = entertainment.slice(0, 3);
 
 
     res.locals.articles = articlesArray;
     res.locals.mostViewArticle = mostViewArticle;
-    console.log(res.locals.featuredProducts.length)
     res.render('index');
 }
 
 controller.showPage = (req, res, next) => {
-    const pages = ['log-in', 'checkout', 'contact', 'login', 'my-account', 'product-detail', 'product-list', 'wishlist']
+    const pages = ['cart', 'checkout', 'contact', 'login', 'my-account', 'product-detail', 'product-list', 'wishlist']
     if (pages.includes(req.params.page))
         return res.render(req.params.page);
     next();
