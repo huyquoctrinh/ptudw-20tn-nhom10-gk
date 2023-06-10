@@ -6,6 +6,8 @@ const models = require('../models');
 controller.showCategory = async (req, res) => {
     let category = isNaN(req.query.id) ? 0 : parseInt(req.query.id);
     
+    let categoryInfo = await models.Category.findOne({ where: {id: category}})
+    res.locals.categoryInfo = categoryInfo
     let options = {
         include: models.Category,
         where: {}
@@ -22,14 +24,12 @@ controller.showCategory = async (req, res) => {
         let day = d + '/' + m + '/' + y;
         article.createDay = day;
     })
-    let articlesArray = []
-    
-    while (articles.length >= 4){
-        articlesArray.push(articles.splice(0, 4));
-        
-    }
-    articlesArray.push(articles)
-    res.locals.articles = articlesArray;
+    const firstNews = articles.splice(1, 1);
+    const secondNews = articles.splice(1, 1);
+    res.locals.firstNews = firstNews;
+    res.locals.secondNews = secondNews;
+    res.locals.featuredProducts = articles;
+
     res.render('Categories');
 }
 

@@ -5,10 +5,7 @@ const models = require("../models");
 
 controller.showNav = async (req, res) => {
   const categories = await models.Category.findAll();
-  // const secondArray = categories.splice(2, 2);
-  // const thirdArray = categories.splice(1, 1);
-  res.locals.categoryArray = [categories, secondArray, thirdArray];
-
+  
   // const featuredProducts = await models.Product.findAll({
   //     attributes: ['id', 'name', 'imagePath', 'stars', 'price', 'oldPrice'],
   //     order: [['stars', 'DESC']],
@@ -35,11 +32,16 @@ controller.showHomepage = async (req, res) => {
         let d = article.createdAt.getDate();
         let day = d + '/' + m + '/' + y;
         article.createDay = day;
-        console.log(article.id);
     })
-    let products = articles;
-    res.locals.featuredProducts = products;
 
+    const firstNews = articles.splice(1, 1);
+    const secondNews = articles.splice(1, 1);
+    res.locals.firstNews = firstNews;
+    res.locals.secondNews = secondNews;
+    res.locals.featuredProducts = articles;
+    console.log(firstNews);
+    // let products = articles;
+    // res.locals.featuredProducts = products;
     let mostViewArticle  = await models.Article.findAll({
         include: models.Category,
         order: [['view_count', 'DESC']],

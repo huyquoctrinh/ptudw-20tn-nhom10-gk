@@ -6,48 +6,15 @@
             <div class="row justify-content-between">
               <!-- biggest left news -->
               <div class="col-lg-8 col-sm-12 col-md-12">
-                <a href="/newsDetail">
-                <div class="card">
-                  <div class="row justify-content-between">
-                    <div class="col-lg-6 col-sm-12">
-                      <img src="../images/hoaminzy.png" class="img-fluid object-fit-cover" alt="..." >
-                    </div>
-                    <div class="col-lg-6 col-sm-12 ">
-                      <div class="card-body container">
-                        <h5 class="card-title">Sao Việt 'bắt trend' Thị Mầu của Hòa Minzy: Nhan sắc nào cũng khiến netizen mê mệt</h5>
-                        <p class="card-text">Hòa Minzy đăng clip "biến hình" trên trang TikTok cá nhân với nền nhạc ca khúc Thị Mầu. Trong đoạn clip, cô liên tục thay đổi layout trang điểm từ xấu xí cho đến xinh đẹp. </p>
-                        <div class="row">
-                          <div class="col">
-                            <p class="p-tag-news">Giải trí</p>
-                          </div>
-                          <div class="col">
-                            <p class="p-date-news">18/8/2023</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </a>
+                {{#each firstNews}}
+                  {{> firstFeaturedArticle}}
+                {{/each}}
               </div>
               <!-- news 2 -->
               <div class="col-lg-4 rounded-4 col-sm-12 col-md-12">
-                <a href="/newsDetail">
-                  <div class="card ">
-                    <img src="../images/hoaminzy.png" class="img-fluid " alt="..." >
-                    <div class="card-body">
-                      <h5 class="card-title">Sao Việt 'bắt trend' Thị Mầu của Hòa Minzy: Nhan sắc nào cũng khiến netizen mê mệt</h5>
-                      <div class="row">
-                        <div class="col">
-                          <p class="p-tag-news">Giải trí</p>
-                        </div>
-                        <div class="col">
-                          <p class="p-date-news">18/8/2023</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </a>
+                {{#each secondNews}}
+                  {{> secondFeaturedArticle}}
+                {{/each}}
               </div>
               <!--  end news 2 -->
             </div>

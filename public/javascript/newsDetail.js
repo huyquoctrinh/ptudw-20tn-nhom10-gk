@@ -1,7 +1,25 @@
-
-
-function addItem(e) {
+async function addItem(e) {
     e.preventDefault();
+
+    let form = e.target;
+
+    let details = {
+        comment: form.querySelector('[name=comment]').value,
+        article_id: form.querySelector('[name=article_id]').value,
+        user_id: form.querySelector('[name=user_id]').value,
+    }
+
+    let res = await fetch('/newsDetail/comment', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify(details)
+    })
+
+    let json = await res.json();
+
     let itemValue = document.getElementById("comment");
     let ul = document.getElementById("myList");
     let li = document.createElement("li");
@@ -9,14 +27,14 @@ function addItem(e) {
     let divRow = document.createElement("div");
     divRow.className = "row";
     let divColLeft = document.createElement("div");
-    divColLeft.className = "col-2";
+    divColLeft.className = "col-3";
     let pName = document.createElement("p");
     pName.className="pName";
-    pName.innerText = "Nguyen Van A"
+    pName.innerText = `${json.name}`;
     divColLeft.appendChild(pName);
 
     let divColRight = document.createElement("div");
-    divColRight.className = "col-10";
+    divColRight.className = "col-9";
     let pComment = document.createElement("p");
     pComment.className = "pComment";
     pComment.innerText = itemValue.value;
