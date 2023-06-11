@@ -411,3 +411,21 @@ footer{
     right: 30px;
     opacity: 1;
 }
+
+
+.pagination {
+    margin: 0;
+}
+
+.pagination .page-item .page-link {
+    color: #3F69AA;
+    background: #ffffff;
+    border-color: #3F69AA;
+    border-radius: 0;
+}
+
+.pagination .page-item:hover .page-link,
+.pagination .page-item.active .page-link {
+    color: #ffffff;
+    background: #3F69AA;
+}

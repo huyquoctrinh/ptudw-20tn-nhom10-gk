@@ -46,7 +46,6 @@ function closeAdd(){
     
 }
 
-
 function addItem(e){
     e.preventDefault();
     let itemValue = document.getElementById('itemAdd');
@@ -80,4 +79,40 @@ function addItem(e){
     li.innerHTML = inner;
     ul.insertBefore(li, ul.firstElementChild);
     closeAdd()
+}
+
+async function updateStatus(id, status){
+  
+  let currentStatus = document.getElementById(`articleStatus${id}`).innerText;
+  if (status == currentStatus) { return; }
+  document.getElementById(`articleStatus${id}`).innerText = status;
+  let details = {
+    id: id,
+    status: status
+  }
+  await fetch(`/admin/AdminViewAllPost/update`, {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+    },
+    body: JSON.stringify(details)
+  }).then(() => {
+    console.log(123);
+    console.log(status);
+  })
+}
+
+function filter(keyword) {
+  console.log(keyword);
+  document
+    .querySelectorAll("li.list-groupitem")
+    .forEach((item) => {
+      let title = item.childNodes[3].firstChild.text
+      if (title.indexOf(keyword) >= 0) {
+        item.style.display = "block";
+      } else {
+        item.style.display = "none";
+      }
+    });
 }
