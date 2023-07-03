@@ -1,0 +1,35 @@
+<li class="list-groupitem">
+  <div class="row align-items-center g-2 category-item">
+
+    <div class="col-5">
+      <p class="title-categories text-black">Chuyên mục: {{category_name}}</p>
+      {{#if hasSub}}
+        <p class="subtitle-categories text-black">Chuyên mục con: {{sub_categories}}</p>
+      {{else}}
+      {{/if}}
+    </div>
+
+    <div class="col-7 button-div">
+      <button class="btn btn-danger delete">Xóa<i class="bi bi-trash-fill text-white"></i></button>
+      <button class="btn btn-warning text-light" onclick="openEdit()">Sửa <i class="bi bi-pencil text-white"></i></button>
+      
+      <div class="form-popup" id="myForm">
+        <form action="" method="post" class="form-container">
+          <button type="button" onclick="closeEdit()">x</button>
+          <h3 class="text-center">Sửa chuyên mục</h3>
+          <p class="text-center">Thời sự</p>
+          <label for="categories"><b>Nhập tên chuyên mục mới</b></label>
+          <input type="text" placeholder="" name="categories" id="categories" required/>
+          <button type="submit" class="btn btn-primary" onclick="closeEditAndChange(event)">Sửa</button>
+        </form>
+      </div>
+
+      {{#if hasSub}}
+      <a href="/admin/CategoriesDetail?id={{id}}">
+        <button class="btn btn-primary">Xem chi tiết ></button>
+      </a>
+      {{/if}}
+
+    </div>
+  </div>
+</li>

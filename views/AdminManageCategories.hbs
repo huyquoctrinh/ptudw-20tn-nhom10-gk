@@ -1,5 +1,5 @@
 <main>
-  <div class="container">
+  <div class="container-fluid">
     <div class="row">
       <div class="col-3">
         <h1>Quản lý</h1>
@@ -20,7 +20,7 @@
             <h3>Quản lý chuyên mục</h3>
             <div class="container">
               <div class="row justify-content-center g-2">
-                <div class="col-9">
+                <div class="col-8">
                   <div class="mb-3 icon-input">
                     <i class="bi bi-search icon"></i>
                     <input
@@ -35,7 +35,7 @@
                     />
                   </div>
                 </div>
-                <div class="col-3">
+                <div class="col-4">
                   <button class="btn btn-primary" onclick="openAdd()">+ Thêm
                     chuyên mục</button>
                   <div class="form-popup" id="addForm">
@@ -68,53 +68,13 @@
                 </div>
               </div>
               <ul class="list-group" id="myList">
-                <li class="list-groupitem">
-                  <div class="row align-items-center g-2 category-item">
-                    <div class="col-7">
-                      <p class="title-categories text-black">Chuyên mục: Thời sự
-                      </p>
-                      <p class="subtitle-categories text-black">Chuyên mục con:
-                        Chính trị, Dân sinh, Lao động - Việc làm,...</p>
-                    </div>
-                    <div class="col-5 button-div">
-                      <button class="btn btn-danger delete">Xóa
-                        <i class="bi bi-trash-fill"></i></button>
-                      <button
-                        class="btn btn-warning text-light"
-                        onclick="openEdit()"
-                      >Sửa <i class="bi bi-pencil"></i></button>
-                      <div class="form-popup" id="myForm">
-                        <form action="" method="post" class="form-container">
-                          <button type="button" onclick="closeEdit()">x</button>
-                          <h3 class="text-center">Sửa chuyên mục</h3>
-                          <p class="text-center">Thời sự</p>
-                          <label for="categories"><b>Nhập tên chuyên mục mới</b></label>
-                          <input
-                            type="text"
-                            placeholder=""
-                            name="categories"
-                            id="categories"
-                            required
-                          />
-                          <button
-                            type="submit"
-                            class="btn btn-primary"
-                            onclick="closeEditAndChange(event)"
-                          >Sửa</button>
-                        </form>
-                      </div>
-                      <a href="/admin/CategoriesDetail"><button
-                          class="btn btn-primary"
-                        >Xem chi tiết ></button></a>
-                    </div>
-                  </div>
-                </li>
+                {{#each category}}
+                {{> categoryAdminManage}}
+                {{/each}}
               </ul>
             </div>
-
           </div>
         </div>
-
       </div>
     </div>
   </div>

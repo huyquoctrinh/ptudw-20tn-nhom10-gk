@@ -20,7 +20,7 @@
             </div>
             {{!--  --}}
             <div class="row align-items-center product-slider product-slider-4">
-                {{#each featuredProducts}}
+                {{#each featureArticle}}
                 <div class="col-lg-3">
                     {{> carousel-article2}}
                 </div>
@@ -35,7 +35,7 @@
     <section class="section">
       <h2>Tin mới nhất</h2>
       <div class="row align-items-center product-slider product-slider-4">
-          {{#each featuredProducts}}
+          {{#each newestArticle}}
           <div class="col-lg-3">
               {{> carousel-article2}}
           </div>
@@ -68,14 +68,14 @@
       <h2>Thời sự</h2>
       <div class="home-slider">
           <div class="product-slider-single">
-            {{#each featuredProducts}}
+            {{#each thoisu}}
               {{> slider}}
             {{/each}}
           </div>
       </div>
       <div class="row row-cols-1 row-cols-md-3 g-4">
         {{#each thoisu3}}
-        {{> categoryArticle}}
+          {{> categoryArticle}}
         {{/each}}
       </div>
     </section>
@@ -83,7 +83,7 @@
       <h2>Sức khỏe</h2>
       <div class="home-slider">
           <div class="product-slider-single">
-            {{#each featuredProducts}}
+            {{#each health}}
               {{> slider}}
             {{/each}}
           </div>
@@ -98,7 +98,7 @@
       <h2>Giải trí</h2>
       <div class="home-slider">
           <div class="product-slider-single">
-            {{#each featuredProducts}}
+            {{#each entertainment}}
               {{> slider}}
             {{/each}}
           </div>
