@@ -1,97 +1,49 @@
 <main>
-  <div class="container-fluid mt-5">
+  <div class="container mt-5">
     <div class="row d-flex justify-content-center">
       <div class="col-md-6">
-        <div class="card px-3 py-3" id="form2">
-          <h3>Đăng nhập</h3>
-
-          <div class="form-data text-dark mt-3" v-if="!submitted">
-            <div class="forms-inputs mb-4">
-              <span>Email</span>
-              <input
-                class="w-100"
-                autocomplete="off"
-                type="text"
-                v-model="email"
-                v-bind:class="{'form-control':true, 'is-invalid' : !validEmail(email) && emailBlured}"
-                v-on:blur="emailBlured = true"
-              />
-              <div class="invalid-feedback">Email hợp lệ là bắt buộc!</div>
-            </div>
-            <div class="forms-inputs mb-5">
-              <span>Bạn là:</span>
-              <select id="dropdown" class="mt-3 ms-3">
-                <option value="0">Độc giả</option>
-                <option value="1">Phóng viên</option>
-                <option value="2">Biên tập viên</option>
-                <option value="3">Quản trị viên</option>
-              </select>
-            </div>
-            <div class="forms-inputs mb-4">
-              <span>Mật khẩu</span>
-              <input
-                class="w-100"
-                autocomplete="off"
-                type="password"
-                v-model="password"
-                v-bind:class="{'form-control':true, 'is-invalid' : !validPassword(password) && passwordBlured}"
-                v-on:blur="passwordBlured = true"
-              />
-              <div class="invalid-feedback">
-                Mật khẩu phải ít nhất 8 ký tự.
-              </div>
-            </div>
-            <div class="row mb-2 ms-2 text-end text-dark">
-              <a href="/forgotpass">Quên mật khẩu?</a>
-            </div>
-            <div class="mb-3">
-              <button
-                v-on:click.stop.prevent="submit"
-                class="btn btn-dark w-100"
-                id="submit-btn"
-              >
-                Đăng nhập
-              </button>
-            </div>
+        <div id="login-box" class="card p-4">
+          <h1 class="text-center">Đăng nhập</h1>
+          <div class="form-group">
+            <input
+              type="text"
+              name="email"
+              class="form-control"
+              placeholder="E-mail"
+            />
           </div>
-          <div class="success-data" v-else>
-            <div class="text-center d-flex flex-column">
-              <i class="bx bxs-badge-check"></i>
-              <span class="text-center fs-1">Bạn đã đăng nhập
-                <br />
-                thành công</span>
-            </div>
+          <div class="form-group">
+            <input
+              type="password"
+              name="password"
+              class="form-control"
+              placeholder="Mật khẩu"
+            />
           </div>
-          <!-- class="row text-center" -->
-          <div class="text-center">
-            <span>Bạn chưa có tài khoản?</span>
-            <span><b><a href="/sign-up">Đăng ký</a></b></span>
+          <div class="form-group">
+            <input
+              type="submit"
+              name="signup_submit"
+              class="btn btn-primary w-100"
+              value="Đăng nhập"
+            />
           </div>
+          <div class="form-group">
+            <a href="/google" class="btn btn-danger w-100">Đăng nhập với Google</a>
+          </div>
+          <div class="">Bạn chưa có tài khoản?
+            <a href="/sign-up">Đăng ký</a></div>
         </div>
       </div>
 
       <div class="col-md-6">
         <img
           class="img-thumbnail"
-          src="https://i1-vnexpress.vnecdn.net/2019/12/11/doc-bao-3915-1576032105.jpg?w=1020&h=0&q=100&dpr=1&fit=crop&s=JHB82b3_YgoYmPUPhx_gFg"
+          src="https://tuyensinhdonga.edu.vn/wp-content/uploads/2021/08/tu-vung-tieng-anh-ve-bao-chi-va-truyen-thong.jpg"
           alt=""
+          style="height: 100%; padding-bottom: 20px; padding-top:20px"
         />
       </div>
     </div>
   </div>
-
 </main>
-
-<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
-<script src="/public/javascript/log-in.js"></script>
-<script>
-  // Đoạn mã JavaScript để lắng nghe sự kiện khi người dùng nhấn nút button
-  const dropdown = document.getElementById("dropdown"); const submitBtn =
-  document.getElementById("submit-btn"); dropdown.addEventListener("change",
-  function () { const selectedOption =
-  dropdown.options[dropdown.selectedIndex].value; console.log(selectedOption);
-  }); const pages = { 0: "/", 1: "/mylist", 2: "/checkStatus", 3:
-  "/AdminViewAllPost", }; submitBtn.addEventListener("click", function () {
-  const selectedOption = dropdown.options[dropdown.selectedIndex].value; const
-  selectedPage = pages[selectedOption]; window.location.href = selectedPage; });
-</script>
