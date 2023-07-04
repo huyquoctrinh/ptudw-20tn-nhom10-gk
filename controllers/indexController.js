@@ -28,30 +28,30 @@ controller.showNav = async (req, res) => {
 };
 
 controller.showHomepage = async (req, res) => {
-    let articles = await models.Article.findAll({include: models.Category});
-    articles.forEach(article => {
-        let y = article.createdAt.getFullYear();
-        let m = article.createdAt.getMonth() + 1;
-        let d = article.createdAt.getDate();
-        let day = d + '/' + m + '/' + y;
-        article.createDay = day;
-        console.log(article.id);
-    })
-    let products = articles;
-    res.locals.featuredProducts = products;
+  let articles = await models.Article.findAll({ include: models.Category });
+  articles.forEach((article) => {
+    let y = article.createdAt.getFullYear();
+    let m = article.createdAt.getMonth() + 1;
+    let d = article.createdAt.getDate();
+    let day = d + "/" + m + "/" + y;
+    article.createDay = day;
+    console.log(article.id);
+  });
+  let products = articles;
+  res.locals.featuredProducts = products;
 
-    let mostViewArticle  = await models.Article.findAll({
-        include: models.Category,
-        order: [['view_count', 'DESC']],
-        limit: 10
-    })
-    mostViewArticle.forEach(article => {
-        let y = article.createdAt.getFullYear();
-        let m = article.createdAt.getMonth() + 1;
-        let d = article.createdAt.getDate();
-        let day = d + '/' + m + '/' + y;
-        article.createDay = day;
-    })
+  let mostViewArticle = await models.Article.findAll({
+    include: models.Category,
+    order: [["view_count", "DESC"]],
+    limit: 10,
+  });
+  mostViewArticle.forEach((article) => {
+    let y = article.createdAt.getFullYear();
+    let m = article.createdAt.getMonth() + 1;
+    let d = article.createdAt.getDate();
+    let day = d + "/" + m + "/" + y;
+    article.createDay = day;
+  });
 
   let thoisu = await models.Article.findAll({
     include: models.Category,
@@ -83,39 +83,37 @@ controller.showHomepage = async (req, res) => {
   res.locals.entertainment = entertainment;
   res.locals.entertainment3 = entertainment.slice(0, 3);
 
-
-    // res.locals.articles = articlesArray;
-    res.locals.mostViewArticle = mostViewArticle;
-    res.render('index');
-}
-
-controller.showPage = (req, res, next) => {
-    const pages = [
-        "log-in",
-        "sign-up",
-        "admin",
-        "admin-addpremium",
-        "AdmineditorDetail",
-        "AdminManageCategories",
-        "AdminViewAllPost",
-        "change-pass",
-        "checkStatus",
-        "confirmpass",
-        "editor",
-        "forgotpass",
-        "mylist",
-        "myprofile",
-        "post",
-        "premium",
-        "reporter",
-        "tags",
-        "update-list",
-        "update-profile",
-        "updatePost",
-      ];
-      if (pages.includes(req.params.page)) return res.render(req.params.page);
-      next();
+  // res.locals.articles = articlesArray;
+  res.locals.mostViewArticle = mostViewArticle;
+  res.render("index");
 };
 
+controller.showPage = (req, res, next) => {
+  const pages = [
+    "log-in",
+    "sign-up",
+    "admin",
+    "admin-addpremium",
+    "AdmineditorDetail",
+    "AdminManageCategories",
+    "AdminViewAllPost",
+    "change-pass",
+    "checkStatus",
+    "confirmpass",
+    "editor",
+    "forgotpass",
+    "mylist",
+    "myprofile",
+    "post",
+    "premium",
+    "reporter",
+    "tags",
+    "update-list",
+    "update-profile",
+    "updatePost",
+  ];
+  if (pages.includes(req.params.page)) return res.render(req.params.page);
+  next();
+};
 
 module.exports = controller;

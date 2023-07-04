@@ -82,20 +82,15 @@ app.get("/createTables", (req, res) => {
   });
 });
 
-// app.get(
-//   "/google",
-//   passport.authenticate("google", { scope: ["profile", "email"] })
-// );
-// app.get("/success", (req, res) => {
-//   res.render("myprofile");
-// });
-// app.get(
-//   "/google/callback",
-//   passport.authenticate("google", { failureRedirect: "failed" }),
-//   function (req, res) {
-//     res.redirect("/success");
-//   }
-// );
+app.get("/logout", (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      console.log("Error logging out:", err);
+    }
+    req.user = null; // Xóa thông tin người dùng
+    res.redirect("/log-in"); // Chuyển hướng về trang chủ sau khi đăng xuất
+  });
+});
 
 // khoi dong web server
 app.listen(port, () => {
