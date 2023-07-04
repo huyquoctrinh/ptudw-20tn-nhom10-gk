@@ -15,11 +15,44 @@ router.get(
 router.get(
   "/callback",
   passport.authenticate("google", { failureRedirect: "failed" }),
+  // function (req, res) {
+  //   req.session.isUser = true; // Thiết lập giá trị isUser thành true
+  //   res.locals.isUser = req.session.isUser;
+  //   res.render("myprofile", { isUser: req.session.isUser });
+  //   // {name:req.user.displayName,pic:req.user.photo[0].value,email:req.user.email[0].values}
+
+  // }
   function (req, res) {
-    req.session.isUser = true; // Thiết lập giá trị isUser thành true
-    res.locals.isUser = req.session.isUser;
-    res.render("myprofile", { isUser: req.session.isUser });
-    // {name:req.user.displayName,pic:req.user.photo[0].value,email:req.user.email[0].values}
+    // Lưu thông tin người dùng xuống bảng User
+    const profile = req.user;
+    const userData = {
+      email: profile.email,
+      firstName: profile.givenName,
+      lastName: profile.familyName,
+      avt: profile.picture,
+      role: "user",
+      dob: null,
+    };
+    const User = require("../models").User;
+
+    User.findOrCreate({
+      where: { email: userData.email },
+      defaults: userData,
+    })
+      .then(([user, created]) => {
+        if (created) {
+          console.log("User created:", user);
+        } else {
+          console.log("User found:", user);
+        }
+        req.session.isUser = true; // Gán lại giá trị true cho req.session.isUser
+        // res.render("myprofile", { isUser: req.session.isUser });
+        res.render("myprofile", { isUser: req.session.isUser, user: req.user });
+      })
+      .catch((err) => {
+        console.error("Error saving user:", err);
+        res.redirect("/failed");
+      });
   }
 );
 
