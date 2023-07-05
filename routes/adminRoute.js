@@ -12,5 +12,7 @@ router.get('/admin-addpremium', controller.showAdminAddpremium);
 router.get('/AdminViewPostDetail', controller.showPostDetail)
 router.post('/AdminViewAllPost/update', controller.updateStatus)
 router.get('/CategoriesDetail', controller.showCategoryDetail);
-router.post('/admin/CategoriesDetail/add', controller.addCategory);
+router.post('/CategoriesDetail/add', controller.addCategory);
+router.delete('/Category/delete', controller.deleteCategory);
+router.post('/Category/edit', controller.updateCategory);
 module.exports = router;

@@ -3,11 +3,12 @@
         <div class="row">
             <div class="col-3">
                 <h1>Quản lý</h1>
-                <a href=""><p>Xem danh sách bài viết</p></a>
-                <a href=""><p class="active">Quản lý chuyên mục</p></a>
-                <a href=""><p>Quản lý nhãn tag</p></a>
-                <a href=""><p>Quản lý biên tập viên</p></a>
-                <a href=""><p>Quản lý người dùng</p></a>
+                <a href="/admin/AdminViewAllPost"><p>Xem danh sách bài viết</p></a>
+                <a href="/admin/AdminManageCategories"><p class="active">Quản lý chuyên mục</p></a>
+                <a href="/admin/AdminTag"><p>Quản lý nhãn tag</p></a>
+                <a href="/admin/"><p>Quản lý biên tập viên</p></a>
+                <a href="/admin/AdminUserManagement"><p>Quản lý người dùng</p></a>
+                <a href="/admin/admin-addpremium"><p>Gia hạn tài khoản cho độc giả</p></a>
             </div>
             {{#with category}}
             <div class="col-9 left-col">
@@ -37,9 +38,9 @@
                                 <div class="col-5 h-100">
                                     <button class="btn btn-primary h-100" onclick="openAdd()">+ Thêm chuyên mục con</button>
                                     <div class="form-popup" id="addForm">
-                                        <form action="/admin/CategoriesDetail/add" method="post" class="form-container" onsubmit="addItemCategory(event, {{root_category_id}})">
+                                        <form action="/admin/CategoriesDetail/add" method="post" class="form-container" onsubmit="addItemCategory(event, {{categoryId}})">
                                             <div class="mb-3">
-                                                <button onclick="closeAdd()">x</button>
+                                                <button type="button" onclick="closeAdd()">x</button>
                                                 <h3 class="text-center">Thêm chuyên mục</h3>
                                                 <label for="itemAdd">Nhập tên chuyên mục</label>
                                                 <input type="text" name="itemAdd" id="itemAdd" aria-describedby="helpId" placeholder="" required>
@@ -49,7 +50,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <ul class="list-group" id="myList">
+                            <ul class="list-group" id="myCategory">
                                 {{#each sub_categories}}
                                     {{> categoryAdminManage}}
                                 {{/each}}

@@ -9,12 +9,12 @@ function filter(keyword) {
         }
       });
   }
-  function openEdit() {
+  function openEditTag() {
       let form = document.getElementById("myForm");
       form.style.display = "block";
   }
 
-  function closeEditAndChange(e){
+  function closeEditAndChangeTag(e){
       e.preventDefault()
       let value = document.getElementById("categories").value
       console.log(1)
@@ -23,18 +23,18 @@ function filter(keyword) {
       document.getElementById("myForm").style.display = "none";
   }
   
-  function closeEdit() {
+  function closeEditTag() {
       document.getElementById("myForm").style.display = "none";
   }
   
 
-  document.querySelectorAll(".delete").forEach((item) => {
-  item.addEventListener("click", (e) => {
-    if (confirm("Do you really want to remove this item?")) {
-      e.target.parentElement.parentElement.parentElement.remove();
-    }
-  });
-});
+//   document.querySelectorAll(".delete").forEach((item) => {
+//   item.addEventListener("click", (e) => {
+//     if (confirm("Do you really want to remove this item?")) {
+//       e.target.parentElement.parentElement.parentElement.remove();
+//     }
+//   });
+// });
 
   function openAdd(){
       let form = document.getElementById("addForm");

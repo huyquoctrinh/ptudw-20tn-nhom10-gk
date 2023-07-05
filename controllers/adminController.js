@@ -123,7 +123,7 @@ controller.showAdminManageCategories = async (req, res) => {
         }
         if (subCategories.length > 0){
             category.hasSub = true;
-            subCategories += "...";
+            subCategories += "..."; 
         }
         category.sub_categories = subCategories;
     });
@@ -169,7 +169,9 @@ controller.updateStatus = async (req, res) => {
 
 controller.showCategoryDetail = async (req, res) => {
     let categoryId = parseInt(req.query.id);
-    let categories = await models.Category.findAll();
+    let categories = await models.Category.findAll({
+        order: [['createdAt', 'DESC']]
+    });
 
     let category = {}
     let subCategories = []
@@ -182,9 +184,9 @@ controller.showCategoryDetail = async (req, res) => {
             subCategories.push(categories[i]);
         }
     }
-
+    
     category.sub_categories = subCategories;
-
+    category.categoryId = categoryId
     res.locals.category = category;
     res.render('CategoriesDetail')
 }
@@ -197,6 +199,18 @@ controller.addCategory = async (req, res) => {
         category_name: category_name,
         root_category_id: root_category_id
     }).then(console.log(123123));
+}
+
+controller.deleteCategory = async (req, res) => {
+    let id = req.body.id;
+    await models.Category.destroy({ where: {id: id}}).then(console.log("deleted"));
+}
+
+controller.updateCategory = async (req, res) => {
+    let newName = req.body.newName;
+    console.log(newName);
+    let id = req.body.id;
+    await models.Category.update({category_name: newName}, {where: {id: id}});
 }
 
 function min(a, b) {

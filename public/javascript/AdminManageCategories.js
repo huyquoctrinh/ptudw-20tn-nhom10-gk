@@ -9,66 +9,63 @@ function filter(keyword) {
       }
     });
 }
-function openEdit() {
-    let form = document.getElementById("myForm");
-    form.style.display = "block";
-}
-
-function closeEditAndChange(e){
-    e.preventDefault()
-    let value = document.getElementById("categories").value
-    console.log(e.target.parentElement.parentElement.parentElement.parentElement.firstElementChild.firstElementChild)
-    e.target.parentElement.parentElement.parentElement.parentElement.firstElementChild.firstElementChild.innerText = `Chuyên mục: ${value}`
-    document.getElementById("myForm").style.display = "none";
-}
-
-function closeEdit() {
-    document.getElementById("myForm").style.display = "none";
-}
 
 
 document.querySelectorAll(".delete").forEach((item) => {
-item.addEventListener("click", (e) => {
-  if (confirm("Do you really want to remove this item?")) {
-    e.target.parentElement.parentElement.parentElement.remove();
+  item.addEventListener("click", (e) => {
+    if (confirm("Do you really want to remove this item?")) {
+      e.target.parentElement.parentElement.parentElement.remove();
+    }
+  });
+});
+
+async function deleteCategory(e, id){
+  e.preventDefault();
+  // e.target.parentElement.parentElement.parentElement.remove();
+  // /Category/delete
+  let details = {
+    id: id
   }
-});
-});
+  await fetch('/admin/Category/delete', {
+    method: 'DELETE',
+      headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+      },
+      body: JSON.stringify(details)
+  });
+}
 
 function openAdd(){
     let form = document.getElementById("addForm");
     form.style.display = "block";
 }
 
-function closeAdd(){
+function closeAdd(e){
     let form = document.getElementById("addForm");
     form.style.display = "none";
 }
 
-async function addItemCategory(e, root_category_id){
+async function addItemCategory(e, root_category_id=null){
     e.preventDefault();
-    let itemValue = document.getElementById('itemAdd');
-    console.log(itemValue)
-    console.log(111);
-    if (itemValue.value.trim() != '') return;
-    let ul = document.getElementById("myList");
+    console.log(root_category_id);
+    let form = e.target;
+    let itemValue = form.querySelector('[name=itemAdd]');
+    console.log(itemValue);
+    if (itemValue.value.trim() == '') return;
+    let ul = document.getElementById("myCategory");
     let li = document.createElement('li');
-    li.className = 'list-groupitem';
+    li.className = "list-groupitem";
     let inner = `
-    <li class="list-groupitem">
     <div class="row align-items-center g-2 category-item">
-  
       <div class="col-5">
         <p class="title-categories text-black">Chuyên mục: ${itemValue.value}</p>
-        
       </div>
-  
       <div class="col-7 button-div">
-        <button class="btn btn-danger delete">Xóa<i class="bi bi-trash-fill text-white"></i></button>
+        <button class="btn btn-danger delete" onclick="deleteCategory(event,{{id}})">Xóa<i class="bi bi-trash-fill text-white"></i></button>
         <button class="btn btn-warning text-light" onclick="openEdit()">Sửa <i class="bi bi-pencil text-white"></i></button>
-        
-        <div class="form-popup" id="myForm">
-          <form action="" method="post" class="form-container">
+        <div class="form-popup" id="editForm">
+          <form action="/admin/Category/edit" method="post" onclick="updateCategory(event, {{id}})" class="form-container">
             <button type="button" onclick="closeEdit()">x</button>
             <h3 class="text-center">Sửa chuyên mục</h3>
             <p class="text-center">${itemValue.value}</p>
@@ -79,7 +76,6 @@ async function addItemCategory(e, root_category_id){
         </div>
       </div>
     </div>
-  </li>
     `
     li.innerHTML = inner;
     ul.insertBefore(li, ul.firstElementChild);
@@ -97,6 +93,43 @@ async function addItemCategory(e, root_category_id){
         body: JSON.stringify(details)
     });
     closeAdd();
+}
+
+function openEdit(id) {
+  let form = document.getElementById(`editForm${id}`);
+  form.style.display = "block";
+}
+
+function closeEditAndChange(id){
+    // e.preventDefault()
+    // let form = e.target;
+    let value = document.getElementById(`newNameCategory${id}`).value
+    console.log(value);
+    document.getElementById(`Category${id}`).innerText = `Chuyên mục: ${value}`;
+    closeEdit(id);
+}
+
+function closeEdit(id) {
+  document.getElementById(`editForm${id}`).style.display = "none";
+}
+
+async function updateCategory(e, id){
+  e.preventDefault();
+  console.log(id);
+  let newName = document.getElementById(`newNameCategory${id}`).value
+  let detail = {
+    id: id,
+    newName: newName
+  };
+  await fetch(`/admin/Category/edit`, {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+    },
+    body: JSON.stringify(detail)
+  })
+  closeEdit(id);
 }
 
 async function updateStatus(id, status, statusButtonId){

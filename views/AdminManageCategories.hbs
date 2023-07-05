@@ -4,8 +4,7 @@
       <div class="col-3">
         <h1>Quản lý</h1>
         <a href="/admin/AdminViewAllPost"><p>Xem danh sách bài viết</p></a>
-        <a href="/admin/AdminManageCategories"><p class="active">Quản lý chuyên
-            mục</p></a>
+        <a href="/admin/AdminManageCategories"><p class="active">Quản lý chuyên mục</p></a>
         <a href="/admin/AdminTag"><p>Quản lý nhãn tag</p></a>
         <a href="/admin/"><p>Quản lý biên tập viên</p></a>
         <a href="/admin/AdminUserManagement"><p>Quản lý người dùng</p></a>
@@ -23,53 +22,27 @@
                 <div class="col-8">
                   <div class="mb-3 icon-input">
                     <i class="bi bi-search icon"></i>
-                    <input
-                      type="text"
-                      class="form-control"
-                      name="keyword"
-                      id="keyword"
-                      aria-describedby="helpId"
-                      placeholder=""
-                      required
-                      onkeyup="filter(this.value)"
-                    />
+                    <input type="text" class="form-control" name="keyword" id="keyword" aria-describedby="helpId" placeholder="" required onkeyup="filter(this.value)"/>
                   </div>
                 </div>
                 <div class="col-4">
-                  <button class="btn btn-primary" onclick="openAdd()">+ Thêm
-                    chuyên mục</button>
+                  <button class="btn btn-primary" onclick="openAdd()">+ Thêm chuyên mục</button>
                   <div class="form-popup" id="addForm">
-                    <form
-                      action="#"
-                      method="post"
-                      class="form-container"
-                      onsubmit="addItem(event)"
-                    >
+                    <form action="/admin/CategoriesDetail/add" method="post" class="form-container" onsubmit="addItemCategory(event)">
                       <div class="mb-3">
                         <button type="button" onclick="closeAdd()">x</button>
                         <h3 class="text-center">Thêm Chuyên mục</h3>
                         <label for="itemAdd">Nhập tên chuyên mục</label>
-                        <input
-                          type="text"
-                          name="itemAdd"
-                          id="itemAdd"
-                          aria-describedby="helpId"
-                          placeholder=""
-                          required
-                        />
-                        <button
-                          type="submit"
-                          onclick="addItem(event)"
-                          class="btn btn-primary"
-                        >Thêm</button>
+                        <input type="text" name="itemAdd" id="itemAdd" aria-describedby="helpId" placeholder="" required/>
+                        <button type="submit" onclick="closeAdd()" class="btn btn-primary" >Thêm</button>
                       </div>
                     </form>
                   </div>
                 </div>
               </div>
-              <ul class="list-group" id="myList">
+              <ul class="list-group" id="myCategory">
                 {{#each category}}
-                {{> categoryAdminManage}}
+                  {{> categoryAdminManage}}
                 {{/each}}
               </ul>
             </div>
@@ -79,3 +52,5 @@
     </div>
   </div>
 </main>
+
+<script src="../javascript/AdminManageCategories.js"></script>

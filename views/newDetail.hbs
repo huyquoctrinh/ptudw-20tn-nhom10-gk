@@ -62,20 +62,17 @@
   <div class="container comment-container">
     <h4>Binh Luan</h4>
     {{!-- {{#if isLoggedIn}} --}}
-    <form action="/newsDetail/comment" method="post" 
-    onSubmit="addItem(event)"
-    >
-    <div class="row">
-      <div class="col-10 mb-3">
-        <input type="text" class="form-control" placeholder="" required name="comment" id="comment" aria-describedby="helpId"/>
-        <input type="hidden" name="article_id" value="{{id}}">
-        <input type="hidden" name="user_id" value="1">
+    <form action="/newsDetail/comment" method="post" onSubmit="addItem(event)">
+      <div class="row">
+        <div class="col-10 mb-3">
+          <input type="text" class="form-control" placeholder="" required name="comment" id="comment" aria-describedby="helpId"/>
+          <input type="hidden" name="article_id" value="{{id}}">
+          <input type="hidden" name="user_id" value="1">
+        </div>
+        <div class="col-1">
+            <button class="btn btn-primary">Comment</button>
+        </div>
       </div>
-      <div class="col-1">
-          <button class="btn btn-primary">Comment</button>
-      </div>
-       
-    </div>
     </form>
     {{#if done}}
     {{/if}}
