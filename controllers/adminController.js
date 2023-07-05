@@ -131,19 +131,145 @@ controller.showAdminManageCategories = async (req, res) => {
 
     res.render('AdminManageCategories');
 }
-
+// --------- tag----------
 controller.showAdminTag = async (req, res) => {
+    const limit = 6;
+    let page = isNaN(req.query.page) ? 1 : Math.max(1, parseInt(req.query.page));
+    let {rows, count} = await models.Tag.findAndCountAll({
+        order: [['createdAt', 'DESC']],
+        limit: limit,
+        offset: limit * (page-1)
+    });
+    res.locals.pagination = {
+        page: page,
+        limit: limit,
+        totalRows: count, 
+        queryParams: req.query
+    }
+    res.locals.tags = rows;
     res.render('AdminTag');
 }
 
-controller.showAdmineditorDetail = async (req, res) => {
-    res.render('AdmineditorDetail');
+controller.addTag = async (req, res) => {
+    let name = req.body.tag_name;
+    await models.Tag.create({
+        tag_name: name
+    }).then(async (tag) => {
+        return res.json(tag);
+    });
 }
 
+controller.updateTag = async(req, res) => {
+    let newName = req.body.newName;
+    let id = req.body.id;
+    await models.Tag.update({tag_name: newName}, {where: {id: id}});
+}
+
+controller.deleteTag = async(req, res) => {
+    let id = req.body.id;
+    await models.Tag.destroy({ where: {id: id}}).then(console.log("deleted"));
+}
+
+// end--------- tag----------
+// ----------------editor----------
+controller.showAdmineditorDetail = async (req, res) => {
+    const limit = 6;
+    let page = isNaN(req.query.page) ? 1 : Math.max(1, parseInt(req.query.page));
+    let {rows, count} = await models.Editor.findAndCountAll({
+        include: [{
+            model: models.User
+        }, {
+            model: models.Category
+        }],
+        order: [['createdAt', 'DESC']],
+        limit: limit,
+        offset: limit * (page-1)
+    });
+    let categories = await models.Category.findAll();
+    rows.forEach ((row) => {
+        if (row.Category == null){
+            row.category_name = "Chưa có";
+        } else {
+            row.category_name = row.Category.category_name;
+        }
+        row.categories = categories;
+    })
+    res.locals.pagination = {
+        page: page,
+        limit: limit,
+        totalRows: count, 
+        queryParams: req.query
+    }
+    res.locals.editors = rows;
+    res.locals.categories = categories;
+    res.render('AdmineditorDetail');
+}
+controller.updateEditorCategory = async (req, res) =>{
+    let id = req.body.id;
+    let newCategory = req.body.newCategory;
+    let cateId = await models.Category.findOne({where: {category_name: newCategory}});
+    await models.Editor.update({category_id: cateId.id}, {where: {id: id}})
+}
+// end--------- editor----------
+// ------------user--------------
 controller.showAdminUserManagement = async (req, res) => {
+    const limit = 6;
+    let page = isNaN(req.query.page) ? 1 : Math.max(1, parseInt(req.query.page));
+    let {rows, count} = await models.User.findAndCountAll({
+        order: [['createdAt', 'DESC']],
+        limit: limit,
+        offset: limit * (page-1)
+    });
+    rows.forEach ((user) => {
+        if (user.role == 'reader') user.userRole = 'Đã đăng ký';
+        else if (user.role == 'writer') user.userRole = 'Người viết bài';
+        else if (user.role == 'editor') user.userRole = 'Biên tập viên';
+        else if (user.role == 'admin') user.userRole = 'Admin';
+    })
+    res.locals.pagination = {
+        page: page,
+        limit: limit,
+        totalRows: count, 
+        queryParams: req.query
+    }
+    res.locals.users = rows;
     res.render('AdminUserManagement');
 }
 
+controller.updateUserStatus = async (req, res) => {
+    let id = req.body.id;
+    let newRole = req.body.role;
+    let oldRole = req.body.oldRole;
+    await models.User.update({role: newRole}, {where: {id: id}});
+    if (oldRole == 'reader'){
+        await models.Reader.destroy({where: {id: id}});
+    } else if (oldRole == 'writer'){
+        await models.Writer.destroy({where: {id: id}});
+    } else if (oldRole == 'editor'){
+        await models.Editor.destroy({where: {id: id}});
+    } else if (oldRole == 'admin'){
+        await models.Admin.destroy({where: {id: id}});
+    }
+    if (newRole == 'reader') {
+        await models.Reader.create({
+            id: id,
+            expire_date: Date.now()
+        })
+    } else if (newRole == 'writer'){
+        await models.Writer.create({
+            id: id
+        })
+    } else if (newRole == 'editor'){
+        await models.Editor.create({
+            id: id
+        })
+    } else if (newRole == 'admin') {
+        await models.Admin.create({
+            id: id
+        })
+    }
+}
+// end--------user--------------
 controller.showAdminAddpremium = async (req, res) => {
     res.render('admin-addpremium');
 }
@@ -198,7 +324,9 @@ controller.addCategory = async (req, res) => {
     await models.Category.create({
         category_name: category_name,
         root_category_id: root_category_id
-    }).then(console.log(123123));
+    }).then(async (category) => {
+        return res.json(category);
+    });
 }
 
 controller.deleteCategory = async (req, res) => {

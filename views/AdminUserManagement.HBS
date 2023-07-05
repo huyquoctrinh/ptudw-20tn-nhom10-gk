@@ -8,9 +8,7 @@
                     <a href="/admin/AdminTag"><p>Quản lý nhãn tag</p></a>
                     <a href="/admin/AdmineditorDetail"><p>Quản lý biên tập viên</p></a>
                     <a href="/admin/AdminUserManagement"><p  class="active">Quản lý người dùng</p></a>
-                  <a href="/admin/admin-addpremium"
-              ><p>Gia hạn tài khoản cho độc giả</p></a
-            >
+                  <a href="/admin/admin-addpremium"><p>Gia hạn tài khoản cho độc giả</p></a>
                 </div>
                 <div class="col-9 left-col">
                     <div class="row">
@@ -22,99 +20,32 @@
                             <div class="container">
                                 <div class="mb-3 icon-input">
                                     <i class="bi bi-search icon"></i>
-                                    <input
-                                    type="text"
-                                    class="form-control"
-                                    name="keyword"
-                                    id="keyword"
-                                    aria-describedby="helpId"
-                                    placeholder=""
-                                    required
-                                    onkeyup="filter(this.value)"
-                                    />
+                                    <input type="text" class="form-control" name="keyword" id="keyword" aria-describedby="helpId" placeholder="" required onkeyup="filterUser(this.value)"/>
                                 </div>
                                 <ul class="list-group" id="myList">
-                                  </li>
-                                  <li class="list-groupitem">
-                                        <div class="row align-items-center g-2 category-item">
-                                            <div class="col-7">
-                                                <p class="title-categories text-black" id="title-categories">Nguyễn Văn A </p>
-                                                
-                                            </div>
-                                            <div class="col-5 button-div">
-                                                <button class="btn btn-primary" id="extend" onclick="openCalendar()">01/04/2024</button>
-                                                <button class="btn btn-warning text-light">VIP</i></button>
-                                                <div class="form-popup" id="calendarForm">
-                                                    <form action="#" method="post" class="form-container" onsubmit="changeDate(event)">
-                                                        <div>
-                                                            <button type="button" onclick="closeCalendar()">x</button>
-                                                            <div class="month">      
-                                                            <ul>
-                                                                <li class="prev">&#10094;</li>
-                                                                <li class="next">&#10095;</li>
-                                                                <li>April</li>
-                                                            </ul>
-                                                            </div>
-
-                                                            <ul class="weekdays">
-                                                                <li>T2</li>
-                                                                <li>T3</li>
-                                                                <li>T4</li>
-                                                                <li>T5</li>
-                                                                <li>T6</li>
-                                                                <li>T7</li>
-                                                                <li>CN</li>
-                                                            </ul>
-
-                                                            <ul class="days">  
-                                                                <li><span></span></li>
-                                                                <li><span></span></li>
-                                                                <li><span></span></li>
-                                                                <li><span></span></li>
-                                                                <li><span></span></li>
-                                                                <li><span class="active">1</span></li>
-                                                                <li><span>2</span></li>
-                                                                <li><span>3</span></li>
-                                                                <li><span>4</span></li>
-                                                                <li><span>5</span></li>
-                                                                <li><span>6</span></li>
-                                                                <li><span>7</span></li>
-                                                                <li><span>8</span></li>
-                                                                <li><span>9</span></li>
-                                                                <li><span>10</span></li>
-                                                                <li><span>11</span></li>
-                                                                <li><span>12</span></li>
-                                                                <li><span>13</span></li>
-                                                                <li><span>14</span></li>
-                                                                <li><span>15</span></li>
-                                                                <li><span>16</span></li>
-                                                                <li><span>17</span></li>
-                                                                <li><span>18</span></li>
-                                                                <li><span>19</span></li>
-                                                                <li><span>20</span></li>
-                                                                <li><span>21</span></li>
-                                                                <li><span>22</span></li>
-                                                                <li><span>23</span></li>
-                                                                <li><span>24</span></li>
-                                                                <li><span>25</span></li>
-                                                                <li><span>26</span></li>
-                                                                <li><span>27</span></li>
-                                                                <li><span>28</span></li>
-                                                                <li><span>29</span></li>
-                                                                <li><span>30</span></li>
-                                                            </ul>
-                                                        </div>
-                                                        <button type="button" class="btn btn-primary justify-content-center" onclick="changeDate(event)">Gia hạn</button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                  </li>
+                                    {{#each users}}
+                                        {{> userAdminManage}}
+                                    {{/each}}
                                 </ul>
                               </div>
+                        </div>
+                        <div class="col-lg-12">
+                                    <nav aria-label="Page navigation example" id="pagination">
+                                        {{{ createPagination pagination paginationClass="pagination justify-content-center" leftText="Previous" rightText="Next"}}}
+                                    </nav>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </main>
+<script>
+    document.querySelectorAll('#pagination li').forEach(li => {
+        li.classList.add('page-item');
+    });
+    document.querySelectorAll('#pagination a').forEach(a => {
+        a.classList.add('page-link');
+    })
+ </script>
+ <script src="../javascript/AdminUser.js"></script>

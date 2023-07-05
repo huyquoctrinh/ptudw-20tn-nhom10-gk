@@ -1,0 +1,27 @@
+<li class="list-groupitem">
+    <div class="row align-items-center g-2 category-item">
+        <div class="col-7">
+            <p class="title-categories text-black" id="editor{{id}}">{{User.name}}</p>
+            <p id="editorCategory{{id}}">Chuyên mục: {{category_name}}</p>
+        </div>
+        <div class="col-5 button-div">
+            <button class="btn btn-warning text-light" onclick="openEditEditor({{id}})">Sửa <i class="bi bi-pencil text-white"></i></button>
+            <!-- The form -->
+            <div class="form-popup" id="editEditorForm{{id}}" >
+                <form action="/admin/Editor/update" method="post" class="form-container" onsubmit="updateCategoryForEditor(event, {{id}})">
+                    <button type="button" onclick="closeEditEditor({{id}})">x</button>
+                    <h3 class="text-center">Sửa chuyên mục</h3>
+                    {{!-- <p class="text-center">Vui lòng nhập tên biên tập viên</p> --}}
+                    <label for="categoryEditor{{id}}"><b>Chọn chuyên mục mới</b></label>
+                    <input list="Category" name="categoryEditor{{id}}" id="categoryEditor{{id}}">
+                    <datalist id="Category">
+                        {{#each categories}}
+                            <option value="{{category_name}}">
+                        {{/each}}
+                    </datalist>
+                    <button type="submit" class="btn btn-primary" onclick="closeEditAndChangeEditor({{id}})">Sửa</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</li>

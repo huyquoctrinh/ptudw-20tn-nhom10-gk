@@ -1,15 +1,3 @@
-function filter(keyword) {
-  document
-    .querySelectorAll("li.list-groupitem")
-    .forEach((item) => {
-      if (item.innerText.indexOf(keyword) >= 0) {
-        item.style.display = "block";
-      } else {
-        item.style.display = "none";
-      }
-    });
-}
-
 
 document.querySelectorAll(".delete").forEach((item) => {
   item.addEventListener("click", (e) => {
@@ -21,8 +9,6 @@ document.querySelectorAll(".delete").forEach((item) => {
 
 async function deleteCategory(e, id){
   e.preventDefault();
-  // e.target.parentElement.parentElement.parentElement.remove();
-  // /Category/delete
   let details = {
     id: id
   }
@@ -56,22 +42,35 @@ async function addItemCategory(e, root_category_id=null){
     let ul = document.getElementById("myCategory");
     let li = document.createElement('li');
     li.className = "list-groupitem";
+    let details = {
+      category_name: itemValue.value,
+      root_category_id: root_category_id,
+    }
+    let res = await fetch('/admin/CategoriesDetail/add', {
+      method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify(details)
+    });
+    let json = await res.json();
     let inner = `
     <div class="row align-items-center g-2 category-item">
       <div class="col-5">
-        <p class="title-categories text-black">Chuyên mục: ${itemValue.value}</p>
+        <p class="title-categories text-black" id="Category${json.id}>Chuyên mục: ${itemValue.value}</p>
       </div>
       <div class="col-7 button-div">
-        <button class="btn btn-danger delete" onclick="deleteCategory(event,{{id}})">Xóa<i class="bi bi-trash-fill text-white"></i></button>
-        <button class="btn btn-warning text-light" onclick="openEdit()">Sửa <i class="bi bi-pencil text-white"></i></button>
-        <div class="form-popup" id="editForm">
-          <form action="/admin/Category/edit" method="post" onclick="updateCategory(event, {{id}})" class="form-container">
-            <button type="button" onclick="closeEdit()">x</button>
+        <button class="btn btn-danger delete" onclick="deleteCategory(event,${json.id})">Xóa<i class="bi bi-trash-fill text-white"></i></button>
+        <button class="btn btn-warning text-light" onclick="openEdit(${json.id})">Sửa <i class="bi bi-pencil text-white"></i></button>
+        <div class="form-popup" id="editForm${json.id}">
+          <form action="/admin/Category/edit" method="post" onclick="updateCategory(event, ${json.id})" class="form-container">
+            <button type="button" onclick="closeEdit(${json.id})">x</button>
             <h3 class="text-center">Sửa chuyên mục</h3>
             <p class="text-center">${itemValue.value}</p>
-            <label for="categories"><b>Nhập tên chuyên mục mới</b></label>
-            <input type="text" placeholder="" name="categories" id="categories" required/>
-            <button type="submit" class="btn btn-primary" onclick="closeEditAndChange(event)">Sửa</button>
+            <label for="newNameCategory${json.id}"><b>Nhập tên chuyên mục mới</b></label>
+            <input type="text" placeholder="" name="newNameCategory${json.id}" id="newNameCategory${json.id}" required/>
+            <button type="submit" class="btn btn-primary" onclick="closeEditAndChange(${json.id})">Sửa</button>
           </form>
         </div>
       </div>
@@ -80,18 +79,7 @@ async function addItemCategory(e, root_category_id=null){
     li.innerHTML = inner;
     ul.insertBefore(li, ul.firstElementChild);
 
-    let details = {
-      category_name: itemValue.value,
-      root_category_id: root_category_id,
-    }
-    await fetch('/admin/CategoriesDetail/add', {
-      method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-        },
-        body: JSON.stringify(details)
-    });
+    
     closeAdd();
 }
 
@@ -155,12 +143,12 @@ async function updateStatus(id, status, statusButtonId){
 }
 
 function filter(keyword) {
-  console.log(keyword);
+  let upperCase = keyword.toUpperCase();
   document
     .querySelectorAll("li.list-groupitem")
     .forEach((item) => {
-      let title = item.childNodes[3].firstChild.text
-      if (title.indexOf(keyword) >= 0) {
+      let title = item.childNodes[1].childNodes[1].childNodes[1].innerText.substring(12);
+      if (title.indexOf(keyword.toLowerCase()) >= 0 || title.indexOf(upperCase) >= 0) {
         item.style.display = "block";
       } else {
         item.style.display = "none";

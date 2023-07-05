@@ -22,50 +22,35 @@
                 <div class="col-9 h-100">
                   <div class="mb-3 icon-input">
                     <i class="bi bi-search icon"></i>
-                    <input type="text" class="form-control" name="keyword" id="keyword" aria-describedby="helpId" placeholder="" required onkeyup="filter(this.value)" />
+                    <input type="text" class="form-control" name="keyword" id="keyword" aria-describedby="helpId" placeholder="" required onkeyup="filterTag(this.value)" />
                   </div>
                 </div>
                 <div class="col-3 h-100">
-                  <button class="btn btn-primary h-100" onclick="openAdd()">+ Thêm tag</button>
-                  <div class="form-popup" id="addForm">
-                    <form action="#" method="post" class="form-container" onsubmit="addItem(event)">
+                  <button class="btn btn-primary h-100" onclick="openAddTag()">+ Thêm tag</button>
+                  <div class="form-popup" id="addFormTag">
+                    <form action="/admin/tag/add" method="post" class="form-container" onsubmit="addItemTag(event)">
                       <div class="mb-3">
-                        <button type="button" onclick="closeAdd()">x</button>
+                        <button type="button" onclick="closeAddTag()">x</button>
                         <h3 class="text-center">Thêm Tag</h3>
                         <label for="itemAdd">Nhập tên Tag</label>
                         <input type="text" name="itemAdd" id="itemAdd" aria-describedby="helpId" placeholder="" required />
-                        <button type="submit" onclick="addItem(event)" class="btn btn-primary">Thêm</button>
+                        <button type="submit" onclick="addItemTag(event)" class="btn btn-primary">Thêm</button>
                       </div>
                     </form>
                   </div>
                 </div>
               </div>
-              <ul class="list-group" id="myList">
-                <li class="list-groupitem">
-                  <div class="row align-items-center g-2 category-item">
-                    <div class="col-7">
-                      <p class="title-categories text-black"id="title-categories">Tag: Thời sự </p>
-                    </div>
-                    <div class="col-5 button-div">
-                      <button class="btn btn-danger delete">Xóa<i class="bi bi-trash-fill"></i></button>
-                      <button class="btn btn-warning text-light" onclick="openEdit()">Sửa <i class="bi bi-pencil"></i></button>
-                      <!-- The form -->
-                      <div class="form-popup" id="myForm">
-                        <form action="" method="post" class="form-container">
-                          <button type="button" onclick="closeEdit()">x</button>
-                          <h3 class="text-center">Sửa tag</h3>
-                          <p class="text-center">Thời sự</p>
-                          <label for="categories"><b>Nhập tên Tag mới</b></label>
-                          <input type="text" placeholder="" name="categories" id="categories" required />
-                          <button type="submit" class="btn btn-primary" onclick="closeEditAndChange(event)">Sửa</button>
-                        </form>
-                      </div>
-                    </div>
-                  </div>
-                </li>
+              <ul class="list-group" id="myTags">
+                {{#each tags}}
+                  {{> tagAdminManage}}
+                {{/each}}
               </ul>
             </div>
-
+            <div class="col-lg-12">
+                    <nav aria-label="Page navigation example" id="pagination">
+                        {{{ createPagination pagination paginationClass="pagination justify-content-center" leftText="Previous" rightText="Next"}}}
+                    </nav>
+              </div>
           </div>
         </div>
 
@@ -73,3 +58,12 @@
     </div>
   </div>
 </main>
+ <script>
+    document.querySelectorAll('#pagination li').forEach(li => {
+        li.classList.add('page-item');
+    });
+    document.querySelectorAll('#pagination a').forEach(a => {
+        a.classList.add('page-link');
+    })
+ </script>
+ <script src="../javascript/AdminTag.js"></script>
