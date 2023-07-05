@@ -20,4 +20,5 @@ router.post('/Tag/edit', controller.updateTag);
 router.delete('/Tag/delete', controller.deleteTag);
 router.post('/User/update', controller.updateUserStatus);
 router.post('/Editor/update', controller.updateEditorCategory);
+router.post('/Premium/extend', controller.extendPremium)
 module.exports = router;

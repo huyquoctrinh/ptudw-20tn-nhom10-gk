@@ -8,8 +8,7 @@
         <a href="/admin/AdminTag"><p>Quản lý nhãn tag</p></a>
         <a href="/admin/AdmineditorDetail"><p>Quản lý biên tập viên</p></a>
         <a href="/admin/AdminUserManagement"><p>Quản lý người dùng</p></a>
-        <a href="/admin/admin-addpremium"><p class="active">Gia hạn tài khoản cho
-            độc giả</p></a>
+        <a href="/admin/admin-addpremium"><p class="active">Gia hạn tài khoản cho độc giả</p></a>
       </div>
       <div class="col-9 left-col">
         <div class="row">
@@ -18,346 +17,27 @@
           </div>
           <div class="col-11">
             <h3>
-              <a href="/admin/AdminManageCategories" class="text-black">Quản lý
-                tài khoản premium</a>
+              <a class="text-black">Quản lý tài khoản premium</a>
             </h3>
             <div class="container">
               <div class="row justify-content-center g-2">
-                <div class="col-8 h-100">
+                <div class="col-12 h-100">
                   <div class="mb-3 icon-input">
                     <i class="bi bi-search icon"></i>
-                    <input
-                      type="text"
-                      class="form-control"
-                      name="keyword"
-                      id="keyword"
-                      aria-describedby="helpId"
-                      placeholder=""
-                      required
-                      onkeyup="filter(this.value)"
-                    />
-                  </div>
-                </div>
-                <div class="col-4 h-100">
-                  <button class="btn btn-primary h-100" onclick="openAdd()">
-                    + Thêm tài khoản
-                  </button>
-                  <div
-                    class="form-popup"
-                    id="addForm"
-                    onsubmit="addItem(event)"
-                  >
-                    <form
-                      action="#"
-                      method="post"
-                      class="form-container"
-                      onsubmit="addItem(event)"
-                    >
-                      <div class="mb-3">
-                        <button onclick="closeAdd()">x</button>
-                        <h3 class="text-center">Thêm tài khoản</h3>
-                        <label for="itemAdd">Nhập email của tài khoản</label>
-                        <input
-                          type="text"
-                          name="itemAdd"
-                          id="itemAdd"
-                          aria-describedby="helpId"
-                          placeholder=""
-                          required
-                        />
-                        <button
-                          type="submit"
-                          onclick="closeAdd()"
-                          class="btn btn-primary"
-                        >
-                          Thêm
-                        </button>
-                      </div>
-                    </form>
+                    <input type="text" class="form-control" name="keyword" id="keyword" aria-describedby="helpId" placeholder="" required onkeyup="filterReader(this.value)"/>
                   </div>
                 </div>
               </div>
               <ul class="list-group" id="myList">
-                <li class="list-groupitem">
-                  <div class="row align-items-center g-2 category-item">
-                    <div class="col-7">
-                      <p
-                        class="title-categories text-black"
-                        id="title-categories"
-                      >
-                        Nguyễn Văn A
-                      </p>
-                      <a>Gia hạn 1 năm</a>
-                    </div>
-                    <div class="col-5 button-div">
-                      <button class="btn btn-danger delete">
-                        Từ chối
-                        <i class="bi bi-trash-fill"></i>
-                      </button>
-                      <button
-                        class="btn btn-success text-light"
-                        onclick="openEdit()"
-                      >
-                        Duyệt
-                        <i class="bi bi-pencil"></i>
-                      </button>
-                      <!-- The form -->
-                      <div
-                        class="form-popup"
-                        id="myForm"
-                        onsubmit="closeEdit()"
-                      >
-                        <form action="" method="post" class="form-container">
-                          <button onclick="closeEdit()">x</button>
-                          <h3 class="text-center">Duyệt</h3>
-                          <p class="text-center">
-                            Vui lòng nhập tên email tài khoản
-                          </p>
-                          <label for="categories"><b>Nhập tên tài khoản mới</b></label>
-                          <input
-                            type="text"
-                            placeholder=""
-                            name="categories"
-                            id="categories"
-                            required
-                          />
-                          <button
-                            type="submit"
-                            class="btn btn-primary"
-                            onclick="closeEdit()"
-                          >
-                            Duyệt
-                          </button>
-                        </form>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-
-                <li class="list-groupitem">
-                  <div class="row align-items-center g-2 category-item">
-                    <div class="col-7">
-                      <p
-                        class="title-categories text-black"
-                        id="title-categories"
-                      >
-                        Thảo béo
-                      </p>
-                      <a>Gia hạn 1 năm</a>
-                    </div>
-                    <div class="col-5 button-div">
-                      <button class="btn btn-danger delete">
-                        Từ chối
-                        <i class="bi bi-trash-fill"></i>
-                      </button>
-                      <button
-                        class="btn btn-success text-light"
-                        onclick="openEdit()"
-                      >
-                        Duyệt
-                        <i class="bi bi-pencil"></i>
-                      </button>
-                      <!-- The form -->
-                      <div
-                        class="form-popup"
-                        id="myForm"
-                        onsubmit="closeEdit()"
-                      >
-                        <form action="" method="post" class="form-container">
-                          <button onclick="closeEdit()">x</button>
-                          <h3 class="text-center">Duyệt tên biên tập</h3>
-                          <p class="text-center">
-                            Vui lòng nhập tên biên tập viên
-                          </p>
-                          <label for="categories"><b>Nhập tên biên tập viên mới</b></label>
-                          <input
-                            type="text"
-                            placeholder=""
-                            name="categories"
-                            id="categories"
-                            required
-                          />
-                          <button
-                            type="submit"
-                            class="btn btn-primary"
-                            onclick="closeEdit()"
-                          >
-                            Duyệt
-                          </button>
-                        </form>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-
-                <li class="list-groupitem">
-                  <div class="row align-items-center g-2 category-item">
-                    <div class="col-7">
-                      <p
-                        class="title-categories text-black"
-                        id="title-categories"
-                      >
-                        Trang béo
-                      </p>
-                      <a>Gia hạn 1 tháng</a>
-                    </div>
-                    <div class="col-5 button-div">
-                      <button class="btn btn-danger delete">
-                        Từ chối
-                        <i class="bi bi-trash-fill"></i>
-                      </button>
-                      <button
-                        class="btn btn-success text-light"
-                        onclick="openEdit()"
-                      >
-                        Duyệt
-                        <i class="bi bi-pencil"></i>
-                      </button>
-                      <!-- The form -->
-                      <div
-                        class="form-popup"
-                        id="myForm"
-                        onsubmit="closeEdit()"
-                      >
-                        <form action="" method="post" class="form-container">
-                          <button onclick="closeEdit()">x</button>
-                          <h3 class="text-center">Duyệt tên biên tập</h3>
-                          <p class="text-center">
-                            Vui lòng nhập tên biên tập viên
-                          </p>
-                          <label for="categories"><b>Nhập tên biên tập viên mới</b></label>
-                          <input
-                            type="text"
-                            placeholder=""
-                            name="categories"
-                            id="categories"
-                            required
-                          />
-                          <button
-                            type="submit"
-                            class="btn btn-primary"
-                            onclick="closeEdit()"
-                          >
-                            Duyệt
-                          </button>
-                        </form>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-
-                <li class="list-groupitem">
-                  <div class="row align-items-center g-2 category-item">
-                    <div class="col-7">
-                      <p
-                        class="title-categories text-black"
-                        id="title-categories"
-                      >
-                        Nguyễn Văn A
-                      </p>
-                      <a>Gia hạn 1 tháng</a>
-                    </div>
-                    <div class="col-5 button-div">
-                      <button class="btn btn-danger delete">
-                        Từ chối
-                        <i class="bi bi-trash-fill"></i>
-                      </button>
-                      <button
-                        class="btn btn-success text-light"
-                        onclick="openEdit()"
-                      >
-                        Duyệt
-                        <i class="bi bi-pencil"></i>
-                      </button>
-                      <!-- The form -->
-                      <div
-                        class="form-popup"
-                        id="myForm"
-                        onsubmit="closeEdit()"
-                      >
-                        <form action="" method="post" class="form-container">
-                          <button onclick="closeEdit()">x</button>
-                          <h3 class="text-center">Duyệt tên biên tập</h3>
-                          <p class="text-center">
-                            Vui lòng nhập tên biên tập viên
-                          </p>
-                          <label for="categories"><b>Nhập tên biên tập viên mới</b></label>
-                          <input
-                            type="text"
-                            placeholder=""
-                            name="categories"
-                            id="categories"
-                            required
-                          />
-                          <button
-                            type="submit"
-                            class="btn btn-primary"
-                            onclick="closeEdit()"
-                          >
-                            Duyệt
-                          </button>
-                        </form>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-
-                <li class="list-groupitem">
-                  <div class="row align-items-center g-2 category-item">
-                    <div class="col-7">
-                      <p
-                        class="title-categories text-black"
-                        id="title-categories"
-                      >
-                        Nguyễn Văn A
-                      </p>
-                      <a>Gia hạn 1 năm</a>
-                    </div>
-                    <div class="col-5 button-div">
-                      <button class="btn btn-danger delete">
-                        Từ chối
-                        <i class="bi bi-trash-fill"></i>
-                      </button>
-                      <button
-                        class="btn btn-success text-light"
-                        onclick="openEdit()"
-                      >
-                        Duyệt
-                        <i class="bi bi-pencil"></i>
-                      </button>
-                      <!-- The form -->
-                      <div
-                        class="form-popup"
-                        id="myForm"
-                        onsubmit="closeEdit()"
-                      >
-                        <form action="" method="post" class="form-container">
-                          <button onclick="closeEdit()">x</button>
-                          <h3 class="text-center">Duyệt tên biên tập</h3>
-                          <p class="text-center">
-                            Vui lòng nhập tên biên tập viên
-                          </p>
-                          <label for="categories"><b>Nhập tên biên tập viên mới</b></label>
-                          <input
-                            type="text"
-                            placeholder=""
-                            name="categories"
-                            id="categories"
-                            required
-                          />
-                          <button
-                            type="submit"
-                            class="btn btn-primary"
-                            onclick="closeEdit()"
-                          >
-                            Duyệt
-                          </button>
-                        </form>
-                      </div>
-                    </div>
-                  </div>
-                </li>
+                {{#each readers}}
+                  {{> premiumAdminManage}}
+                {{/each}}
               </ul>
+              <div class="col-lg-12">
+                <nav aria-label="Page navigation example" id="pagination">
+                    {{{ createPagination pagination paginationClass="pagination justify-content-center" leftText="Previous" rightText="Next"}}}
+                </nav>
+              </div>
             </div>
           </div>
         </div>
@@ -365,3 +45,13 @@
     </div>
   </div>
 </main>
+
+<script>
+    document.querySelectorAll('#pagination li').forEach(li => {
+        li.classList.add('page-item');
+    });
+    document.querySelectorAll('#pagination a').forEach(a => {
+        a.classList.add('page-link');
+    })
+ </script>
+ <script src="../javascript/AdminPremium.js"></script>

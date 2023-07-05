@@ -270,9 +270,61 @@ controller.updateUserStatus = async (req, res) => {
     }
 }
 // end--------user--------------
+// --------extend--------------
+
 controller.showAdminAddpremium = async (req, res) => {
+    const limit = 6;
+    let page = isNaN(req.query.page) ? 1 : Math.max(1, parseInt(req.query.page));
+    let {rows, count} = await models.Reader.findAndCountAll({
+        include: [{
+            model: models.User
+        }],
+        order: [['expire_date', 'DESC']],
+        limit: limit,
+        offset: limit * (page-1)
+    });
+    rows.forEach((row) => {
+        let y = row.expire_date.getFullYear();
+        let m = row.expire_date.getMonth() + 1;
+        let d = row.expire_date.getDate();
+        let day = d + '/' + m + '/' + y;
+        row.expireDay = day;
+    })
+    res.locals.pagination = {
+        page: page,
+        limit: limit,
+        totalRows: count, 
+        queryParams: req.query
+    }
+    res.locals.readers = rows;
     res.render('admin-addpremium');
 }
+function addWeeks(date, weeks) {
+    date.setDate(date.getDate() + 7 * weeks);
+  
+    return date;
+  }
+controller.extendPremium = async (req, res) => {
+    let id = req.body.id;
+    let reader = await models.Reader.findOne({where: {id: id}});
+    let newDate;
+    if (reader.expire_date > Date.now()){
+        newDate = addWeeks(reader.expire_date, 1);
+    } else {
+        newDate = addWeeks(new Date(), 1);
+    }
+    await models.Reader.update(
+        {expire_date: newDate}, 
+        {where: {id: id}}
+    ).then(async () => {
+        let y = newDate.getFullYear();
+        let m = newDate.getMonth() + 1;
+        let d = newDate.getDate();
+        let expire_date = d + '/' + m + '/' + y;
+        return res.json(expire_date);
+    })
+}
+// end--------extend--------------
 
 controller.updateStatus = async (req, res) => {
     let article = await models.ArticleStatus.findAll({
