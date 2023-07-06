@@ -46,62 +46,39 @@
           <div class="collapse navbar-collapse" id="collapsibleNavId">
             <ul class="navbar-nav me-auto mt-2 mt-lg-0">
               <li class="nav-item">
-                <a class="nav-link active" href="/" aria-current="page"><i
-                    class="bi bi-house"
-                  ></i>
+                <div class="mt-1">
+                <a class="nav-link active" href="/" aria-current="page"><i class="bi bi-house"></i>
                   <span class="visually-hidden">(current)</span></a>
+                </div>
               </li>
-
+              <li>
               <div class="dropdown">
-                <a
-                  class="nav-link dropdown-toggle"
-                  href="#"
-                  id="navbarDropdownMenuLink"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  Chuyên mục
-                </a>
-                <ul
-                  class="dropdown-menu"
-                  aria-labelledby="navbarDropdownMenuLink"
-                >
-
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Chuyên mục</a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                   <li>
-                    <a
-                      class="dropdown-item"
-                      href="./Categories?id=1"
-                      id="business"
-                    >Kinh doanh</a>
+                    <a class="dropdown-item" href="./Categories?id=1" id="business">Kinh doanh</a>
                     <ul class="dropdown-menu dropdown-submenu">
-                      <li><a class="dropdown-item" href="/Categories?id=2">Nông
-                          sản</a></li>
-                      <li><a class="dropdown-item" href="/Categories?id=3">Hải
-                          sản</a></li>
+                      <li><a class="dropdown-item" href="/Categories?id=2">Nông sản</a></li>
+                      <li><a class="dropdown-item" href="/Categories?id=3">Hải sản</a></li>
                     </ul>
                   </li>
-                  <li><a
-                      class="dropdown-item"
-                      href="/Categories?id=4"
-                      id="genral"
-                    >Thời sự</a>
+                  <li>
+                    <a class="dropdown-item" href="/Categories?id=4" id="genral">Thời sự</a>
                   </li>
-                  <li><a
-                      class="dropdown-item"
-                      href="/Categories?id=5"
-                      id="sports"
-                    >Sức khỏe</a>
+                  <li>
+                    <a class="dropdown-item" href="/Categories?id=5" id="sports" >Sức khỏe</a>
                   </li>
-                  <li><a
-                      class="dropdown-item"
-                      href="/Categories?id=6"
-                      id="technology"
-                    >Giải trí</a>
+                  <li>
+                    <a class="dropdown-item" href="/Categories?id=6" id="technology">Giải trí</a>
                   </li>
                 </ul>
               </div>
-
+              </li>
+              <li>
+                <div class="mt-2">
+                  <a href="/AllTag">Tags</a>
+                </div>
+              </li>
             </ul>
 
             <form class="d-flex my-2 my-lg-0 w-50" id="searchForm">

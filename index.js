@@ -1,7 +1,7 @@
 "use strict";
 
 require("dotenv").config();
-require("./controllers/passportController.js");
+// require("./controllers/passportController.js");
 const express = require("express");
 const app = express();
 const port = process.env.port || 5001;
@@ -18,7 +18,7 @@ app.use(
 
 // dang nhap bang google
 const passport = require("passport");
-const GoogleStrategy = require("passport-google-oauth2").Strategy;
+// const GoogleStrategy = require("passport-google-oauth2").Strategy;
 
 // const {createStarList} = require('./controllers/handlebarsHelper');
 const { createPagination } = require("express-handlebars-paginate");
@@ -35,20 +35,20 @@ passport.deserializeUser((user, done) => {
   done(null, user);
 });
 
-passport.use(
-  new GoogleStrategy(
-    {
-      clientID: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: process.env.GOOGLE_CALLBACK_URL,
-      passReqToCallback: true,
-    },
-    function (request, accessToken, refreshToken, profile, done) {
-      console.log(profile);
-      return done(null, profile);
-    }
-  )
-);
+// passport.use(
+//   new GoogleStrategy(
+//     {
+//       clientID: process.env.GOOGLE_CLIENT_ID,
+//       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+//       callbackURL: process.env.GOOGLE_CALLBACK_URL,
+//       passReqToCallback: true,
+//     },
+//     function (request, accessToken, refreshToken, profile, done) {
+//       console.log(profile);
+//       return done(null, profile);
+//     }
+//   )
+// );
 
 //cau hinh su dung express handle bar
 app.engine(
@@ -73,7 +73,7 @@ app.use(express.urlencoded({extended: false}));
 
 app.use(session({
   secret: process.env.SESSION_SECRET,
-  store: new redisStore({ client: redisClient}),
+  // store: new redisStore({ client: redisClient}),
   resave: false,
   saveUninitialized: false,
   cookie: {

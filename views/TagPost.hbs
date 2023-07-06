@@ -1,0 +1,47 @@
+<main>
+  <section class="section">
+    <div class="container">
+      <div class="title">
+        {{#with tag}}
+        {{!-- <a href="#"><span>{{category_name}}</span></a> --}}
+        <h2 class="headingh2FeatureNews">{{tag_name}}</h2>
+        {{/with}}
+      </div>
+      
+    </div>
+    </section>
+    <section>
+        <div class="row">
+        <div class="col-8">
+            {{#if hasArticle}}
+                {{#each articles}}
+                    {{> tagPostCard}}
+                {{/each}}
+            {{else}}
+                <p>Không có bài viết nào thuộc tag này cả</p>
+            {{/if}}
+        </div>
+        <!-- quang cao -->
+        <div class="col-4">
+            <img src="../images/qc_1.png" alt="" />
+        </div>
+        <div class="col-lg-12">
+            <nav aria-label="Page navigation example" id="pagination">
+                {{{ createPagination pagination paginationClass="pagination justify-content-center" leftText="Previous" rightText="Next"}}}
+            </nav>
+        </div>
+        </div>
+    </section>
+  
+</main>
+
+ <script>
+    document.querySelectorAll('#pagination li').forEach(li => {
+        li.classList.add('page-item');
+    });
+    document.querySelectorAll('#pagination a').forEach(a => {
+        a.classList.add('page-link');
+    })
+ </script>
+
+ <script src="../javascript/AdminManageCategories.js"></script>

@@ -4,7 +4,7 @@ const express = require("express");
 const router = express.Router();
 const passport = require("passport");
 
-const controller = require("../controllers/passportController");
+// const controller = require("../controllers/passportController");
 
 // set route dang nhap bang google
 router.get(

@@ -1,0 +1,48 @@
+
+<main>
+    <section class="section">
+        <div class="container">
+            <div class="title">
+                <h2 class="headingh2FeatureNews">Tất cả các Tag</h2>
+            </div>
+        </div>
+    </section>
+    <hr />
+    <!-- xem nhieu nhat -->
+    <div class="container">
+        <div class="row justify-content-center g-2">
+            <div class="col-12 h-100">
+                <div class="mb-3 icon-input">
+                <i class="bi bi-search icon"></i>
+                <input type="text" class="form-control" name="keyword" id="keyword" aria-describedby="helpId" placeholder="" required onkeyup="filtertag(this.value)" />
+                </div>
+            </div>
+            <div class="col-md-7 col-sm-12">
+                <ul class="list-group" id="myTags">
+                {{#each tags}}
+                    {{> tag}}
+                {{/each}}
+                </ul>   
+                <nav aria-label="Page navigation example" id="pagination">
+                    {{{ createPagination pagination paginationClass="pagination justify-content-center" leftText="Previous" rightText="Next"}}}
+                </nav>      
+            </div>
+            <div class="col-md-4 col-sm-0">
+                <img src="../images/qc_1.png" alt="" />
+            </div>
+        </div>
+        
+    </div>
+        
+</main>
+
+<script>
+    document.querySelectorAll('#pagination li').forEach(li => {
+        li.classList.add('page-item');
+    });
+    document.querySelectorAll('#pagination a').forEach(a => {
+        a.classList.add('page-link');
+    })
+</script>
+
+<script src="../javascript/tag.js"></script>

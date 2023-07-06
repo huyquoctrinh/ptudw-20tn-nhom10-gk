@@ -129,5 +129,65 @@ controller.showPage = (req, res, next) => {
       next();
 };
 
+controller.showAllTag = async (req, res) => { 
+  
+  const limit = 12;
+  let page = isNaN(req.query.page) ? 1 : Math.max(1, parseInt(req.query.page));
+  let {rows, count} = await models.Tag.findAndCountAll({
+      order: [['createdAt', 'DESC']],
+      limit: limit,
+      offset: limit * (page-1)
+  });
+  res.locals.pagination = {
+      page: page,
+      limit: limit,
+      totalRows: count, 
+      queryParams: req.query
+  }
+  res.locals.tags = rows;
+  res.render('AllTag'); 
+}
 
+controller.showTagPost = async (req, res) => {
+  let id = parseInt(req.query.id);
+  console.log(id);
+  let tag = await models.Tag.findOne({where: {id: id}});
+  const limit = 6;
+  let page = isNaN(req.query.page) ? 1 : Math.max(1, parseInt(req.query.page));
+  let {rows, count} = await models.ArticleTag.findAndCountAll(
+    {
+      include: [{
+        model: models.Article,
+        include: {
+          model: models.Category,
+          attributes: ['category_name']
+        },
+        order: [['createdAt', 'DESC']]
+      }],
+      where: {tag_id: id},
+      limit: limit,
+      offset: limit * (page-1)
+  })
+
+  rows.forEach(article => {
+    let y = article.Article.createdAt.getFullYear();
+    let m = article.Article.createdAt.getMonth() + 1;
+    let d = article.Article.createdAt.getDate();
+    let day = d + '/' + m + '/' + y;
+    article.createDay = day;
+    console.log(article.Article.Category.category_name);
+  })
+
+  res.locals.pagination = {
+    page: page,
+    limit: limit,
+    totalRows: count, 
+    queryParams: req.query
+}
+  if (rows.length == 0) res.locals.hasArticle = false;
+  else res.locals.hasArticle = true;
+  res.locals.articles = rows;
+  res.locals.tag = tag;
+  res.render('TagPost');
+}
 module.exports = controller;
