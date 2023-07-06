@@ -1,0 +1,22 @@
+<li class="list-groupitem">
+    <div class="row align-items-center g-2 category-item">
+    <div class="col-3">
+        <img style="width: 100%; height: 100%;" src="{{Article.image_thumbnail}}"/>
+    </div>
+    <div class="col-6">
+        <a href="/editor/EditorViewPostDetail?articleId={{article_id}}&id={{id}}">
+            <h5>{{Article.title}}</h5>
+            <p class="mt-0 mb-0"><b>{{Writer.pseudonym}}</b></p>
+            <p class="mt-0 mb-0">{{created_at}}</p>
+            <p class="mt-0 mb-0">{{briefDescription}}</p>
+        </a>
+    </div>
+    <div class="col-3 button-div">
+        {{#if isApprove}}
+        <button class="btn btn-success text-light"> Đã Duyệt <i class="bi bi-check-circle text-white"></i></button>
+        {{else}}
+        <button class="btn btn-danger text-light mb-1">Đã Từ chối <i class="bi bi-x-circle text-white"></i></button>
+        {{/if}}
+    </div>
+    </div>
+</li>       

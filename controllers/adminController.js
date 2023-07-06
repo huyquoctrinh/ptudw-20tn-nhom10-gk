@@ -301,7 +301,6 @@ controller.showAdminAddpremium = async (req, res) => {
 }
 function addWeeks(date, weeks) {
     date.setDate(date.getDate() + 7 * weeks);
-  
     return date;
   }
 controller.extendPremium = async (req, res) => {

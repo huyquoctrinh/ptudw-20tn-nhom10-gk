@@ -68,6 +68,7 @@ app.use("/", require("./routes/indexRoute"));
 app.use("/Categories", require("./routes/categoryRoute"));
 app.use("/newsDetail", require("./routes/newsDetailRoute"));
 app.use("/admin", require("./routes/adminRoute.js"));
+app.use("/editor", require("./routes/editorRoute.js"));
 // tao db
 app.get("/createTables", (req, res) => {
   let models = require("./models");
