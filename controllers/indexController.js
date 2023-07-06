@@ -90,8 +90,8 @@ controller.showHomepage = async (req, res) => {
 
 controller.showPage = (req, res, next) => {
   const pages = [
-    "log-in",
-    "sign-up",
+    "login",
+    "signup",
     "admin",
     "admin-addpremium",
     "AdmineditorDetail",

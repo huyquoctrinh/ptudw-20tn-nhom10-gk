@@ -1,0 +1,116 @@
+<main>
+  <div class="container-fluid mt-3">
+    <div class="row align-items-center justify-content-center">
+      <div class="col-md-10">
+        <div class="px-3 py-3" id="form1">
+          <h3>Đăng ký</h3>
+
+          <form action="/users/signup" method="post">
+            <div class="row">
+              <div class="col">
+                <div class="forms-inputs mb-3">
+                  <span>Tên</span>
+                  <input
+                    class="w-100 form-control"
+                    type="text"
+                    placeholder="Tên của bạn"
+                    name="name"
+                    required
+                  />
+                  <div class="invalid-feedback">Yêu cầu nhập tên người dùng!</div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="forms-inputs mb-3">
+                  <span>Mật khẩu</span>
+                  <input
+                    class="w-100 form-control"
+                    name="password"
+                    type="password"
+                    placeholder="Mật khẩu"
+                    required
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col">
+                <div class="forms-inputs mb-4">
+                  <span>Email</span>
+                  <input
+                    class="w-100 form-control"
+                    type="email"
+                    name="email"
+                    placeholder="Email"
+                    required
+                  />
+                  <div class="invalid-feedback">Một email hợp lệ là bắt buộc!</div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="forms-inputs mb-4">
+                  <span>Nhập lại mật khẩu</span>
+                  <input
+                    class="w-100 form-control"
+                    name="cofirmPassword"
+                    type="password"
+                    placeholder="Nhập lại mật khẩu"
+                    required
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col">
+                <div class="forms-inputs mb-4">
+                  <span>Bạn là:</span>
+                  <select id="dropdown" class="form-control" name="role">
+                    <option value="reader">Độc giả</option>
+                    <option value="reporter">Phóng viên</option>
+                    <option value="editor">Biên tập viên</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col">
+                <div class="forms-inputs mb-4">
+                  <span>Ngày sinh</span>
+                  <input
+                    type="date"
+                    class="form-control"
+                    id="dob"
+                    name="dob"
+                    required
+                  />
+                </div>
+
+              </div>
+
+            </div>
+            <div class="mb-3">
+              <input
+                type="submit"
+                class="btn btn-dark w-100 mb-"
+                value="Đăng ký"
+              />
+              <div class="text-center">
+                Bạn đã có tài khoản?
+                <a href="/users/login">Đăng nhập</a>
+              </div>
+            </div>
+
+            {{#if registerMessage}}
+              <div class="col-md-12">
+                <div class="p-3 mt-3 alert alert-warning">
+                  {{{registerMessage}}}
+                </div>
+              </div>
+            {{/if}}
+            <input type="hidden" name="reqUrl" value="{{reqUrl}}" />
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

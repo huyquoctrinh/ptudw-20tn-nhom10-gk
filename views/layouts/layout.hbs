@@ -129,26 +129,36 @@
                 aria-expanded="false"
               ><i class="bi bi-person-circle ms-4 fs-2 text-dark"></i></a>
               <ul class="dropdown-menu me-6" aria-labelledby="dropdownIdUser">
-                {{#if isAdmin}}
+                {{#if (eq session.isUser 0)}}
                   {{> menu-admin}}
-                {{else if isUser}}
-                  {{> menu-user}}
-                {{else if isEditor}}
-                  {{> menu-editor}}
-                {{else if isReporter}}
-                  {{> menu-reporter}}
                 {{else}}
-                 {{> menu-guest}}
+                  {{#if (eq session.isUser 1)}}
+                    {{> menu-user}}
+                  {{else}}
+                    {{#if (eq session.isUser 2)}}
+                      {{> menu-editor}}
+                    {{else}}
+                      {{#if (eq session.isUser 3)}}
+                        {{> menu-reporter}}
+                      {{else}}
+                        {{> menu-guest}}
+                      {{/if}}
+                    {{/if}}
+                  {{/if}}
                 {{/if}}
+
+
+
               </ul>
             </div>
           </div>
         </div>
       </nav>
     </header>
+    
     {{{body}}}
   <!-- Footer -->
-    <footer class="text-center text-lg-start text-dark bg-light">
+    <footer class="text-center text-lg-start text-dark bg-light mt-5">
       <div style="height: 10px">
         <div style="height: 1px; background-color: black"></div>
       </div>

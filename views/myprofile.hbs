@@ -2,13 +2,13 @@
   <div class="container mt-4">
     <div class="row">
       <div class="col-3">
-        <img src="{{user.picture}}" alt="avt" id="avatar" />
-        <h2 class="username mt-2">{{user.displayName}}</h2>
+        <img src="{{user.avatar}}" alt="avt" id="avatar" />
+        <h2 class="username mt-2">{{user.name}}</h2>
         <div class="list-group-flush mt-4">
           <a class="list-group-item active" href="#">Hồ sơ của tôi</a>
-          <a class="list-group-item" href="/update-profile">Cập nhật hồ sơ</a>
-          <a class="list-group-item" href="/change-pass">Thay đổi mật khẩu</a>
-          <a class="list-group-item" href="/premium">
+          <a class="list-group-item" href="/users/update-profile">Cập nhật hồ sơ</a>
+          <a class="list-group-item" href="/users/change-pass">Thay đổi mật khẩu</a>
+          <a class="list-group-item" href="/users/premium">
             <i class="bi bi-bookmark-star-fill text-warning"></i>
             Premium
           </a>
@@ -22,7 +22,7 @@
           <div class="col">
             <h4>Hồ sơ của tôi</h4>
           </div>
-          <a class="col" href="/update-profile">
+          <a class="col" href="/users/update-profile">
             <i class="bi bi-pencil-square float-end fs-4"></i>
           </a>
         </div>
@@ -32,7 +32,7 @@
             <div
               class="btn-outline-dark btn w-100 text-start none-hover text-secondary"
             >
-              {{user.displayName}}
+              {{user.name}}
             </div>
           </div>
           <div class="pseudonym mt-3">
