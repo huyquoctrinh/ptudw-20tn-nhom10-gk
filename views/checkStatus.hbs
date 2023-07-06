@@ -22,11 +22,15 @@
                   </div>
                 </div>
               </div>
+              {{#if hasArticle}}
               <ul class="list-group" id="myList">
                 {{#each articles}}
                   {{> postEditorManage}}
                 {{/each}}
               </ul>
+              {{else}}
+              <p class="mt-2">Không có bài viết nào cần duyệt</p>
+              {{/if}}
             </div>
           </div>
         </div>

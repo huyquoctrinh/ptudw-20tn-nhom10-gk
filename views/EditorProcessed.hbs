@@ -22,11 +22,15 @@
                   </div>
                 </div>
               </div>
+              {{#if hasArticle}}
               <ul class="list-group" id="myList">
                 {{#each articles}}
                   {{> postEditorProcessed}}
                 {{/each}}
               </ul>
+              {{else}}
+                    <p class="mt-2">Chưa xử lý bài viết nào</p>
+              {{/if}}
             </div>
           </div>
         </div>

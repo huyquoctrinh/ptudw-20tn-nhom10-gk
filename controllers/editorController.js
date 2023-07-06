@@ -29,6 +29,8 @@ controller.showStatus = async (req, res) => {
         article.briefDescription = article.Article.briefDescription.substring(0, 100) + "...";
     });
     res.locals.articles = articles;
+    if (articles.length > 0) res.locals.hasArticle = true;
+    else res.locals.hasArticle = false;
     res.render('checkStatus'); 
 }
 
@@ -152,6 +154,8 @@ controller.showProcessed = async (req, res) => {
         else if (article.status == 'Published')
             article.isApprove = true;
     });
+    if (rows.length>0) res.locals.hasArticle = true;
+    else res.locals.hasArticle = false;
     res.locals.articles = rows;
     res.render('EditorProcessed')
 } 
