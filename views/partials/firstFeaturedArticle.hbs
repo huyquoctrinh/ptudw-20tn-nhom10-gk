@@ -1,0 +1,23 @@
+<a href="/newsDetail?id={{id}}">
+    <div class="card">
+        <div class="row justify-content-between">
+        <div class="col-lg-6 col-sm-12">
+            <img src="{{image_thumbnail}}" class="img-fluid object-fit-cover" alt="{{name}}" >
+        </div>
+        <div class="col-lg-6 col-sm-12 ">
+            <div class="card-body container">
+            <h5 class="card-title">{{title}}</h5>
+            <p class="card-text">{{briefDescription}}</p>
+            <div class="row">
+                <div class="col">
+                <p class="p-tag-news">{{Category.category_name}}</p>
+                </div>
+                <div class="col">
+                <p class="p-date-news">{{createDay}}</p>
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</a>

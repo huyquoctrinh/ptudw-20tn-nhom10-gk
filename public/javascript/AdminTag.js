@@ -1,84 +1,134 @@
-function filter(keyword) {
-    document
-      .querySelectorAll("li.list-groupitem")
-      .forEach((item) => {
-        if (item.innerText.indexOf(keyword) >= 0) {
-          item.style.display = "block";
+function filterTag(keyword) {
+document
+    .querySelectorAll("li.list-groupitem")
+    .forEach((item) => {
+        let text = item.childNodes[1].childNodes[1].childNodes[1].innerText.substring(5);
+        if (text.indexOf(keyword.toLowerCase()) >= 0 || text.indexOf(keyword.toUpperCase()) >= 0) {
+            item.style.display = "block";
         } else {
-          item.style.display = "none";
+            item.style.display = "none";
         }
-      });
-  }
-  function openEdit() {
-      let form = document.getElementById("myForm");
-      form.style.display = "block";
-  }
+    });
+}
+function openEditTag(id) {
+    let form = document.getElementById(`editTagForm${id}`);
+    form.style.display = "block";
+}
 
-  function closeEditAndChange(e){
-      e.preventDefault()
-      let value = document.getElementById("categories").value
-      console.log(1)
-      console.log(e.target)
-      e.target.parentElement.parentElement.parentElement.parentElement.firstElementChild.firstElementChild.innerText = `Tag: ${value}`
-      document.getElementById("myForm").style.display = "none";
-  }
+function closeEditAndChangeTag(id){
+    let value = document.getElementById(`newTag${id}`).value
+    document.getElementById(`tag${id}`).innerText = `Tag: ${value}`
+    closeEditTag(id);
+}
   
-  function closeEdit() {
-      document.getElementById("myForm").style.display = "none";
-  }
-  
+function closeEditTag(id) {
+    document.getElementById(`editTagForm${id}`).style.display = "none";
+}
 
-  document.querySelectorAll(".delete").forEach((item) => {
-  item.addEventListener("click", (e) => {
+// document.querySelectorAll(".delete").forEach((item) => {
+//     item.addEventListener("click", (e) => {
+//         if (confirm("Do you really want to remove this item?")) {
+//             e.target.parentElement.parentElement.parentElement.remove();
+//         }   
+//     });
+// });
+  
+async function deleteTag(e, id){
+    e.preventDefault();
     if (confirm("Do you really want to remove this item?")) {
-      e.target.parentElement.parentElement.parentElement.remove();
+        console.log(123);
+
+        let list = e.target.parentElement.parentElement.parentElement.parentElement;
+        list.removeChild(list.firstElementChild);
+        console.log(id);
+        let details = {
+            id: id
+        }
+        await fetch('/admin/Tag/delete', {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(details)
+        });
     }
-  });
-});
+}
+  
 
-  function openAdd(){
-      let form = document.getElementById("addForm");
-      form.style.display = "block";
-  }
+function openAddTag(){
+    let form = document.getElementById("addFormTag");
+    form.style.display = "block";
+}
 
-  function closeAdd(){
-      let form = document.getElementById("addForm");
-      form.style.display = "none";
-      
-  }
+function closeAddTag(){
+    let form = document.getElementById("addFormTag");
+    form.style.display = "none";
+}
 
 
-function addItem(e){
-      e.preventDefault();
-      let itemValue = document.getElementById('itemAdd');
-      console.log(itemValue)
-      let ul = document.getElementById("myList");
-      let li = document.createElement('li');
-      li.className = 'list-groupitem';
-      let inner = `
-          <div class="row align-items-center g-2 category-item">
-              <div class="col-7">
-                  <p class="title-categories text-black" id="title-categories">Tag: ${itemValue.value} </p>
-              </div>
-              <div class="col-5 button-div">
-                  <button class="btn btn-danger delete">Xóa <i class="bi bi-trash-fill"></i></button>
-                  <button class="btn btn-warning text-light" onclick="openEdit()">Sửa <i class="bi bi-pencil"></i></button>
-                  <!-- The form -->
-                      <div class="form-popup" id="myForm" onsubmit="closeEdit()">
-                      <form action="" method="post" class="form-container" >
-                          <button type="button" onclick="closeEditAndChange(event)" >x</button>
-                          <h3 class="text-center">Sửa tag</h3>
-                          <p class="text-center">${itemValue.value}</p>
-                          <label for="categories"><b>Nhập tên Tag mới</b></label>
-                          <input type="text" placeholder="" name="categories" id="categories"required>
-                          <button type="submit" class="btn btn-primary" onclick="closeEditAndChange(event)">Sửa</button>
-                      </form>
-                      </div>
-                      
-              </div>
-          </div>
-      `
-      li.innerHTML = inner;
-      ul.insertBefore(li, ul.firstElementChild);
-      closeAdd()
-  }
+async function addItemTag(e){
+    e.preventDefault();
+    let itemValue = document.getElementById('itemAdd');
+    console.log(itemValue)
+    let ul = document.getElementById("myTags");
+    let li = document.createElement('li');
+    li.className = 'list-groupitem';
+
+    let detail = {
+    tag_name: itemValue.value
+    }
+    let res = await fetch(`/admin/tag/add`, {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+    },
+    body: JSON.stringify(detail)
+    })
+    let json = await res.json();
+    let inner = `
+        <div class="row align-items-center g-2 category-item">
+        <div class="col-7">
+            <p class="title-categories text-black"id="tag${json.id}">Tag: ${json.tag_name} </p>
+        </div>
+        <div class="col-5 button-div">
+            <button class="btn btn-danger delete" onclick="deleteTag(event, ${json.id})">Xóa<i class="bi bi-trash-fill text-white"></i></button>
+            <button class="btn btn-warning text-light" onclick="openEditTag(${json.id})">Sửa <i class="bi bi-pencil text-white"></i></button>
+            <!-- The form -->
+            <div class="form-popup" id="editTagForm${json.id}">
+            <form action="/admin/Tag/edit" method="post" class="form-container" onclick="updateTag(event, ${json.id})">
+                <button type="button" onclick="closeEditTag(${json.id})">x</button>
+                <h3 class="text-center">Sửa tag</h3>
+                <p class="text-center"> ${json.tag_name}</p>
+                <label for="newTag${json.id}"><b>Nhập tên Tag mới</b></label>
+                <input type="text" placeholder="" name="newTag${json.id}" id="newTag${json.id}" required />
+                <button type="submit" class="btn btn-primary" onclick="closeEditAndChangeTag(${json.id})">Sửa</button>
+            </form>
+            </div>
+        </div>
+        </div>
+    `
+    li.innerHTML = inner;
+    ul.insertBefore(li, ul.firstElementChild);
+    closeAddTag();
+}
+
+async function updateTag(e, id){
+    e.preventDefault();
+    console.log(id);
+    let newName = document.getElementById(`newTag${id}`).value
+    let detail = {
+        id: id,
+        newName: newName
+    };
+    await fetch(`/admin/Tag/edit`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify(detail)
+    })
+    closeEditTag(id);
+}

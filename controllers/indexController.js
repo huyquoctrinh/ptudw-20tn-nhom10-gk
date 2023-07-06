@@ -5,46 +5,56 @@ const models = require("../models");
 
 controller.showNav = async (req, res) => {
   const categories = await models.Category.findAll();
-  // const secondArray = categories.splice(2, 2);
-  // const thirdArray = categories.splice(1, 1);
-  res.locals.categoryArray = [categories, secondArray, thirdArray];
-
-  // const featuredProducts = await models.Product.findAll({
-  //     attributes: ['id', 'name', 'imagePath', 'stars', 'price', 'oldPrice'],
-  //     order: [['stars', 'DESC']],
-  //     limit: 10
-  // });
-  // res.locals.featuredProducts = featuredProducts;
-  // const recentProducts = await models.Product.findAll ({
-  //     attributes: ['id', 'name', 'imagePath', 'stars', 'price', 'oldPrice'],
-  //     order: [['createdAt', 'DESC']],
-  //     limit: 10
-  // })
-
-  // res.locals.recentProducts = recentProducts;
-  // const Brand = models.Brand;
-  // const brands = await Brand.findAll();
   res.render("layout");
 };
 
 controller.showHomepage = async (req, res) => {
-    let articles = await models.Article.findAll({include: models.Category});
-    articles.forEach(article => {
-        let y = article.createdAt.getFullYear();
-        let m = article.createdAt.getMonth() + 1;
-        let d = article.createdAt.getDate();
-        let day = d + '/' + m + '/' + y;
-        article.createDay = day;
-        console.log(article.id);
-    })
-    let products = articles;
-    res.locals.featuredProducts = products;
 
-    let mostViewArticle  = await models.Article.findAll({
-        include: models.Category,
-        order: [['view_count', 'DESC']],
-        limit: 10
+    // 1.noi bat trong tuan: filter theo view_count + #createdAt trong tuan
+    let featureArticle  = await models.Article.findAll({
+      include: models.Category,
+      order: [['view_count', 'DESC']],
+      limit: 10
     })
+    featureArticle.forEach(article => {
+      let y = article.createdAt.getFullYear();
+      let m = article.createdAt.getMonth() + 1;
+      let d = article.createdAt.getDate();
+      let day = d + '/' + m + '/' + y;
+      article.createDay = day;
+    })
+    const firstNews = featureArticle.splice(0, 1);
+    const secondNews = featureArticle.splice(0, 1);
+    res.locals.firstNews = firstNews;
+    res.locals.secondNews = secondNews;
+    res.locals.featureArticle = featureArticle;
+
+    //## 1
+
+    // 2.moi nhat: filter theo createdAt
+    let newestArticle  = await models.Article.findAll({
+      include: models.Category,
+      order: [['createdAt', 'DESC']],
+      limit: 10
+    })
+    newestArticle.forEach(article => {
+      let y = article.createdAt.getFullYear();
+      let m = article.createdAt.getMonth() + 1;
+      let d = article.createdAt.getDate();
+      let day = d + '/' + m + '/' + y;
+      article.createDay = day;
+    })
+    
+    res.locals.newestArticle = newestArticle;
+    //##2
+
+    // 3.xem nhieu nhat : filter theo view_count
+    let mostViewArticle  = await models.Article.findAll({
+      include: models.Category,
+      order: [['view_count', 'DESC']],
+      limit: 10
+    })
+
     mostViewArticle.forEach(article => {
         let y = article.createdAt.getFullYear();
         let m = article.createdAt.getMonth() + 1;
@@ -52,12 +62,16 @@ controller.showHomepage = async (req, res) => {
         let day = d + '/' + m + '/' + y;
         article.createDay = day;
     })
+    res.locals.mostViewArticle = mostViewArticle;
+    //##3
 
+  // 4. moi chuyen muc
   let thoisu = await models.Article.findAll({
     include: models.Category,
     where: {
-      category_id: 5,
+      category_id: 4,
     },
+    order: [['createdAt', 'DESC']]
   });
 
   res.locals.thoisu = thoisu;
@@ -68,6 +82,7 @@ controller.showHomepage = async (req, res) => {
     where: {
       category_id: 5,
     },
+    order: [['createdAt', 'DESC']]
   });
 
   res.locals.health = health;
@@ -78,15 +93,12 @@ controller.showHomepage = async (req, res) => {
     where: {
       category_id: 6,
     },
+    order: [['createdAt', 'DESC']]
   });
 
   res.locals.entertainment = entertainment;
   res.locals.entertainment3 = entertainment.slice(0, 3);
-
-
-    // res.locals.articles = articlesArray;
-    res.locals.mostViewArticle = mostViewArticle;
-    res.render('index');
+  res.render('index');
 }
 
 controller.showPage = (req, res, next) => {

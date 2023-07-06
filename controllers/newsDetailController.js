@@ -5,7 +5,7 @@ const models = require('../models');
 
 controller.showDetail = async (req, res) => {
     let id = isNaN(req.query.id) ? 0 : parseInt(req.query.id)
-    let article = await models.Article.findAll({
+    let article = await models.Article.findOne({
         where: {id: id},
         include: [{
             model: models.Image,
@@ -19,32 +19,84 @@ controller.showDetail = async (req, res) => {
             }]
         }, {
             model: models.Tag,
-            attributes: ['id']
+            attributes: ['tag_name']
         }, {
             model: models.Category,
             attributes: ['category_name']
+        }, {
+            model: models.Writer,
+            include: [{
+                model: models.User,
+                attributes: ['name']
+            }]
         }]
     })
-    console.log(article.length)
-    article.forEach(ar => {
-    let y = ar.createdAt.getFullYear();
-    let m = ar.createdAt.getMonth() + 1;
-    let d = ar.createdAt.getDate();
+    let y = article.createdAt.getFullYear();
+    let m = article.createdAt.getMonth() + 1;
+    let d = article.createdAt.getDate();
     let day = d + '/' + m + '/' + y;
-    ar.createDay = day;
-    })
+    article.createDay = day;
     res.locals.article = article
-    let articles = await models.Article.findAll({include: models.Category});
-    articles.forEach(article => {
-        let y = article.createdAt.getFullYear();
-        let m = article.createdAt.getMonth() + 1;
-        let d = article.createdAt.getDate();
-        let day = d + '/' + m + '/' + y;
-        article.createDay = day;
-        console.log(article.id);
+
+    article.Images.forEach (image => {
+        image.description = article.description;
     })
-    res.locals.featuredProducts = articles;
+    let articleTag = ""
+    article.Tags.forEach (tag => {
+        articleTag += tag.tag_name + " / ";
+    })
+    articleTag = articleTag.slice(0, -3);
+    article.tag = articleTag
+    let articles = await models.Article.findAll({include: models.Category});
+    articles.forEach(art => {
+        let y = art.createdAt.getFullYear();
+        let m = art.createdAt.getMonth() + 1;
+        let d = art.createdAt.getDate();
+        let day = d + '/' + m + '/' + y;
+        art.createDay = day;
+    })
+    article.featuredProducts = articles;
+
+    let comments = await models.Comment.findAll({
+        where: {article_id: id},
+        include: [{
+            model: models.User,
+            attributes: ['name']
+        }],
+        order: [['createdAt', 'DESC']],
+    })
+    comments.forEach(comment => {
+        let y = comment.createdAt.getFullYear();
+        let m = comment.createdAt.getMonth() + 1;
+        let d = comment.createdAt.getDate();
+        let h = comment.createdAt.getHours();
+        let min = comment.createdAt.getMinutes();
+        let day = h + ':' + min + " " + d + '/' + m + '/' + y;
+        comment.createDay = day;
+    })
+    res.locals.comments = comments;
+
     res.render('newDetail');
+}
+
+controller.addComment = async (req, res) => {
+    let comment = req.body.comment;
+    let article_id = req.body.article_id;
+    let user_id = req.body.user_id;
+    if (comment) {
+        models.Comment.create({
+            content: comment,
+            article_id: article_id,
+            user_id: user_id
+        }).then(async (comment) => {
+            console.log(888);
+            let name = await models.User.findOne({where: {id: user_id}, attributes: ['name'] })
+            return res.json({name: name.name})
+        }).catch((err) => {
+
+            console.log("123" + err);
+        });
+    }
 }
 
 module.exports = controller;

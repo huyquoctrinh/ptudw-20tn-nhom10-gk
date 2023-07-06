@@ -1,84 +1,89 @@
-  <main>
-    <div class="container new-detail mt-5">
-        {{#each article}}
-        <div class="row">
-            <div class="col-8">
-                <!-- Tags -->
-                <p class="fw-bold">{{Category.category_name}}</p>
-                <p class="heading-title-news-detail">{{title}}</p>
-                <div class="row ">
-                    <div class="col-1">
-                        <div class="vl"></div>
-                    </div>
-                    <div class="col-11">
-                        <ul>
-                          {{briefDescription}}
-                        </ul>
-                    </div>
-                    
-                </div>
-                
-            </div>
-            <div class="col-4">
-                <img src="{{image_thumbnail}}" alt="" class="img-fluid">
-            </div>
-        </div>
-
-        <p>{{description}}</p>
-        <div class="row justify-content-between g-2">
-            <div class="col-8">
-                <p>
-                  {{description}}
-                </p>
-                <br>
-                <p>{{description}}</p>
-            </div>
-            <div class="col-3">
-                <img src="{{image_thumbnail}}" alt="" class="img-fluid">
-            </div>
-        </div>
-        <div class="row ">
-            <div class="col">
-              <p class="p-tag-news">{{User.name}}</p>
-            </div>
-            <div class="col">
-              <p class="p-date-news">{{createDay}}</p>
-            </div>
-        </div>
-        {{/each}}
-        <!-- tin cung chuyen muc -->
-        <div class="container relevant-news-container">
-            <div class="title-relevant-news">
-                <div class="shape-title-relevant-news"></div>
-                <h4>Tin cung chuyen muc</h4>
-            </div>
-            <div class="row align-items-center product-slider product-slider-4">
-                {{#each featuredProducts}}
-                <div class="col-lg-3">
-                    {{> carousel-article2}}
-                </div>
-                {{/each}}
-            </div>
-        <!-- tags -->
-        <p>Tags: Hoa Minzy / tiktok / trend / Thi Mau</p>
-    </div>
-    <!-- binh luan -->
-    <div class="container comment-container">
-            <h4>Binh Luan</h4>
-            <form action="" method="post" onSubmit="addItem(event)">
-              <div class="mb-3">
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder=""
-                  required
-                  name="comment"
-                  id="comment"
-                  aria-describedby="helpId"
-                />
+<main>
+  <div class="container new-detail mt-5">
+      {{#with article}}
+      <div class="row">
+          <div class="col-8">
+              <!-- Tags -->
+              <p class="fw-bold">{{Category.category_name}}</p>
+              <p class="heading-title-news-detail">{{title}}</p>
+              <div class="row ">
+                  <div class="col-1">
+                      <div class="vl"></div>
+                  </div>
+                  <div class="col-11">
+                      <ul>
+                        {{briefDescription}}
+                      </ul>
+                  </div>
+                  
               </div>
-            </form>
-            <ul class="list-group" id="myList"></ul>
-    </div>
+              
+          </div>
+          <div class="col-4">
+              <img src="{{image_thumbnail}}" alt="" class="img-fluid">
+          </div>
+      </div>
 
-  </main>
+      <p>{{description}}</p>
+      {{#each Images}}
+        <img src="{{imagePath}}" alt="" class="d-block mx-auto"/>
+        <p>
+          {{description}}
+        </p>
+        <br>
+      {{/each}}
+      </div>
+      <div class="row">
+          <div class="col">
+            <p class="p-tag-news">{{Writer.User.name}}</p>
+          </div>
+          <div class="col">
+            <p class="p-date-news">{{createDay}}</p>
+          </div>
+      </div>
+      
+      <!-- tin cung chuyen muc -->
+      <div class="container relevant-news-container">
+          <div class="title-relevant-news">
+              <div class="shape-title-relevant-news"></div>
+              <h4>Tin cung chuyen muc</h4>
+          </div>
+          <div class="row align-items-center product-slider product-slider-4">
+              {{#each featuredProducts}}
+              <div class="col-lg-3">
+                  {{> carousel-article2}}
+              </div>
+              {{/each}}
+          </div>
+      <!-- tags -->
+      <p>Tags: {{tag}}</p>
+  </div>
+  <!-- binh luan -->
+  <div class="container comment-container">
+    <h4>Binh Luan</h4>
+    {{!-- {{#if isLoggedIn}} --}}
+    <form action="/newsDetail/comment" method="post" onSubmit="addItem(event)">
+      <div class="row">
+        <div class="col-10 mb-3">
+          <input type="text" class="form-control" placeholder="" required name="comment" id="comment" aria-describedby="helpId"/>
+          <input type="hidden" name="article_id" value="{{id}}">
+          <input type="hidden" name="user_id" value="1">
+        </div>
+        <div class="col-1">
+            <button class="btn btn-primary">Comment</button>
+        </div>
+      </div>
+    </form>
+    {{#if done}}
+    {{/if}}
+    {{/with}}
+    {{!-- {{/if}} --}}
+    <ul class="list-group" id="myList">
+      {{#each comments}}
+        {{> comment}}
+      {{/each}}
+    </ul>
+  </div>
+</main>
+
+<script src="../javascript/newsDetail.js"></script>

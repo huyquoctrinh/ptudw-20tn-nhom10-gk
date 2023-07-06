@@ -68,12 +68,39 @@ app.engine(
 );
 app.set("view engine", "hbs");
 
+app.use(express.json());
+app.use(express.urlencoded({extended: false}));
+
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  store: new redisStore({ client: redisClient}),
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+      httpOnly: true,
+      maxAge: 20 * 60 * 1000 // 20 mins
+  }
+}));
+
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+//middle ware
+app.use((req, res, next) => {
+  res.locals.isLoggedIn = req.isAuthenticated();
+  next();
+})
+
 //cau hinh route
 app.use("/", require("./routes/indexRoute"));
 app.use("/Categories", require("./routes/categoryRoute"));
 app.use("/newsDetail", require("./routes/newsDetailRoute"));
 app.use("/google", require("./routes/passportRoute"));
 
+app.use("/admin", require("./routes/adminRoute.js"));
+app.use("/editor", require("./routes/editorRoute.js"));
 // tao db
 app.get("/createTables", (req, res) => {
   let models = require("./models");

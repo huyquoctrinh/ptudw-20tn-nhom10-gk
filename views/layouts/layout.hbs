@@ -23,6 +23,7 @@
     <link href="../lib/slick/slick.css" rel="stylesheet">
     <link href="../lib/slick/slick-theme.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/categories.css" />
+    <link rel="stylesheet" href="../css/AdminUserManagement.css">
   </head>
 
   <body>
@@ -129,17 +130,17 @@
                 aria-expanded="false"
               ><i class="bi bi-person-circle ms-4 fs-2 text-dark"></i></a>
               <ul class="dropdown-menu me-6" aria-labelledby="dropdownIdUser">
-                {{#if isAdmin}}
-                  {{> menu-admin}}
-                {{else if isUser}}
+                {{!-- {{#if isAdmin}} --}}
+                  {{!-- {{> menu-admin}} --}}
+                {{!-- {{else if isUser}}
                   {{> menu-user}}
-                {{else if isEditor}}
+                {{else if isEditor}} --}}
                   {{> menu-editor}}
-                {{else if isReporter}}
+                {{!-- {{else if isReporter}}
                   {{> menu-reporter}}
                 {{else}}
                  {{> menu-guest}}
-                {{/if}}
+                {{/if}} --}}
               </ul>
             </div>
           </div>
@@ -271,5 +272,7 @@
     <script src="../lib/slick/slick.min.js"></script>
 
     <script src="../javascript/adjust.js"></script>
+    <script src="../javascript/AdminManageCategoties.js"></script>
+    <script src="../javascript/AdminTag.js"></script>
   </body>
-</html>
+</html> 

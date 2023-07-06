@@ -1,0 +1,35 @@
+<li class="list-groupitem">
+    <div class="row align-items-center g-2 category-item">
+        <div class="col-7">
+            <p class="title-categories text-black" id="title-categories">{{name}}</p>
+        </div>
+        <div class="col-5 button-div">
+            <div class="dropdown open">
+                <button
+                    class="btn btn-primary dropdown-toggle"
+                    type="button"
+                    id="user{{id}}"
+                    data-bs-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                >
+                    {{userRole}}
+                </button>
+                <div class="dropdown-menu" aria-labelledby="user{{id}}">
+                    <button class="dropdown-item" onclick="updateUser({{id}}, 'reader', 'user{{id}}')">
+                    Đã đăng ký
+                    </button>
+                    <button class="dropdown-item" onclick="updateUser({{id}}, 'writer', 'user{{id}}')">
+                    Người viết bài
+                    </button>
+                    <button class="dropdown-item" onclick="updateUser({{id}}, 'editor','user{{id}}')">
+                    Biên tập viên
+                    </button>
+                    <button class="dropdown-item" onclick="updateUser({{id}}, 'admin','user{{id}}')">
+                    Admin
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</li>
