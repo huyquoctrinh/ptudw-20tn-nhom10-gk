@@ -143,12 +143,11 @@ async function updateStatus(id, status, statusButtonId){
 }
 
 function filter(keyword) {
-  let upperCase = keyword.toUpperCase();
   document
     .querySelectorAll("li.list-groupitem")
     .forEach((item) => {
-      let title = item.childNodes[1].childNodes[1].childNodes[1].innerText.substring(12);
-      if (title.indexOf(keyword.toLowerCase()) >= 0 || title.indexOf(upperCase) >= 0) {
+      let title = item.childNodes[1].childNodes[1].childNodes[1].innerText.substring(12).toLowerCase();
+      if (title.indexOf(keyword.toLowerCase()) >= 0) {
         item.style.display = "block";
       } else {
         item.style.display = "none";

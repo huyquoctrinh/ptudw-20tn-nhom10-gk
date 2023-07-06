@@ -3,9 +3,9 @@
     <div class="row justify-content-center">
       <div class="col-3 py-5">
         <div class="list-group-flush mt-4">
-          <a class="list-group-item active" href="/writer/mylist">Tất cả</a>
+          <a class="list-group-item" href="/writer/mylist">Tất cả</a>
           <a class="list-group-item" href="/writer/draft">Chờ duyệt</a>
-          <a class="list-group-item" href="/writer/approve">Đã được duyệt</a>
+          <a class="list-group-item active" href="/writer/approve">Đã được duyệt</a>
           <a class="list-group-item" href="/writer/reject">Bị từ chối</a>
         </div>
       </div>
@@ -15,25 +15,25 @@
             <div class="vl"></div>
           </div>
           <div class="col-11">
-            <h3>Tất cả bài viết</h3>
+            <h3>Bài viết được duyệt</h3>
             <div class="container">
                 <div class="mb-3 icon-input">
                     <i class="bi bi-search icon"></i>
                     <input type="text" class="form-control" name="keyword" id="keyword" aria-describedby="helpId" placeholder="" value="" required onkeyup="filterPost(this.value)"/>
                 </div>
                 {{#if hasPost}}
-                  <ul class="list-group" id="myPosts">
-                    {{#each posts}}
-                      {{> postWriterCard }}
-                    {{/each}}
-                  </ul>
-                  <div class="col-lg-12">
-                      <nav aria-label="Page navigation example" id="pagination">
-                          {{{ createPagination pagination paginationClass="pagination justify-content-center" leftText="Previous" rightText="Next"}}}
-                      </nav>
-                  </div>
+                    <ul class="list-group" id="myPosts">
+                        {{#each posts}}
+                        {{> postWriterCard }}
+                        {{/each}}
+                    </ul>
+                    <div class="col-lg-12">
+                        <nav aria-label="Page navigation example" id="pagination">
+                            {{{ createPagination pagination paginationClass="pagination justify-content-center" leftText="Previous" rightText="Next"}}}
+                        </nav>
+                    </div>
                 {{else}}
-                  <p>Bạn không có bài viết nào</p>
+                    <p>Bạn không có bài viết nào được duyệt</p>
                 {{/if}}
             </div>
           </div>
