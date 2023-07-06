@@ -101,6 +101,7 @@ app.use("/google", require("./routes/passportRoute"));
 
 app.use("/admin", require("./routes/adminRoute.js"));
 app.use("/editor", require("./routes/editorRoute.js"));
+app.use("/writer", require("./routes/writerRoute.js"));
 // tao db
 app.get("/createTables", (req, res) => {
   let models = require("./models");

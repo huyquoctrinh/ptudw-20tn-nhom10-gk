@@ -159,4 +159,40 @@ controller.showProcessed = async (req, res) => {
     res.locals.articles = rows;
     res.render('EditorProcessed')
 } 
+
+controller.showProcessedPostDetail = async (req, res) => {
+    let article_id = parseInt(req.query.articleId);
+    let post = await models.Article.findOne({
+        where: {id: article_id},
+        include: [{
+            model: models.Category,
+            attributes: ['category_name']
+        }, {
+            model: models.Writer,
+            include: [{
+                model: models.User,
+                attributes: ['name']
+            },]
+        }, {
+            model: models.Image
+        }, {
+            model: models.ArticleStatus,
+            order: [['createdAt', 'DESC']],
+            limit: 1
+        }]
+    })
+
+    let y = post.createdAt.getFullYear();
+    let m = post.createdAt.getMonth() + 1;
+    let d = post.createdAt.getDate();
+    let day = d + '/' + m + '/' + y;
+    post.createDay = day;
+    post.Images.forEach (image => {
+        image.description = post.description;
+    })
+    if (post.ArticleStatuses[0].status == 'Rejected') post.isReject = true;
+    else post.isReject = false;
+    res.locals.post = post;
+    res.render('EditorViewPostDetailProcess')
+}
 module.exports = controller;
