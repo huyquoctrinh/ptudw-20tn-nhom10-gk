@@ -19,15 +19,15 @@ controller.showDetail = async (req, res) => {
             }]
         }, {
             model: models.Tag,
-            attributes: ['tag_name']
+            attributes: ['tag_name', 'id']
         }, {
             model: models.Category,
-            attributes: ['category_name']
+            attributes: ['category_name', 'id']
         }, {
             model: models.Writer,
             include: [{
-                model: models.User,
-                attributes: ['name']
+                model: models.User, 
+                attributes: ['name'] 
             }]
         }]
     })

@@ -2,7 +2,7 @@
 
 const controller = {};
 const models = require('../models');
-
+let isSubcriber = true;
 controller.showCategory = async (req, res) => {
     let category = isNaN(req.query.id) ? 0 : parseInt(req.query.id);
     
@@ -17,6 +17,7 @@ controller.showCategory = async (req, res) => {
     }
     // 1. noi bat
     options.order = [['view_count', 'DESC']]
+    if (isSubcriber) options.order.unshift(['is_premium', 'DESC']);
     let featureArticle = await models.Article.findAll(options)
     featureArticle.forEach(article => {
         let y = article.createdAt.getFullYear();
@@ -33,6 +34,7 @@ controller.showCategory = async (req, res) => {
     //##1
     // 2.tin xem nhieu nhat
     options.order = [['view_count', 'DESC']]
+    if (isSubcriber) options.order.unshift(['is_premium', 'DESC']);
     let mostViewArticle = await models.Article.findAll(options)
     mostViewArticle.forEach(article => {
         let y = article.createdAt.getFullYear();
@@ -47,6 +49,7 @@ controller.showCategory = async (req, res) => {
     const limit = 3;
     let page = isNaN(req.query.page) ? 1 : Math.max(1, parseInt(req.query.page));
     options.order = [['createdAt', 'DESC']]
+    if (isSubcriber) options.order.unshift(['is_premium', 'DESC']);
     options.limit = limit,
     options.offset = limit * (page-1)
     let {rows, count}= await models.Article.findAndCountAll(options)

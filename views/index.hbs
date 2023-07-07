@@ -33,7 +33,7 @@
     <hr>
     <!-- tin moi nhat -->
     <section class="section">
-      <h2>Tin mới nhất</h2>
+      <h2 class="mt-1 mb-1">Tin mới nhất</h2>
       <div class="row align-items-center product-slider product-slider-4">
           {{#each newestArticle}}
           <div class="col-lg-3">
@@ -46,7 +46,7 @@
     <hr>
     <!-- xem nhieu nhat -->
     <section>
-      <h2>Xem nhiều nhất</h2>
+      <h2 class="mt-1 mb-1">Xem nhiều nhất</h2>
       <div class="row">
         <!-- tin -->
         <div class="col-8">
@@ -56,57 +56,13 @@
         </div>
         <!-- quang cao -->
         <div class="col-4">
-          <img src="../images/qc_1.png" alt="">
-          <img src="../images/qc_2.png" alt="">
-          <img src="../images/qc_3.png" alt="">
+          {{#each allCates}}
+            {{> categoryNewsCard}}
+          {{/each}}
         </div>
       </div>
     </section>
     <hr>
     <!-- end xem nhieu nhat -->
-    <section class="section">
-      <h2>Thời sự</h2>
-      <div class="home-slider">
-          <div class="product-slider-single">
-            {{#each thoisu}}
-              {{> slider}}
-            {{/each}}
-          </div>
-      </div>
-      <div class="row row-cols-1 row-cols-md-3 g-4">
-        {{#each thoisu3}}
-          {{> categoryArticle}}
-        {{/each}}
-      </div>
-    </section>
-    <section class="section">
-      <h2>Sức khỏe</h2>
-      <div class="home-slider">
-          <div class="product-slider-single">
-            {{#each health}}
-              {{> slider}}
-            {{/each}}
-          </div>
-      </div>
-      <div class="row row-cols-1 row-cols-md-3 g-4">
-        {{#each health3}}
-        {{> categoryArticle}}
-        {{/each}}
-      </div>
-    </section>
-    <section class="section">
-      <h2>Giải trí</h2>
-      <div class="home-slider">
-          <div class="product-slider-single">
-            {{#each entertainment}}
-              {{> slider}}
-            {{/each}}
-          </div>
-      </div>
-      <div class="row row-cols-1 row-cols-md-3 g-4">
-        {{#each entertainment3}}
-        {{> categoryArticle}}
-        {{/each}}
-      </div>
-    </section>
+  
 </main>

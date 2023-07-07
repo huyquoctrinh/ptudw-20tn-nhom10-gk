@@ -58,18 +58,28 @@
                   <li>
                     <a class="dropdown-item" href="./Categories?id=1" id="business">Kinh doanh</a>
                     <ul class="dropdown-menu dropdown-submenu">
-                      <li><a class="dropdown-item" href="/Categories?id=2">Nông sản</a></li>
-                      <li><a class="dropdown-item" href="/Categories?id=3">Hải sản</a></li>
+                      <li><a class="dropdown-item" href="/Categories?id=2">Doanh nghiệp</a></li>
+                      <li><a class="dropdown-item" href="/Categories?id=3">Chứng khoán</a></li>
                     </ul>
                   </li>
                   <li>
                     <a class="dropdown-item" href="/Categories?id=4" id="genral">Thời sự</a>
+                    <ul class="dropdown-menu dropdown-submenu">
+                      <li><a class="dropdown-item" href="/Categories?id=8">Chính trị</a></li>
+                      <li><a class="dropdown-item" href="/Categories?id=10">Giao thông</a></li>
+                    </ul>
                   </li>
                   <li>
                     <a class="dropdown-item" href="/Categories?id=5" id="sports" >Sức khỏe</a>
                   </li>
                   <li>
                     <a class="dropdown-item" href="/Categories?id=6" id="technology">Giải trí</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="/Categories?id=7" id="technology">Thế giới</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="/Categories?id=9" id="technology">Giáo dục</a>
                   </li>
                 </ul>
               </div>
@@ -108,13 +118,13 @@
               ><i class="bi bi-person-circle ms-4 fs-2 text-dark"></i></a>
               <ul class="dropdown-menu me-6" aria-labelledby="dropdownIdUser">
                 {{!-- {{#if isAdmin}} --}}
-                  {{!-- {{> menu-admin}} --}}
+                  {{> menu-admin}}
                 {{!-- {{else if isUser}}
                   {{> menu-user}}
                 {{else if isEditor}} --}}
                   {{!-- {{> menu-editor}} --}}
                 {{!-- {{else if isReporter}} --}}
-                  {{> menu-reporter}}
+                  {{!-- {{> menu-reporter}} --}}
                 {{!-- {{else}}
                  {{> menu-guest}}
                 {{/if}} --}}

@@ -13,9 +13,9 @@ span:not(.h2){
     text-decoration: none;
 }
 
-.card:not(.card-hor){
+/* .card:not(.card-hor){
     height: 350px;
-}
+} */
 
 main{
     width: 70%;
@@ -67,11 +67,13 @@ main{
     margin-bottom: 0px;
     margin-left: 10px;
     text-align: left;
+    font-size: 14px;
 }
 
 .p-date-news{
     text-align: right;
     margin-right: 10px;
+    font-size: 14px;
 }
 
 
