@@ -21,11 +21,13 @@
 .p-tag-news{
     font-weight: 600;
     margin-bottom: 0px;
+    font-size: 14px;
 }
 
 .p-date-news{
     text-align: right;
     margin-bottom: 0px;
+    font-size: 14px;
 
 }
 

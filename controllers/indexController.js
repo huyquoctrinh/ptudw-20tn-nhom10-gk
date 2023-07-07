@@ -1,21 +1,45 @@
 "use strict";
-
+const Op = require('sequelize').Op;
 const controller = {};
 const models = require("../models");
-
+let isSubcriber = true;
 controller.showNav = async (req, res) => {
   const categories = await models.Category.findAll();
+  let rootCate = []
+  categories.forEach((cate) => {
+    if (cate.root_category_id == null)
+      rootCate.push(cate)
+  })
+  for (let i = 0; i < rootCate.length; i++){
+    rootCate[i].subCate = []
+    rootCate[i].hasSubCate = false;
+    for (let j = 0; j < categories; j++){
+      if (categories[j].root_category_id == rootCate[i].id){
+        rootCate[i].hasSubCate = true;
+        rootCate[i].subCate.push(categories[j]);
+      }
+    }
+  }
+  res.locals.rootCate = rootCate;
   res.render("layout");
 };
 
 controller.showHomepage = async (req, res) => {
 
     // 1.noi bat trong tuan: filter theo view_count + #createdAt trong tuan
-    let featureArticle  = await models.Article.findAll({
+    let featureOptions = {
       include: models.Category,
       order: [['view_count', 'DESC']],
+      where: {
+        publish_day: {
+          [Op.not]: null, // Like: sellDate IS NOT NULL
+        }
+      },
       limit: 10
-    })
+    }
+    if (isSubcriber) featureOptions.order.unshift(['is_premium', 'DESC'])
+    
+    let featureArticle  = await models.Article.findAll(featureOptions)
     featureArticle.forEach(article => {
       let y = article.createdAt.getFullYear();
       let m = article.createdAt.getMonth() + 1;
@@ -32,11 +56,18 @@ controller.showHomepage = async (req, res) => {
     //## 1
 
     // 2.moi nhat: filter theo createdAt
-    let newestArticle  = await models.Article.findAll({
+    let newesOptions = {
       include: models.Category,
       order: [['createdAt', 'DESC']],
+      where: {
+        publish_day: {
+          [Op.not]: null, // Like: sellDate IS NOT NULL
+        }
+      },
       limit: 10
-    })
+    }
+    if (isSubcriber) newesOptions.order.unshift(['is_premium', 'DESC'])
+    let newestArticle  = await models.Article.findAll(newesOptions)
     newestArticle.forEach(article => {
       let y = article.createdAt.getFullYear();
       let m = article.createdAt.getMonth() + 1;
@@ -49,11 +80,18 @@ controller.showHomepage = async (req, res) => {
     //##2
 
     // 3.xem nhieu nhat : filter theo view_count
-    let mostViewArticle  = await models.Article.findAll({
+    let mostViewOptions = {
       include: models.Category,
       order: [['view_count', 'DESC']],
-      limit: 10
-    })
+      where: {
+        publish_day: {
+          [Op.not]: null, // Like: sellDate IS NOT NULL
+        }
+      },
+      limit: 20
+    }
+    if (isSubcriber) mostViewOptions.order.unshift(['is_premium', 'DESC'])
+    let mostViewArticle  = await models.Article.findAll(mostViewOptions)
 
     mostViewArticle.forEach(article => {
         let y = article.createdAt.getFullYear();
@@ -66,38 +104,24 @@ controller.showHomepage = async (req, res) => {
     //##3
 
   // 4. moi chuyen muc
-  let thoisu = await models.Article.findAll({
-    include: models.Category,
-    where: {
-      category_id: 4,
-    },
-    order: [['createdAt', 'DESC']]
-  });
-
-  res.locals.thoisu = thoisu;
-  res.locals.thoisu3 = thoisu.slice(0, 3);
-
-  let health = await models.Article.findAll({
-    include: models.Category,
-    where: {
-      category_id: 5,
-    },
-    order: [['createdAt', 'DESC']]
-  });
-
-  res.locals.health = health;
-  res.locals.health3 = health.slice(0, 3);
-
-  let entertainment = await models.Article.findAll({
-    include: models.Category,
-    where: {
-      category_id: 6,
-    },
-    order: [['createdAt', 'DESC']]
-  });
-
-  res.locals.entertainment = entertainment;
-  res.locals.entertainment3 = entertainment.slice(0, 3);
+    let allCates = await models.Category.findAll();
+    for (let i = 0; i < allCates.length; i++){
+      console.log(allCates[i].id)
+      let post = await models.Article.findAll({
+        where: {
+          category_id: allCates[i].id, 
+          publish_day: {
+            [Op.not]: null, // Like: sellDate IS NOT NULL
+          }
+        },
+        order: [['createdAt', 'DESC']],
+        limit: 1
+      });
+      allCates[i].article = post;
+      // console.log(cate.article);
+    }
+    res.locals.allCates = allCates;
+  
   res.render('index');
 }
 
