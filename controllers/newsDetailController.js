@@ -47,7 +47,13 @@ controller.showDetail = async (req, res) => {
     })
     articleTag = articleTag.slice(0, -3);
     article.tag = articleTag
-    let articles = await models.Article.findAll({include: models.Category});
+    let articles = await models.Article.findAll({
+        include: [{
+            model: models.Category,
+            where: {id: article.category_id}
+        }],
+        limit: 10
+    });
     articles.forEach(art => {
         let y = art.createdAt.getFullYear();
         let m = art.createdAt.getMonth() + 1;
