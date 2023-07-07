@@ -1,150 +1,32 @@
-// var app = new Vue({
-//   el: "#form1",
-//   data: function () {
-//     return {
-//       username: "",
-//       email: "",
-//       emailBlured: false,
-//       valid: false,
-//       submitted: false,
-//       password: "",
-//       passwordBlured: false,
-//     };
-//   },
+const dropdown = document.getElementById("dropdown");
+const submitBtn = document.getElementById("submit-btn");
 
-//   methods: {
-//     validate: function () {
-//       this.emailBlured = true;
-//       this.passwordBlured = true;
-//       //this.validUsername(this.username) &&
-//       if (this.validEmail(this.email) && this.validPassword(this.password)) {
-//         this.valid = true;
-//       }
-//     },
-//     validUsername: function (username) {
-//       if (username.length > 0) {
-//         return true;
-//       }
-//     },
+dropdown.addEventListener("change", function () {
+  const selectedOption = dropdown.options[dropdown.selectedIndex].value;
+  console.log(selectedOption);
+});
 
-//     validEmail: function (email) {
-//       var re = /(.+)@(.+){2,}\.(.+){2,}/;
-//       if (re.test(email.toLowerCase())) {
-//         return true;
-//       }
-//     },
+submitBtn.addEventListener("click", function () {
+  const selectedOption = dropdown.options[dropdown.selectedIndex].value;
+  saveToDatabase(selectedOption);
+});
 
-//     validPassword: function (password) {
-//       if (password.length > 7) {
-//         return true;
-//       }
-//     },
-
-//     submit: function () {
-//       this.validate();
-//       if (this.valid) {
-//         this.submitted = true;
-//         // Lưu thông tin vào local storage
-//         localStorage.setItem("username", this.text);
-//         localStorage.setItem("email", this.email);
-//         localStorage.setItem("password", this.password);
-//         setTimeout(function () {
-//           window.location.href = "/log-in";
-//         }, 1000);
-//       }
-//     },
-//   },
-// });
-
-// var app = new Vue({
-//   el: "#form2",
-//   data: function () {
-//     return {
-//       email: "",
-//       emailBlured: false,
-//       valid: false,
-//       submitted: false,
-//       password: "",
-//       passwordBlured: false,
-//       storedEmail: localStorage.getItem("email"),
-//       storedPassword: localStorage.getItem("password"),
-//     };
-//   },
-
-//   methods: {
-//     validate: function () {
-//       this.emailBlured = true;
-//       this.passwordBlured = true;
-//       if (
-//         this.email === this.storedEmail &&
-//         this.password === this.storedPassword
-//       ) {
-//         this.valid = true;
-//       }
-//     },
-
-//     validEmail: function (email) {
-//       var re = /(.+)@(.+){2,}\.(.+){2,}/;
-//       if (re.test(email.toLowerCase())) {
-//         return true;
-//       }
-//     },
-
-//     validPassword: function (password) {
-//       if (password.length > 7) {
-//         return true;
-//       }
-//     },
-
-//     submit: function () {
-//       this.submitted = true;
-//       setTimeout(function () {
-//         window.location.href = "/";
-//       }, 1000);
-//     },
-//   },
-// });
-
-// var app = new Vue({
-//   el: "#form3",
-//   data: function () {
-//     return {
-//       email: "",
-//       emailBlured: false,
-//       code: "",
-//       codeBlured: false,
-//       storedEmail: localStorage.getItem("email"),
-//     };
-//   },
-
-//   methods: {
-//     validate: function () {
-//       this.emailBlured = true;
-
-//       if (this.email === this.storedEmail) {
-//         this.valid = true;
-//       }
-//     },
-
-//     validEmail: function (email) {
-//       var re = /(.+)@(.+){2,}\.(.+){2,}/;
-//       if (re.test(email.toLowerCase())) {
-//         return true;
-//       }
-//     },
-
-//     submit: function () {
-//       this.submitted = true;
-//       setTimeout(function () {
-//         // window.location.href = "/index.html";
-//         ChangeText();
-//       }, 500);
-//     },
-//   },
-// });
-
-// function ChangeText(text) {
-//   var emailLabel = document.getElementById("email-label");
-//   text.innerHTML = "Confirm";
-//   emailLabel.innerHTML = "The OTP you have received has to be entered";
-// }
+const saveToDatabase = async (selectedOption) => {
+  try {
+    const response = await fetch("/save-role", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ role: selectedOption }),
+    });
+    const data = await response.json();
+    console.log(data);
+    // Thực hiện các hành động sau khi lưu vào cơ sở dữ liệu
+    // Ví dụ: chuyển hướng đến trang thành công, hiển thị thông báo, vv.
+  } catch (error) {
+    console.error("Error saving to database:", error);
+    // Xử lý lỗi khi lưu xuống cơ sở dữ liệu
+    // Ví dụ: hiển thị thông báo lỗi, vv.
+  }
+};
