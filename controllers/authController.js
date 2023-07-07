@@ -1,115 +1,136 @@
-'use strict';
+"use strict";
 
-const controller = {};
-const passport = require('./passport');
-const models = require('../models')
+const controller = require("../controllers/passportController");
 
+const passport = require("./passportController");
+const models = require("../models");
+const bcrypt = require("bcrypt");
+// const User = require("../models/user");
+
+controller.showSignUp = (req, res) => {
+  res.render("signup", {
+    captcha: res.recaptcha,
+    reqUrl: req.query.reqUrl,
+    registerMessage: req.flash("registerMessage"),
+  });
+};
 
 controller.show = (req, res) => {
-    if (req.isAuthenticated()) {
-        return res.redirect('/');
-    }
-    res.render('login', {loginMessage: req.flash('loginMessage'), reqUrl: req.query.reqUrl, registerMessage: req.flash('registerMessage')});
-}
-
+  if (req.isAuthenticated()) {
+    return res.redirect("/");
+  }
+  res.render("login", {
+    loginMessage: req.flash("loginMessage"),
+    reqUrl: req.query.reqUrl,
+  });
+};
 controller.login = (req, res, next) => {
-    let keepSignnedIn = req.body.keepSignnedIn;
-    let reqUrl = req.body.reqUrl ? req.body.reqUrl : '/users/my-account';
-    let cart = req.session.cart;
-    passport.authenticate('local-login', (error, user) => {
-        if (error){
-            return next(error);
-        }
+  passport.authenticate("local-login", (error, user, info) => {
+    if (error) {
+      return next(error);
+    }
 
-        if (!user){
-            return res.redirect(`/users/login?reqUrl=${reqUrl}`)
-        }
+    if (!user) {
+      // Người dùng không tồn tại hoặc mật khẩu không khớp
+      return res.redirect("/users/login");
+    }
 
+    // So sánh mật khẩu đã hash
+    bcrypt.compare(req.body.password, user.password, (error, isMatch) => {
+      if (error) {
+        return next(error);
+      }
+
+      if (isMatch) {
+        // Mật khẩu khớp, thực hiện đăng nhập thành công
         req.logIn(user, (error) => {
-            if (error) {
-                return next(error);
-            }
-            req.session.cookie.maxAge = keepSignnedIn ? (24 * 60 * 60 * 1000) : null;
-            req.session.cart = cart;
-            return res.redirect(reqUrl);
-        }) 
-    })(req, res, next);
-}
+          if (error) {
+            return next(error);
+          }
+          // Kiểm tra giá trị user.role và gán giá trị tương ứng cho isUser
+          let isUser;
+          if (user.role === "admin") {
+            isUser = 0;
+          } else if (user.role === "user") {
+            isUser = 1;
+          } else if (user.role === "editor") {
+            isUser = 2;
+          } else if (user.role === "reporter") {
+            isUser = 3;
+          } else {
+            isUser = 4;
+          }
 
-controller.logout = (req, res, next) => {
-    let cart = req.session.cart;
-    req.logout((error) => {
-        if (error) {return next(error);}
-        req.session.cart = cart;
-        res.redirect('/');
-    })
-}
+          req.session.user = user;
+          req.session.isUser = isUser;
+
+          // Render trang myprofile
+          // Render trang myprofile
+          res.app.render(
+            "myprofile",
+            { user: user, isUser: isUser },
+            (err, html) => {
+              if (err) {
+                // Xử lý lỗi nếu cần thiết
+                return next(err);
+              }
+
+              // Trả về nội dung HTML đã render
+              res.send(html);
+
+              // Thay đổi đường dẫn
+              return res.redirect("/users/myprofile");
+            }
+          );
+        });
+      } else {
+        // Mật khẩu không khớp
+        req.flash("loginMessage", "Mật khẩu không khớp");
+        return res.redirect("/users/login");
+      }
+    });
+  })(req, res, next);
+};
 
 controller.isLoggedIn = (req, res, next) => {
-    if (req.isAuthenticated()) {return next()}
-    // res.redirect(`/users/login?reqUrl=${req.originalUrl}`); 
-}
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect(`${req.originalUrl}`);
+};
 
 controller.register = (req, res, next) => {
-    let reqUrl = req.body.reqUrl ? req.body.reqUrl : '/users/my-account'
-    let cart = req.session.cart;
-    passport.authenticate('local-register', (error, user) => {
-        if (error) { return next(error) };
-        if (!user) { return res.redirect(`/users/login?reqUrl=${reqUrl}`)};
-        req.logIn(user,(error) => {
-            if (error) { return next(error)}
-            req.session.cart = cart;
-            res.redirect(reqUrl);
-        })
+  let reqUrl = req.body.reqUrl ? req.body.reqUrl : "/users/login";
+  let user = req.session.user;
+
+  // Khởi tạo CAPTCHA
+  const recaptcha = new Recaptcha(
+    CAPTCHA_APIKEY_PUBLIC,
+    CAPTCHA_APIKEY_PRIVATE
+  );
+
+  // Kiểm tra CAPTCHA
+  recaptcha.verify(req, (error, data) => {
+    if (error) {
+      return res.redirect("/404");
+    }
+    // Đánh dấu rằng captcha đã được hoàn thành
+    req.session.captchaVerified = true;
+    passport.authenticate("local-register", (error, user) => {
+      if (error) {
+        return next(error);
+      }
+      if (!user) {
+        return res.redirect(`${reqUrl}`);
+      }
+      req.logIn(user, (error) => {
+        if (error) {
+          return next(error);
+        }
+        req.session.user = user;
+        res.redirect(reqUrl);
+      });
     })(req, res, next);
-}
-
-controller.showForgotPassword = (req, res) => {
-    res.render('forgot-password');
-}
-
-controller.forgotPassword = async (req, res) => {
-    let email = req.body.email;
-    let user = await models.User.findOne({where: {email}});
-    if (user) {
-        const { sign } = require('./jwt');
-        const host = req.header('host');
-        const resetLink = `${req.protocol}://${host}/users/reset?email=${email}&token=${sign(email)}&`;
-        console.log(resetLink);
-        const { sendForgotPasswordMail } = require('./mail')
-        sendForgotPasswordMail(user, host, resetLink)
-            .then((result) => {
-                console.log('email sent');
-                return res.render('forgot-password', { done: true });
-            })
-            .catch(error => {
-                console.log(error.statusCode);
-                return res.render('forgot-password', { message: 'An error has occurred when sending to your email. Please check your email address!'});
-            })
-    } else {
-        return res.render('forgot-password', {message: 'Email does not exist'});
-    }
-}
-
-controller.showResetPassword = (req, res) => {
-    let email = req.query.email;
-    let token = req.query.token;
-    let {verify} = require('./jwt');
-    if (!token || !verify(token)){
-        return res.render('reset-password', {expired: true});
-    } else{
-        return res.render('reset-password', {email, token}); 
-    }
-}
-
-controller.resetPassword = async (req, res) => {
-    let email = req.body.email;
-    let token = req.body.token;
-    let bcrypt = require('bcryptjs');
-    let password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(8));
-    console.log(req.body.password)
-    await models.User.update({password}, {where: {email}});
-    res.render('reset-password', {done:true})
-}
-
+  });
+};
 module.exports = controller;
