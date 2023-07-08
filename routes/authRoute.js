@@ -4,10 +4,10 @@ const express = require("express");
 const router = express.Router();
 const controller = require("../controllers/authController");
 const { body, getErrorMessage } = require("../controllers/validator");
+const passport = require("passport");
 
 router.get("/login", controller.show);
 router.get("/signup", controller.showSignUp);
-
 router.post(
   "/login",
   body("email")
@@ -31,6 +31,11 @@ router.post(
 
 router.post(
   "/signup",
+  passport.authenticate("local-register", {
+    successRedirect: "/login",
+    failureRedirect: "/404",
+    failureFlash: true,
+  }),
   body("name").trim().notEmpty().withMessage("Tên là bắt buộc!"),
   body("email")
     .trim()
@@ -39,11 +44,6 @@ router.post(
     .isEmail()
     .withMessage("Địa chỉ email không hợp lệ!"),
   body("password").trim().notEmpty().withMessage("Mật khẩu là bắt buộc"),
-  // body("password")
-  //   .matches(/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/)
-  //   .withMessage(
-  //     "Password must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters"
-  //   ),
   body("cofirmPassword").custom((cofirmPassword, { req }) => {
     if (cofirmPassword != req.body.password) {
       throw new Error("Mật khẩu không đúng!");

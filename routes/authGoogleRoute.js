@@ -3,8 +3,7 @@
 const express = require("express");
 const router = express.Router();
 const passport = require("passport");
-let cnt = 0;
-const controller = require("../controllers/passportController");
+require("../controllers/passportController");
 
 // set route dang nhap bang google
 router.get(
@@ -16,15 +15,13 @@ router.get(
   "/callback",
   passport.authenticate("google", { failureRedirect: "failed" }),
   function (req, res) {
-    // Lưu thông tin người dùng xuống bảng User
-    // delete req.user.id;
     const profile = req.user;
     // console.log("in user profile: ", profile);
     const userData = {
       email: profile.email,
       name: profile.displayName,
       role: null,
-      dob: null,
+      dob: profile.birthday,
       avatar: profile.picture,
     };
     const User = require("../models").User;
@@ -61,9 +58,8 @@ router.get(
           //guest
           req.session.isUser = 4;
         }
-        // req.session.isUser = true; // Gán lại giá trị true cho req.session.isUser
-        // res.render("myprofile", { isUser: req.session.isUser });
-        console.log("user data: ", userData);
+        res.render("myprofile", { isUser: req.session.isUser });
+        // console.log("user data: ", userData);
 
         req.session.user = userData;
         res.redirect("/users/myprofile");
@@ -74,14 +70,5 @@ router.get(
       });
   }
 );
-
-// router.use((req, res, next) => {
-//   if (req.session.isUser) {
-//     res.locals.isUser = true;
-//   } else {
-//     res.locals.isUser = false;
-//   }
-//   next();
-// });
 
 module.exports = router;

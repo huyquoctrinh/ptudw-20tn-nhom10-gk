@@ -11,6 +11,7 @@ const passport = require("passport");
 const { createPagination } = require("express-handlebars-paginate");
 const flash = require("express-flash");
 const Recaptcha = require("express-recaptcha").RecaptchaV2;
+const multer = require("multer");
 
 app.use(
   session({
@@ -30,15 +31,6 @@ app.use(express.static(__dirname + "/public"));
 // cấu hình sử dụng passport
 app.use(passport.initialize());
 app.use(passport.session());
-
-// Serialize và deserialize người dùng
-// passport.serializeUser((user, done) => {
-//   done(null, user);
-// });
-
-// passport.deserializeUser((user, done) => {
-//   done(null, user);
-// });
 
 passport.use(
   new GoogleStrategy(
@@ -102,7 +94,7 @@ app.use(
 app.use((req, res, next) => {
   res.locals.isLoggedIn = req.isAuthenticated();
   res.locals.user = req.user;
-  // res.locals.isUser = req.isUser;
+  res.locals.isUser = req.isUser;
   next();
 });
 
@@ -117,9 +109,11 @@ app.use(recaptcha.middleware.render);
 app.use("/", require("./routes/indexRoute"));
 app.use("/Categories", require("./routes/categoryRoute"));
 app.use("/newsDetail", require("./routes/newsDetailRoute"));
+
 app.use("/users", require("./routes/authRoute"));
 app.use("/users", require("./routes/userRoute"));
 app.use("/users/login/google", require("./routes/authGoogleRoute"));
+
 app.get("/users/logout", (req, res) => {
   req.session.destroy((err) => {
     if (err) {
