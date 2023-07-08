@@ -139,4 +139,17 @@ controller.register = (req, res, next) => {
     })(req, res, next);
   });
 };
+
+controller.logout = (req, res, next) => {
+  req.session.destroy((err) => {
+    if (err) {
+      console.log("Error logging out:", err);
+    }
+    console.log(
+      "User logged out heeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+    );
+    req.user = null; // Xóa thông tin người dùng
+    res.redirect("/users/login"); // Chuyển hướng về trang login sau khi đăng xuất
+  });
+};
 module.exports = controller;

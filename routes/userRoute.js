@@ -5,5 +5,6 @@ const router = express.Router();
 
 const controller = require("../controllers/userController");
 router.get("/myprofile", controller.showProfile);
+router.get("/update-profile", controller.showProfile);
 
 module.exports = router;

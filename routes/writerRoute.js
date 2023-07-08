@@ -6,7 +6,7 @@ const controller = require("../controllers/writerController");
 const path = require("path");
 const models = require("../models");
 const sanitizeHtml = require("sanitize-html");
-
+// const user = req.user;
 // Khai báo thư mục lưu trữ hình ảnh tải lên
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -77,7 +77,7 @@ router.post("/post", upload.single("image"), async (req, res) => {
       description: sanitizedDescription,
       view_count: 0,
       image_thumbnail: "/uploads/" + image.filename,
-      // writer_id: req.body
+      // writer_id: user.id,
     });
     console.log("hello vo duoc r n3333333333333333333333333333333");
 

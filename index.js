@@ -88,7 +88,7 @@ app.use(
 app.use((req, res, next) => {
   res.locals.isLoggedIn = req.isAuthenticated();
   res.locals.user = req.user;
-  // res.locals.isUser = req.userisUser;
+  res.locals.isUser = req.session.isUser;
   next();
 });
 
@@ -107,19 +107,6 @@ app.use("/newsDetail", require("./routes/newsDetailRoute"));
 app.use("/users", require("./routes/authRoute"));
 app.use("/users", require("./routes/userRoute"));
 app.use("/users/login/google", require("./routes/authGoogleRoute"));
-
-app.get("/users/logout", (req, res) => {
-  req.session.destroy((err) => {
-    if (err) {
-      console.log("Error logging out:", err);
-    }
-    console.log(
-      "User logged out heeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
-    );
-    req.user = null; // Xóa thông tin người dùng
-    res.redirect("/users/login"); // Chuyển hướng về trang login sau khi đăng xuất
-  });
-});
 
 app.use("/admin", require("./routes/adminRoute.js"));
 app.use("/editor", require("./routes/editorRoute.js"));
