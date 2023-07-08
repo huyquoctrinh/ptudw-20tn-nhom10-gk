@@ -302,7 +302,7 @@ controller.showAdminAddpremium = async (req, res) => {
 function addWeeks(date, weeks) {
     date.setDate(date.getDate() + 7 * weeks);
     return date;
-  }
+}
 controller.extendPremium = async (req, res) => {
     let id = req.body.id;
     let reader = await models.Reader.findOne({where: {id: id}});

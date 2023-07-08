@@ -5,6 +5,8 @@ const models = require('../models');
 
 controller.showStatus = async (req, res) => {
     let editor_id = 9;
+    let categories = await models.Category.findAll();
+    let tags = await models.Tag.findAll();
     let editor = await models.Editor.findOne({
         where: {id: editor_id},
         attributes: ['category_id']
@@ -27,6 +29,8 @@ controller.showStatus = async (req, res) => {
         let day = d + '/' + m + '/' + y;
         article.created_at = day;
         article.briefDescription = article.Article.briefDescription.substring(0, 100) + "...";
+        article.categories = categories;
+        article.tags = tags;
     });
     res.locals.articles = articles;
     if (articles.length > 0) res.locals.hasArticle = true;
@@ -89,15 +93,25 @@ controller.reject = async (req, res) => {
     })
 }
 
+function addDays(date, days) {
+    date.setDate(date.getDate() + days);
+    return date;
+}
+
 function changeToDate(pubday){
     let eles = pubday.split("/");
-    let myDate = new Date(eles[2],eles[1]-1,eles[0]);
-    return myDate.setDate(myDate.getDate());
+    let today = new Date;
+    console.log(today);
+    let shiftDays = (today.getFullYear() - parseInt(eles[2])) * 365 +
+                    (today.getMonth() + 1 - parseInt(eles[1])) * 30 +
+                    (today.getDate() - parseInt(eles[0]));
+    
+    return addDays(today, shiftDays);
 }
 
 controller.approve = async (req, res) => {
     let editor_id = 9;
-    let tag = req.body.tag;
+    let tag = req.body.tag; 
     let category = req.body.category;
     let article_id = req.body.articleId;
     let articleStatusId = req.body.statusId;
@@ -110,12 +124,14 @@ controller.approve = async (req, res) => {
         {where: {id: articleStatusId}}
     ).then(() => {
         res.json({status: 'ok'})
-    })
+    }) 
 
     await models.Article.update(
-        {category_id: findCate.id,
-        publish_day: date},
-        {where: {id: article_id}}
+        {
+            publishDay: date,
+            category_id: findCate.id
+        },
+        {where: {id: article_id}} 
     )
 
     await models.ArticleTag.create({
@@ -124,7 +140,7 @@ controller.approve = async (req, res) => {
     })
 }
 controller.showProcessed = async (req, res) => {
-    let editor_id = 9;
+    let editor_id = 9; 
     let {rows, count} = await models.ArticleStatus.findAndCountAll(
     { 
         where: { editor_id: editor_id },

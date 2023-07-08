@@ -44,6 +44,9 @@ async function approve(e, statusId, articleId){
     let tag = document.getElementById(`tag${statusId}`).value;
     let category = document.getElementById(`category${statusId}`).value;
     let pubDay = document.getElementById(`pubDay${statusId}`).value;
+    console.log(statusId);
+    console.log(articleId);
+    console.log(pubDay);
     let details = {
         tag: tag,
         category: category,
