@@ -1,113 +1,182 @@
+<head>
+  <meta charset="UTF-8" />
+  <title>Summernote with Bootstrap 4</title>
+  <script
+    src="https://code.jquery.com/jquery-3.5.1.min.js"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"
+  ></script>
+
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+    crossorigin="anonymous"
+  />
+  <script
+    src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"
+  ></script>
+
+  <link
+    href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css"
+    rel="stylesheet"
+  />
+  <script
+    src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"
+  ></script>
+</head>
 <main>
-
   <div class="container py-5">
-
     <h1>Đăng bài</h1>
-
-    <div class="mb-3">
-      <label class="form-label">
-        Tiêu đề
-      </label>
-      <div class="input-group">
-        <input
-          type="text"
-          class="form-control"
-          id="title"
-          name="title"
-          required
-        />
+    <form action="/posts" method="post" enctype="multipart/form-data">
+      <div class="mb-3">
+        <label class="form-label">Tiêu đề</label>
+        <div class="input-group">
+          <input
+            type="text"
+            class="form-control"
+            id="title"
+            name="title"
+            required
+          />
+        </div>
       </div>
-
-    </div>
-
-    <div class="mb-3">
-      <label class="form-label">
-        Tóm tắt
-      </label>
-      <div class="input-group">
-        <input
-          type="text"
-          class="form-control"
-          id="summary"
-          name="summary"
-          required
-        />
+      <div class="mb-3">
+        <label class="form-label">Tóm tắt</label>
+        <div class="input-group">
+          <input
+            type="text"
+            class="form-control"
+            id="summary"
+            name="summary"
+            required
+          />
+        </div>
       </div>
-
-    </div>
-
-    <div class="mb-3">
-      <label class="form-label">
-        Chuyên mục
-      </label>
-
-      <div class="dropdown">
-        <button
-          class="btn btn-light dropdown-toggle border-dark"
-          type="button"
-          id="triggerId"
-          data-bs-toggle="dropdown"
-          aria-haspopup="true"
-          aria-expanded="false"
-        >
-          Chọn chuyên mục cho bài viết
-        </button>
-        <div
-          class="dropdown-menu"
-          aria-labelledby="triggerId"
-          style="background-color: white;"
-        >
-          <a
-            class="dropdown-item"
-            href="#"
-            onclick="selectCategory('Nông sản')"
-          >Nông sản</a>
-          <a
-            class="dropdown-item"
-            href="#"
-            onclick="selectCategory('Thủy sản')"
-          >Thủy sản</a>
-          <h6 class="dropdown-item">Kinh tế</h6>
-          <a
-            class="dropdown-item"
-            href="#"
-            onclick="selectCategory('Chính trị')"
-          >Chính trị</a>
-          <a
-            class="dropdown-item"
-            href="#"
-            onclick="selectCategory('After divider action')"
-          >After divider action</a>
+      <div class="mb-3">
+        <label class="form-label">Chuyên mục</label>
+        <div class="dropdown">
+          <button
+            class="btn btn-light dropdown-toggle border-dark"
+            type="button"
+            id="triggerId"
+            data-bs-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            Chọn chuyên mục cho bài viết
+          </button>
+          <div
+            class="dropdown-menu"
+            aria-labelledby="triggerId"
+            style="background-color: white;"
+          >
+            <a
+              class="dropdown-item"
+              href="#"
+              onclick="selectCategory('Nông sản')"
+            >Nông sản</a>
+            <a
+              class="dropdown-item"
+              href="#"
+              onclick="selectCategory('Thủy sản')"
+            >Thủy sản</a>
+            <h6 class="dropdown-item">Kinh tế</h6>
+            <a
+              class="dropdown-item"
+              href="#"
+              onclick="selectCategory('Chính trị')"
+            >Chính trị</a>
+            <a
+              class="dropdown-item"
+              href="#"
+              onclick="selectCategory('After divider action')"
+            >After divider action</a>
+          </div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Hình ảnh (Thumbnail)</label>
+        <div class="input-group">
+          <input
+            type="file"
+            class="form-control"
+            id="image"
+            name="image"
+            accept="image/*"
+            required
+          />
+        </div>
+      </div>
+      {{! <div class="mb-3">
+        <label class="form-label">Nội dung</label>
+        <div class="container-fluid">
+          <textarea
+            id="content"
+            class="container-fluid"
+            style="height: 500px;"
+          ></textarea>
+        </div>
+      </div> }}
+      <div class="mb-3 mt-3">
+        <label class="form-label">Nội dung</label>
+        <div class="container-fluid">
+          <div id="summernote"></div>
+          <script>
+            $('#summernote').summernote({ placeholder: 'Nhập nội dung tại đây',
+            tabsize: 2, height: 500, toolbar: [ ['style', ['style']], ['font',
+            ['bold', 'underline', 'clear']], ['color', ['color']], ['para',
+            ['ul', 'ol', 'paragraph']], ['table', ['table']], ['insert',
+            ['link', 'picture', 'video']], ['view', ['fullscreen', 'codeview',
+            'help']] ] });
+          </script>
         </div>
       </div>
 
-    </div>
-
-    <div class="mb-3">
-      <label class="form-label">
-        Nội dung
-      </label>
-      <div class="container-fluid">
-        <textarea
-          id="demo"
-          class="container-fluid"
-          style="height: 500px;"
-        ></textarea>
+      <div class="row d-flex justify-content-end">
+        <button class="btn btn-secondary col-1" type="submit">Draft</button>
+        <button class="btn btn-dark col-1 ms-1" type="submit">Đăng bài</button>
       </div>
-
-    </div>
-
-    <div class="row d-flex justify-content-end">
-      <button class="btn btn-secondary col-1" type="submit"><a
-          href="mylist.html"
-        >Draft</a></button>
-      <button class="btn btn-dark col-1 ms-1" type="submit"><a
-          href="mylist.html"
-        >Đăng bài</a></button>
-    </div>
-    <!--  <div class="col-1"><a href="mylist.html"><button  class="btn btn-secondary">Draft</button></a></div>
-            <div class="col-2"><a href="mylist.html"><button type="submit" class="btn btn-dark">Đăng bài</button></a></div>
- -->
+    </form>
   </div>
-
 </main>
+
+<!-- Import thư viện Summernote -->
+<link
+  href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css"
+  rel="stylesheet"
+/>
+<script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+<script
+  src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"
+></script>
+{{! 
+<script>
+  $(document).ready(function() { // Khởi tạo Summernote
+  $('#summernote').summernote({ height: 500, placeholder: 'Nhập nội dung bài
+  viết...', toolbar: [ ['style', ['bold', 'italic', 'underline', 'clear']],
+  ['font', ['strikethrough']], ['fontsize', ['fontsize']], ['color', ['color']],
+  ['para', ['ul', 'ol', 'paragraph']], ['insert', ['link', 'picture', 'video']],
+  ['view', ['fullscreen', 'codeview']], ], callbacks: { onImageUpload:
+  function(files) { // Xử lý tải lên hình ảnh uploadImage(files[0]); },
+  onMediaDelete: function(target) { // Xử lý xóa hình ảnh
+  deleteImage(target[0].src); } } }); // Hàm xử lý tải lên hình ảnh function
+  uploadImage(file) { var formData = new FormData(); formData.append('image',
+  file); $.ajax({ url: '/upload', // Đường dẫn xử lý tải lên hình ảnh method:
+  'POST', data: formData, processData: false, contentType: false, success:
+  function(response) { // Thêm hình ảnh vào Summernote
+  $('#summernote').summernote('insertImage', response.imageUrl); }, error:
+  function(error) { console.log('Error uploading image:', error); } }); } // Hàm
+  xử lý xóa hình ảnh function deleteImage(src) { // Gửi yêu cầu xóa hình ảnh đến
+  server $.ajax({ url: '/delete', // Đường dẫn xử lý xóa hình ảnh method:
+  'POST', data: { src: src }, success: function(response) { console.log('Image
+  deleted:', response); }, error: function(error) { console.log('Error deleting
+  image:', error); } }); } }); function insertVideo(url) {
+  $('#summernote').summernote('createVideo', url); }
+</script> }}
