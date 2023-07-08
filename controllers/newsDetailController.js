@@ -31,6 +31,10 @@ controller.showDetail = async (req, res) => {
             }]
         }]
     })
+    await models.Article.update(
+        {view_count: parseInt(article.view_count) + 1},
+        {where: {id: article.id}}
+    )
     let y = article.createdAt.getFullYear();
     let m = article.createdAt.getMonth() + 1;
     let d = article.createdAt.getDate();
