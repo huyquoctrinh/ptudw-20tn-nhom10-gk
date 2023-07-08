@@ -5,6 +5,7 @@ const multer = require("multer");
 const controller = require("../controllers/writerController");
 const path = require("path");
 const models = require("../models");
+const sanitizeHtml = require("sanitize-html");
 
 // Khai báo thư mục lưu trữ hình ảnh tải lên
 const storage = multer.diskStorage({
@@ -29,7 +30,7 @@ router.get("/WriterViewPostDetail", controller.showPostDetail);
 router.get("/post", controller.showCreatePost);
 router.post("/post", upload.single("image"), async (req, res) => {
   try {
-    const { title, summary, selectedCategory, content } = req.body;
+    const { title, summary, selectedCategory, summernote } = req.body;
     const image = req.file;
 
     // Tìm category_id dựa trên tên category đã chọn
@@ -45,28 +46,52 @@ router.post("/post", upload.single("image"), async (req, res) => {
       return;
     }
     console.log("hello vo duoc r ne2222222222222222222");
+    // Loại bỏ các thẻ HTML không an toàn và chỉ lưu lại những thẻ cho phép, bao gồm cả thẻ iframe
+    const sanitizedDescription = sanitizeHtml(summernote, {
+      allowedTags: [
+        "b",
+        "strong",
+        "i",
+        "em",
+        "u",
+        "p",
+        "ul",
+        "ol",
+        "li",
+        "a",
+        "img",
+        "iframe",
+      ],
+      allowedAttributes: {
+        a: ["href"],
+        img: ["src", "alt"],
+        iframe: ["src", "width", "height", "frameborder", "allowfullscreen"],
+      },
+    });
 
     // Tạo bài viết mới
     const newPost = await models.Article.create({
       title: title,
       briefDescription: summary,
       category_id: category.id,
-      description: content,
+      description: sanitizedDescription,
+      view_count: 0,
+      image_thumbnail: "/uploads/" + image.filename,
+      // writer_id: req.body
     });
     console.log("hello vo duoc r n3333333333333333333333333333333");
 
     // Kiểm tra và lưu hình ảnh
     if (image) {
+      console.log("hello vo duoc r ne3444444444444444444444444444");
+
       await models.Image.create({
         article_id: newPost.id,
-        image_thumbnail: image.filename,
+        imagePath: "/uploads/" + image.filename,
+        name: image.filename,
       });
     }
-    console.log("hello vo duoc r ne3444444444444444444444444444");
 
-    res
-      .status(200)
-      .send("<script>alert('Post created successfully!');</script>");
     res.redirect("/writer/mylist");
   } catch (error) {
     // Xử lý lỗi nếu có
