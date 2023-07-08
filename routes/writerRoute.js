@@ -77,7 +77,7 @@ router.post("/post", upload.single("image"), async (req, res) => {
       description: sanitizedDescription,
       view_count: 0,
       image_thumbnail: "/uploads/" + image.filename,
-      // writer_id: user.id,
+      writer_id: req.user.id,
     });
     console.log("hello vo duoc r n3333333333333333333333333333333");
 

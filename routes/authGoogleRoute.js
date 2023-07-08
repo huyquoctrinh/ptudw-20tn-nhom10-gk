@@ -58,7 +58,7 @@ router.get(
           req.session.isUser = 1;
         } else if (user.role === "editor") {
           req.session.isUser = 2;
-        } else if (user.role === "reporter") {
+        } else if (user.role === "writer") {
           req.session.isUser = 3;
         } else {
           //guest

@@ -39,9 +39,9 @@
             <span>Bút danh</span>
             <div
               class="btn-outline-dark btn w-100 text-start none-hover text-secondary"
+              style="min-height:40px;"
             >
               {{user.username}}
-
             </div>
           </div>
           <div class="mt-3 email-user">
@@ -57,7 +57,7 @@
             <div
               class="btn-outline-dark btn w-100 text-start none-hover text-secondary"
             >
-              {{user.dob}}
+              {{formatDate user.dob}}
             </div>
           </div>
         </ul>

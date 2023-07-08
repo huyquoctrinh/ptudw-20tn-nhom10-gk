@@ -11,7 +11,12 @@ const passport = require("passport");
 const { createPagination } = require("express-handlebars-paginate");
 const flash = require("express-flash");
 const Recaptcha = require("express-recaptcha").RecaptchaV2;
+const moment = require("moment");
 
+// expressHandleBars.registerHelper("formatDate", function (date) {
+//   // Sử dụng momentjs để định dạng ngày tháng
+//   return moment(date).format("MM/DD/YYYY");
+// });
 app.use(
   session({
     secret: "your-secret-key",
@@ -62,6 +67,10 @@ app.engine(
       createPagination,
       eq: function (a, b) {
         return a === b;
+      },
+      formatDate: function (date) {
+        // Sử dụng momentjs để định dạng ngày tháng
+        return moment(date).format("MM/DD/YYYY");
       },
     },
   })

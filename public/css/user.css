@@ -1,18 +1,8 @@
-* {
-  box-sizing: border-box;
-  color: #000;
-  text-decoration: none;
-}
-a {
-  text-decoration: none;
-}
-
 #avatar {
   border-radius: 50%;
-  width: 180px;
-  height: 180px;
+  width: 150px;
+  height: 150px;
 }
- 
 .vertical {
   height: 300px;
   border-left: 2px solid black;
@@ -30,4 +20,4 @@ a {
 
 .none-hover {
   pointer-events: none;
-}
+

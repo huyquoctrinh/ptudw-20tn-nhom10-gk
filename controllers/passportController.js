@@ -113,6 +113,24 @@ passport.use(
           avatar: "/img/avatar/avt.png",
           dob: req.body.dob,
         });
+        if (req.body.role === "reader") {
+          // Tạo bản ghi trong bảng reader
+          await models.Reader.create({
+            id: user.id,
+          });
+        } else if (req.body.role === "writer") {
+          // Tạo bản ghi trong bảng writer
+          await models.Writer.create({
+            id: user.id,
+            pseudonym: req.body.name,
+          });
+        } else if (req.body.role === "editor") {
+          // Tạo bản ghi trong bảng editor
+          await models.Editor.create({
+            id: user.id,
+          });
+        }
+
         // const token = jwt.sign({ userId: user.id }, "your-secret-key", {
         //   expiresIn: "30d",
         // });

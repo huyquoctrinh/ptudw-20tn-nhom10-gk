@@ -56,7 +56,7 @@ controller.login = (req, res, next) => {
             isUser = 1;
           } else if (user.role === "editor") {
             isUser = 2;
-          } else if (user.role === "reporter") {
+          } else if (user.role === "writer") {
             isUser = 3;
           } else {
             isUser = 4;
@@ -76,10 +76,6 @@ controller.login = (req, res, next) => {
                 // Xử lý lỗi nếu cần thiết
                 return next(err);
               }
-
-              // Trả về nội dung HTML đã render
-              res.send(html);
-
               // Thay đổi đường dẫn
               return res.redirect("/users/myprofile");
             }
