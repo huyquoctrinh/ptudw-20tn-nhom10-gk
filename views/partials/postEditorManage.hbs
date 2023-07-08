@@ -6,40 +6,49 @@
     <div class="col-6">
         <a href="/editor/EditorViewPostDetail?articleId={{article_id}}&id={{id}}">
             <h5>{{Article.title}}</h5>
-            <p class="mt-0 mb-0"><b>{{Writer.pseudonym}}</b></p>
             <p class="mt-0 mb-0">{{created_at}}</p>
             <p class="mt-0 mb-0">{{briefDescription}}</p>
         </a>
     </div>
     <div class="col-3 button-div">
-        <button class="btn btn-danger text-light mb-1" onclick="openReject({{id}})">Từ chối <i class="bi bi-x-circle text-white"></i></button>
+        <button class="btn btn-danger text-light mb-1" id="rejectBtn{{articleStatusId}}" onclick="openReject({{id}})">Từ chối <i class="bi bi-x-circle text-white"></i></button>
         <div class="form-popup" id="rejectform{{id}}">
-        <form action="/editor/reject" method="post" onsubmit="reject({{id}})" class="form-container">
-            <button type="button" id="rejectBtn{{id}}" onclick="updateRejectReason(event, {{id}})">x</button>
-            <h3 class="text-center">Lí do từ chối</h3>
-            <!-- <p class="text-center">Thời sự</p> -->
-            <label for="reason{{id}}"><b>Nhập lí do ở đây</b></label>
-            <input type="text" placeholder="" name="reason{{id}}" id="reason{{id}}"required/>
-            <button type="submit" class="btn btn-primary" onclick="closeReject({{id}})">Update</button>
-        </form>
+            <form action="/editor/reject" method="post" onsubmit="updateRejectReason(event, {{id}})" class="form-container">
+                <button type="button" id="rejectBtn{{id}}" onclick="closeReject({{id}})">x</button>
+                <h3 class="text-center">Lí do từ chối</h3>
+                <!-- <p class="text-center">Thời sự</p> -->
+                <label for="reason{{id}}"><b>Nhập lí do ở đây</b></label>
+                <input type="text" placeholder="" name="reason{{id}}" id="reason{{id}}"required/>
+                <button type="submit" class="btn btn-primary" onclick="closeReject({{id}})">Update</button>
+            </form>
         </div>
         <button class="btn btn-success text-light" id="approveBtn{{id}}" onclick="openApprove({{id}})">Duyệt <i class="bi bi-check-circle text-white"></i></button>
         <!-- The form -->
-        <div class="form-popup" id="approveForm{{id}}" onsubmit="closeApprove({{id}})">
-        <form action="" method="post" class="form-container">
-            <button type="button" onclick="closeApprove({{id}})">x</button>
-            <h3 class="text-center">Cập nhật thông tin</h3>
-            <!-- <p class="text-center">Thời sự</p> -->
-            <label for="categories"><b>Chuyên mục</b></label>
-            <input type="text" placeholder="" name="categories" id="categories"required/>
-            <br/>
-            <label for="categories"><b>Tag</b></label>
-            <input type="text" placeholder="" name="tag" id="tag" required/>
-            <br/>
-            <label for="categories"><b>Ngày xuất bản</b></label>
-            <input type="text" placeholder="" name="categories" id="categories" required />
-            <button type="submit" class="btn btn-primary" onclick="closeApprove({{id}})">Update</button>
-        </form>
+        <div class="form-popup" id="approveForm{{id}}" >
+            <form action="/editor/approve" method="post" class="form-container" onsubmit="approve(event, {{id}}, {{article_id}})">
+                <button type="button" onclick="closeApprove({{id}})">x</button>
+                <h3 class="text-center">Cập nhật thông tin</h3>
+                <!-- <p class="text-center">Thời sự</p> -->
+                <label for="category{{id}}"><b>Chuyên mục</b></label>
+                <input list="Category" placeholder="" name="category{{id}}" id="category{{id}}"required/>
+                <datalist id="Category">
+                    {{#each categories}}
+                        <option value="{{category_name}}">
+                    {{/each}}
+                </datalist>
+                <br/>
+                <label for="tag{{id}}"><b>Tag</b></label>
+                <input list="Tag" placeholder="" name="tag{{id}}" id="tag{{id}}" required/>
+                <datalist id="Tag">
+                    {{#each tags}}
+                        <option value="{{tag_name}}">
+                    {{/each}}
+                </datalist>
+                <br/>
+                <label for="pubDay{{id}}"><b>Ngày xuất bản</b></label>
+                <input type="text" placeholder="" name="pubDay{{id}}" id="pubDay{{id}}" required />
+                <button type="submit" class="btn btn-primary" onclick="closeApprove({{id}})">Update</button>
+            </form>
         </div>
 
     </div>

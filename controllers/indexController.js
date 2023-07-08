@@ -31,8 +31,9 @@ controller.showHomepage = async (req, res) => {
       include: models.Category,
       order: [['view_count', 'DESC']],
       where: {
-        publish_day: {
-          [Op.not]: null, // Like: sellDate IS NOT NULL
+        publishDay: {
+          [Op.not]: null,
+          [Op.gte]: Date.now()
         }
       },
       limit: 10
@@ -60,8 +61,9 @@ controller.showHomepage = async (req, res) => {
       include: models.Category,
       order: [['createdAt', 'DESC']],
       where: {
-        publish_day: {
-          [Op.not]: null, // Like: sellDate IS NOT NULL
+        publishDay: {
+          [Op.not]: null,
+          [Op.gte]: Date.now()
         }
       },
       limit: 10
@@ -84,8 +86,9 @@ controller.showHomepage = async (req, res) => {
       include: models.Category,
       order: [['view_count', 'DESC']],
       where: {
-        publish_day: {
-          [Op.not]: null, // Like: sellDate IS NOT NULL
+        publishDay: {
+          [Op.not]: null,
+          [Op.gte]: Date.now()
         }
       },
       limit: 20
@@ -110,8 +113,9 @@ controller.showHomepage = async (req, res) => {
       let post = await models.Article.findAll({
         where: {
           category_id: allCates[i].id, 
-          publish_day: {
-            [Op.not]: null, // Like: sellDate IS NOT NULL
+          publishDay: {
+            [Op.not]: null,
+            [Op.gte]: Date.now()
           }
         },
         order: [['createdAt', 'DESC']],
