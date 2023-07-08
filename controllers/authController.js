@@ -25,6 +25,7 @@ controller.show = (req, res) => {
   });
 };
 controller.login = (req, res, next) => {
+  let keepSignnedIn = req.body.keepSignnedIn;
   passport.authenticate("local-login", (error, user, info) => {
     if (error) {
       return next(error);
@@ -60,7 +61,9 @@ controller.login = (req, res, next) => {
           } else {
             isUser = 4;
           }
-
+          req.session.cookie.maxAge = keepSignnedIn
+            ? 24 * 60 * 60 * 1000
+            : null;
           req.session.user = user;
           req.session.isUser = isUser;
           console.log("11111111111111111 Gia tri isUser =", isUser);

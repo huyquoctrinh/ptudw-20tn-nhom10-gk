@@ -7,6 +7,7 @@ const LocalStrategy = require("passport-local");
 const bcrypt = require("bcrypt");
 
 const models = require("../models");
+// const jwt = require("jsonwebtoken");
 
 // // hàm được gọi khi xác thực thành công + lưu thông tin user vào session
 // passport.serializeUser
@@ -19,7 +20,7 @@ passport.deserializeUser(async (email, done) => {
   try {
     let user = await models.User.findOne({
       attributes: ["id", "email", "name", "dob", "role", "avatar"],
-      where: { email },
+      where: { email: email.email },
     });
     done(null, user);
   } catch (error) {
@@ -112,11 +113,11 @@ passport.use(
           avatar: "/img/avatar/avt.png",
           dob: req.body.dob,
         });
-        const token = jwt.sign({ userId: user.id }, "your-secret-key", {
-          expiresIn: "30d",
-        });
-        // Gửi token trong cookie về phía người dùng
-        res.cookie("token", token, { httpOnly: true, secure: true }); // Cấu hình cho cookie
+        // const token = jwt.sign({ userId: user.id }, "your-secret-key", {
+        //   expiresIn: "30d",
+        // });
+        // // Gửi token trong cookie về phía người dùng
+        // res.cookie("token", token, { httpOnly: true, secure: true }); // Cấu hình cho cookie
 
         // thong bao dang ky thanh cong
         done(
