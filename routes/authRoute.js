@@ -31,11 +31,7 @@ router.post(
 
 router.post(
   "/signup",
-  passport.authenticate("local-register", {
-    successRedirect: "/login",
-    failureRedirect: "/404",
-    failureFlash: true,
-  }),
+  passport.authenticate("local-register"),
   body("name").trim().notEmpty().withMessage("Tên là bắt buộc!"),
   body("email")
     .trim()

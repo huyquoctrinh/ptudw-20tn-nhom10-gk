@@ -63,12 +63,11 @@ controller.login = (req, res, next) => {
 
           req.session.user = user;
           req.session.isUser = isUser;
-
-          // Render trang myprofile
+          console.log("11111111111111111 Gia tri isUser =", isUser);
           // Render trang myprofile
           res.app.render(
             "myprofile",
-            { user: user, isUser: isUser },
+            { user: user, isUser: isUser, isLoggedIn: req.isAuthenticated() },
             (err, html) => {
               if (err) {
                 // Xử lý lỗi nếu cần thiết
@@ -123,6 +122,10 @@ controller.register = (req, res, next) => {
       if (!user) {
         return res.redirect(`${reqUrl}`);
       }
+      // Lấy token từ cookie và gửi nó kèm theo yêu cầu
+      const token = req.cookies.token;
+      res.json({ token });
+
       req.logIn(user, (error) => {
         if (error) {
           return next(error);

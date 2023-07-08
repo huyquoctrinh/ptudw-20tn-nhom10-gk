@@ -11,7 +11,6 @@ const passport = require("passport");
 const { createPagination } = require("express-handlebars-paginate");
 const flash = require("express-flash");
 const Recaptcha = require("express-recaptcha").RecaptchaV2;
-const multer = require("multer");
 
 app.use(
   session({
@@ -61,11 +60,6 @@ app.engine(
     },
     helpers: {
       createPagination,
-      substring: function (value, start, end) {
-        value = value.toString(); // Chuyển đổi value thành chuỗi
-
-        return value.substring(start, end);
-      },
       eq: function (a, b) {
         return a === b;
       },
@@ -94,7 +88,7 @@ app.use(
 app.use((req, res, next) => {
   res.locals.isLoggedIn = req.isAuthenticated();
   res.locals.user = req.user;
-  res.locals.isUser = req.isUser;
+  // res.locals.isUser = req.userisUser;
   next();
 });
 

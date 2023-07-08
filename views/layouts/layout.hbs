@@ -117,23 +117,25 @@
                 aria-expanded="false"
               ><i class="bi bi-person-circle ms-4 fs-2 text-dark"></i></a>
               <ul class="dropdown-menu me-6" aria-labelledby="dropdownIdUser">
-                {{#if (eq user.isUser 0)}}
-                  {{> menu-admin}}
-                {{else}}
-                  {{#if (eq user.isUser 1)}}
-                    {{> menu-user}}
+                {{#if isLoggedIn}}
+                  {{#if (eq isUser 0)}}
+                    {{> menu-admin}}
                   {{else}}
-                    {{#if (eq user.isUser 2)}}
-                      {{> menu-editor}}
+                    {{#if (eq isUser 3)}}
+                      {{> menu-reporter}}
                     {{else}}
-                      {{#if (eq user.isUser 3)}}
-                        {{> menu-reporter}}
+                      {{#if (eq isUser 2)}}
+                        {{> menu-editor}}
                       {{else}}
-                        {{> menu-guest}}
+                        {{> menu-user}}
                       {{/if}}
                     {{/if}}
                   {{/if}}
+                {{else}}
+                  {{> menu-guest}}
                 {{/if}}
+
+
 
 
 

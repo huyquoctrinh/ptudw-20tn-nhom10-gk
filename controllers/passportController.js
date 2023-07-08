@@ -109,8 +109,14 @@ passport.use(
           password: bcrypt.hashSync(password, bcrypt.genSaltSync(8)),
           name: req.body.name,
           role: req.body.role,
+          avatar: "/img/avatar/avt.png",
           dob: req.body.dob,
         });
+        const token = jwt.sign({ userId: user.id }, "your-secret-key", {
+          expiresIn: "30d",
+        });
+        // Gửi token trong cookie về phía người dùng
+        res.cookie("token", token, { httpOnly: true, secure: true }); // Cấu hình cho cookie
 
         // thong bao dang ky thanh cong
         done(
