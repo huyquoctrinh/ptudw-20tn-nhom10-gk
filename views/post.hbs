@@ -34,7 +34,7 @@
 <main>
   <div class="container py-5">
     <h1>Đăng bài</h1>
-    <form action="/posts" method="post" enctype="multipart/form-data">
+    <form action="/writer/post" method="post" enctype="multipart/form-data">
       <div class="mb-3">
         <label class="form-label">Tiêu đề</label>
         <div class="input-group">
@@ -70,7 +70,7 @@
             aria-haspopup="true"
             aria-expanded="false"
           >
-            Chọn chuyên mục cho bài viết
+            <span id="selectedCategoryText">Chọn chuyên mục cho bài viết</span>
           </button>
           <div
             class="dropdown-menu"
@@ -80,26 +80,34 @@
             <a
               class="dropdown-item"
               href="#"
-              onclick="selectCategory('Nông sản')"
-            >Nông sản</a>
+              onclick="selectCategory(event, 'Kinh doanh')"
+            >Kinh doanh</a>
             <a
               class="dropdown-item"
               href="#"
-              onclick="selectCategory('Thủy sản')"
-            >Thủy sản</a>
-            <h6 class="dropdown-item">Kinh tế</h6>
+              onclick="selectCategory(event, 'Thời sự')"
+            >Thời sự</a>
             <a
               class="dropdown-item"
               href="#"
-              onclick="selectCategory('Chính trị')"
+              onclick="selectCategory(event, 'Chính trị')"
             >Chính trị</a>
             <a
               class="dropdown-item"
               href="#"
-              onclick="selectCategory('After divider action')"
-            >After divider action</a>
+              onclick="selectCategory(event, 'Sức khỏe')"
+            >Sức khỏe</a>
+            <a
+              class="dropdown-item"
+              href="#"
+              onclick="selectCategory(event, 'Giải trí')"
+            >Giải trí</a>
+
           </div>
+          <input type="hidden" id="selectedCategory" name="selectedCategory" />
+
         </div>
+
       </div>
       <div class="mb-3">
         <label class="form-label">Hình ảnh (Thumbnail)</label>
@@ -140,8 +148,14 @@
       </div>
 
       <div class="row d-flex justify-content-end">
-        <button class="btn btn-secondary col-1" type="submit">Draft</button>
-        <button class="btn btn-dark col-1 ms-1" type="submit">Đăng bài</button>
+        {{! <button
+          class="btn btn-secondary col-1"
+          type="submit"
+          id="draft"
+        >Draft</button> }}
+        <button class="btn btn-dark col-2 ms-1" type="submit" id="post">Đăng bài</button>
+        <input type="hidden" id="post" name="post" />
+
       </div>
     </form>
   </div>
@@ -156,27 +170,8 @@
 <script
   src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"
 ></script>
-{{! 
 <script>
-  $(document).ready(function() { // Khởi tạo Summernote
-  $('#summernote').summernote({ height: 500, placeholder: 'Nhập nội dung bài
-  viết...', toolbar: [ ['style', ['bold', 'italic', 'underline', 'clear']],
-  ['font', ['strikethrough']], ['fontsize', ['fontsize']], ['color', ['color']],
-  ['para', ['ul', 'ol', 'paragraph']], ['insert', ['link', 'picture', 'video']],
-  ['view', ['fullscreen', 'codeview']], ], callbacks: { onImageUpload:
-  function(files) { // Xử lý tải lên hình ảnh uploadImage(files[0]); },
-  onMediaDelete: function(target) { // Xử lý xóa hình ảnh
-  deleteImage(target[0].src); } } }); // Hàm xử lý tải lên hình ảnh function
-  uploadImage(file) { var formData = new FormData(); formData.append('image',
-  file); $.ajax({ url: '/upload', // Đường dẫn xử lý tải lên hình ảnh method:
-  'POST', data: formData, processData: false, contentType: false, success:
-  function(response) { // Thêm hình ảnh vào Summernote
-  $('#summernote').summernote('insertImage', response.imageUrl); }, error:
-  function(error) { console.log('Error uploading image:', error); } }); } // Hàm
-  xử lý xóa hình ảnh function deleteImage(src) { // Gửi yêu cầu xóa hình ảnh đến
-  server $.ajax({ url: '/delete', // Đường dẫn xử lý xóa hình ảnh method:
-  'POST', data: { src: src }, success: function(response) { console.log('Image
-  deleted:', response); }, error: function(error) { console.log('Error deleting
-  image:', error); } }); } }); function insertVideo(url) {
-  $('#summernote').summernote('createVideo', url); }
-</script> }}
+  function selectCategory(event, category) { event.preventDefault();
+  document.getElementById('selectedCategory').value = category;
+  document.getElementById('selectedCategoryText').textContent = category; }
+</script>
