@@ -33,7 +33,7 @@ controller.showHomepage = async (req, res) => {
       where: {
         publishDay: {
           [Op.not]: null,
-          [Op.gte]: Date.now()
+          [Op.lte]: Date.now()
         }
       },
       limit: 10
@@ -63,7 +63,7 @@ controller.showHomepage = async (req, res) => {
       where: {
         publishDay: {
           [Op.not]: null,
-          [Op.gte]: Date.now()
+          [Op.lte]: Date.now()
         }
       },
       limit: 10
@@ -88,7 +88,7 @@ controller.showHomepage = async (req, res) => {
       where: {
         publishDay: {
           [Op.not]: null,
-          [Op.gte]: Date.now()
+          [Op.lte]: Date.now()
         }
       },
       limit: 20
@@ -115,7 +115,7 @@ controller.showHomepage = async (req, res) => {
           category_id: allCates[i].id, 
           publishDay: {
             [Op.not]: null,
-            [Op.gte]: Date.now()
+            [Op.lte]: Date.now()
           }
         },
         order: [['createdAt', 'DESC']],
