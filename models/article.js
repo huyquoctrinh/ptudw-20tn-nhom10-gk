@@ -29,7 +29,8 @@ module.exports = (sequelize, DataTypes) => {
     view_count: DataTypes.NUMERIC,
     is_delete: DataTypes.BOOLEAN,
     is_premium: DataTypes.BOOLEAN,
-    is_featured: DataTypes.BOOLEAN
+    is_featured: DataTypes.BOOLEAN,
+    publishDay: DataTypes.DATE
   }, {
     sequelize,
     modelName: 'Article',
