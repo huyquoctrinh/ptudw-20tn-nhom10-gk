@@ -10,7 +10,6 @@ const bcrypt = require("bcrypt");
 controller.showSignUp = (req, res) => {
   res.render("signup", {
     captcha: res.recaptcha,
-    reqUrl: req.query.reqUrl,
     registerMessage: req.flash("registerMessage"),
   });
 };
@@ -21,7 +20,6 @@ controller.show = (req, res) => {
   }
   res.render("login", {
     loginMessage: req.flash("loginMessage"),
-    reqUrl: req.query.reqUrl,
   });
 };
 controller.login = (req, res, next) => {

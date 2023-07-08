@@ -44,7 +44,7 @@ async function deleteTag(e, id) {
     let details = {
       id: id,
     };
-    await fetch("/admin/Tag/delete", {
+    await fetch("/users/Tag/delete", {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -95,7 +95,7 @@ async function addItemTag(e) {
             <button class="btn btn-warning text-light" onclick="openEditTag(${json.id})">Sửa <i class="bi bi-pencil text-white"></i></button>
             <!-- The form -->
             <div class="form-popup" id="editTagForm${json.id}">
-            <form action="/admin/Tag/edit" method="post" class="form-container" onclick="updateTag(event, ${json.id})">
+            <form action="/users/Tag/edit" method="post" class="form-container" onclick="updateTag(event, ${json.id})">
                 <button type="button" onclick="closeEditTag(${json.id})">x</button>
                 <h3 class="text-center">Sửa tag</h3>
                 <p class="text-center"> ${json.tag_name}</p>

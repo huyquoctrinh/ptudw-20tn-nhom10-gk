@@ -3,7 +3,7 @@
 const controller = {};
 const models = require("../models");
 
-let writer_id = 17;
+let writer_id = 61;
 
 controller.showMylist = async (req, res) => {
   let page = isNaN(req.query.page) ? 1 : Math.max(1, parseInt(req.query.page));

@@ -58,11 +58,8 @@ router.post(
     if (message) {
       req.flash("registerMessage", message);
       return res.redirect("/users/login");
-
-      // return res.render("login", { registerMessage: message });
     }
     return res.redirect("/users/login");
-
     next();
   },
   controller.register

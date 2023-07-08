@@ -8,7 +8,7 @@
         <button class="btn btn-warning text-light" onclick="openEditTag({{id}})">Sửa <i class="bi bi-pencil text-white"></i></button>
         <!-- The form -->
         <div class="form-popup" id="editTagForm{{id}}">
-        <form action="/admin/Tag/edit" method="post" class="form-container" onclick="updateTag(event, {{id}})">
+        <form action="/users/Tag/edit" method="post" class="form-container" onclick="updateTag(event, {{id}})">
             <button type="button" onclick="closeEditTag({{id}})">x</button>
             <h3 class="text-center">Sửa tag</h3>
             <p class="text-center">{{tag_name}}</p>

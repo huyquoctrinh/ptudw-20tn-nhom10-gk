@@ -11,7 +11,7 @@ async function deleteCategory(e, id) {
   let details = {
     id: id,
   };
-  await fetch("/admin/Category/delete", {
+  await fetch("/users/Category/delete", {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
@@ -45,7 +45,7 @@ async function addItemCategory(e, root_category_id = null) {
     category_name: itemValue.value,
     root_category_id: root_category_id,
   };
-  let res = await fetch("/admin/CategoriesDetail/add", {
+  let res = await fetch("/users/CategoriesDetail/add", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -63,7 +63,7 @@ async function addItemCategory(e, root_category_id = null) {
         <button class="btn btn-danger delete" onclick="deleteCategory(event,${json.id})">Xóa<i class="bi bi-trash-fill text-white"></i></button>
         <button class="btn btn-warning text-light" onclick="openEdit(${json.id})">Sửa <i class="bi bi-pencil text-white"></i></button>
         <div class="form-popup" id="editForm${json.id}">
-          <form action="/admin/Category/edit" method="post" onclick="updateCategory(event, ${json.id})" class="form-container">
+          <form action="/users/Category/edit" method="post" onclick="updateCategory(event, ${json.id})" class="form-container">
             <button type="button" onclick="closeEdit(${json.id})">x</button>
             <h3 class="text-center">Sửa chuyên mục</h3>
             <p class="text-center">${itemValue.value}</p>

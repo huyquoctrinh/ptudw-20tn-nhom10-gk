@@ -2,31 +2,53 @@
   <div class="row align-items-center g-2 category-item">
 
     <div class="col-5">
-      <p class="title-categories text-black" id="Category{{id}}">Chuyên mục: {{category_name}}</p>
+      <p class="title-categories text-black" id="Category{{id}}">Chuyên mục:
+        {{category_name}}</p>
       {{#if hasSub}}
-        <p class="subtitle-categories text-black">Chuyên mục con: {{sub_categories}}</p>
+        <p class="subtitle-categories text-black">Chuyên mục con:
+          {{sub_categories}}</p>
       {{else}}
       {{/if}}
     </div>
 
     <div class="col-7 button-div">
-      <button class="btn btn-danger delete" onclick="deleteCategory(event,{{id}})">Xóa<i class="bi bi-trash-fill text-white"></i></button>
-      <button class="btn btn-warning text-light" onclick="openEdit({{id}})">Sửa <i class="bi bi-pencil text-white"></i></button>
+      <button
+        class="btn btn-danger delete"
+        onclick="deleteCategory(event,{{id}})"
+      >Xóa<i class="bi bi-trash-fill text-white"></i></button>
+      <button class="btn btn-warning text-light" onclick="openEdit({{id}})">Sửa
+        <i class="bi bi-pencil text-white"></i></button>
       <div class="form-popup" id="editForm{{id}}">
-        <form action="/admin/Category/edit" method="post" onclick="updateCategory(event, {{id}})" class="form-container">
+        <form
+          action="/users/Category/edit"
+          method="post"
+          onclick="updateCategory(event, {{id}})"
+          class="form-container"
+        >
           <button type="button" onclick="closeEdit({{id}})">x</button>
           <h3 class="text-center">Sửa chuyên mục</h3>
           <p class="text-center">{{category_name}}</p>
           <label for="newNameCategory{{id}}"><b>Nhập tên chuyên mục mới</b></label>
-          <input type="text" placeholder="" name="newNameCategory{{id}}" id="newNameCategory{{id}}" aria-describedby="helpId" required/>
-          <button type="submit" class="btn btn-primary" onclick="closeEditAndChange({{id}})">Sửa</button>
+          <input
+            type="text"
+            placeholder=""
+            name="newNameCategory{{id}}"
+            id="newNameCategory{{id}}"
+            aria-describedby="helpId"
+            required
+          />
+          <button
+            type="submit"
+            class="btn btn-primary"
+            onclick="closeEditAndChange({{id}})"
+          >Sửa</button>
         </form>
       </div>
 
       {{#if hasSub}}
-      <a href="/admin/CategoriesDetail?id={{id}}">
-        <button class="btn btn-primary">Xem chi tiết ></button>
-      </a>
+        <a href="/users/CategoriesDetail?id={{id}}">
+          <button class="btn btn-primary">Xem chi tiết ></button>
+        </a>
       {{/if}}
 
     </div>

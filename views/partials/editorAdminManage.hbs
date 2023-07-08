@@ -8,7 +8,7 @@
             <button class="btn btn-warning text-light" onclick="openEditEditor({{id}})">Sửa <i class="bi bi-pencil text-white"></i></button>
             <!-- The form -->
             <div class="form-popup" id="editEditorForm{{id}}" >
-                <form action="/admin/Editor/update" method="post" class="form-container" onsubmit="updateCategoryForEditor(event, {{id}})">
+                <form action="/users/Editor/update" method="post" class="form-container" onsubmit="updateCategoryForEditor(event, {{id}})">
                     <button type="button" onclick="closeEditEditor({{id}})">x</button>
                     <h3 class="text-center">Sửa chuyên mục</h3>
                     {{!-- <p class="text-center">Vui lòng nhập tên biên tập viên</p> --}}

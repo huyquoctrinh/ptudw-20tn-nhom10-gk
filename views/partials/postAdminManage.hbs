@@ -1,52 +1,60 @@
 <li class="list-groupitem">
-    <div class="row align-items-center g-1 category-item">
+  <div class="row align-items-center g-1 category-item">
     <div class="col-3">
-    <a href="/admin/AdminViewPostDetail?id={{id}}">
+      <a href="/users/AdminViewPostDetail?id={{id}}">
         <img
-        src="{{image_thumbnail}}"
-        class="img-thumbnail img-fluid rounded float-start"
-        alt=""
-        style="width: 100%; height: 100%"
+          src="{{image_thumbnail}}"
+          class="img-thumbnail img-fluid rounded float-start"
+          alt=""
+          style="width: 100%; height: 100%"
         />
-        </a>
+      </a>
     </div>
-    
+
     <div class="col-7">
-    <a href="/admin/AdminViewPostDetail?id={{id}}">
+      <a href="/users/AdminViewPostDetail?id={{id}}">
         <h5>{{title}}</h5>
         <p><b>{{Category.category_name}}</b></p>
         <p>{{Writer.User.name}}</p>
         <p>{{createDay}}</p>
-    </a>
+      </a>
     </div>
     <div class="col-2 button-div">
-        <div class="dropdown open">
+      <div class="dropdown open">
         <button
-            class="btn btn-primary dropdown-toggle"
-            type="button"
-            id="articleStatus{{id}}"
-            data-bs-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
+          class="btn btn-primary dropdown-toggle"
+          type="button"
+          id="articleStatus{{id}}"
+          data-bs-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
         >
-            {{status}}
+          {{status}}
         </button>
         <div class="dropdown-menu" aria-labelledby="articleStatus{{id}}">
-            {{#if isPublished}}
-                <button class="dropdown-item" onclick="updateStatus({{id}}, 'Published', 'articleStatus{{id}}')">
-                Published
-                </button>
-            {{else}}
-                <button class="dropdown-item" onclick="updateStatus({{id}}, 'Draft', 'articleStatus{{id}}')">
-                Draft
-                </button>
-                <button class="dropdown-item" onclick="updateStatus({{id}}, 'Published','articleStatus{{id}}')">
-                Published
-                </button>
-            {{/if}}
+          {{#if isPublished}}
+            <button
+              class="dropdown-item"
+              onclick="updateStatus({{id}}, 'Published', 'articleStatus{{id}}')"
+            >
+              Published
+            </button>
+          {{else}}
+            <button
+              class="dropdown-item"
+              onclick="updateStatus({{id}}, 'Draft', 'articleStatus{{id}}')"
+            >
+              Draft
+            </button>
+            <button
+              class="dropdown-item"
+              onclick="updateStatus({{id}}, 'Published','articleStatus{{id}}')"
+            >
+              Published
+            </button>
+          {{/if}}
         </div>
-        </div>
+      </div>
     </div>
-    </div>
+  </div>
 </li>
-

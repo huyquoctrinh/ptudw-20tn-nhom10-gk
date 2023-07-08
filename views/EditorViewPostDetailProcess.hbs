@@ -3,48 +3,61 @@
     <div class="row">
       <div class="col-3">
         <h2>Biên tập viên</h2>
-        <a href="/editor/EditorProcessed"><p class="active">Đã xử lý</p></a>
-        <a href="/editor/checkStatus"><p>Chờ Duyệt</p></a>
-     </div>
+        <a href="/users/EditorProcessed"><p class="active">Đã xử lý</p></a>
+        <a href="/users/checkStatus"><p>Chờ Duyệt</p></a>
+      </div>
       <div class="col-9 left-col">
         <div class="row">
           <div class="col-1">
             <div class="vl"></div>
           </div>
           {{#with post}}
-          <div class="col-11">
-            <div class="row">
+            <div class="col-11">
+              <div class="row">
                 <div class="col-9">
-                    <h3 class="text-black"> <a href="/editor/EditorProcessed">Các bài viết đã xử lý</a></h3>
+                  <h3 class="text-black">
+                    <a href="/users/EditorProcessed">Các bài viết đã xử lý</a></h3>
                 </div>
                 <div class="col-3 button-div">
-                    {{#if isReject}}
-                    <button class="btn btn-danger text-light mb-1 mr-1" >Đã Từ chối <i class="bi bi-x-circle text-white"></i></button>
-                    {{else}}
-                    <button class="btn btn-success text-light" >Đã Duyệt <i class="bi bi-check-circle text-white"></i></button>
-                    {{/if}}
-                    <!-- The form -->
+                  {{#if isReject}}
+                    <button class="btn btn-danger text-light mb-1 mr-1">Đã Từ
+                      chối
+                      <i class="bi bi-x-circle text-white"></i></button>
+                  {{else}}
+                    <button class="btn btn-success text-light">Đã Duyệt
+                      <i class="bi bi-check-circle text-white"></i></button>
+                  {{/if}}
+                  <!-- The form -->
                 </div>
-            </div>
-            <div class="container my-3 py-2" style="background-color: #F8F8F8;">
-               <h3>{{title}}</h3>
-               <p><span class="font-weight-bold">{{Category.category_name}}</span>    
-               <span class="font-italic">{{createDay}}</span></p>
-               <div class="row">
+              </div>
+              <div
+                class="container my-3 py-2"
+                style="background-color: #F8F8F8;"
+              >
+                <h3>{{title}}</h3>
+                <p><span
+                    class="font-weight-bold"
+                  >{{Category.category_name}}</span>
+                  <span class="font-italic">{{createDay}}</span></p>
+                <div class="row">
                   <div class="col-4">
-                    <img src="{{image_thumbnail}}" alt="..." class="container">
+                    <img
+                      src="{{image_thumbnail}}"
+                      alt="..."
+                      class="container"
+                    />
                   </div>
                   <div class="col-8"><p>{{briefDescription}}</p></div>
-               </div>
+                </div>
 
-              {{#each Images}}
+                {{#each Images}}
+                  <p> {{description}} </p>
+                  <img src="{{imagePath}}" alt="" class="d-block mx-auto" />
+                {{/each}}
                 <p> {{description}} </p>
-                <img src="{{imagePath}}" alt="" class="d-block mx-auto"/>
-              {{/each}}
-              <p> {{description}} </p>
-              <p class="font-weight-bold">{{Writer.User.name}}</p>
+                <p class="font-weight-bold">{{Writer.User.name}}</p>
+              </div>
             </div>
-          </div>
           {{/with}}
         </div>
       </div>
@@ -52,4 +65,4 @@
   </div>
 </main>
 
- <script src="../javascript/EditorPost.js"></script>
+<script src="../javascript/EditorPost.js"></script>

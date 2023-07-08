@@ -3,46 +3,55 @@
     <div class="row justify-content-center">
       <div class="col-3 py-5">
         <div class="list-group-flush mt-4">
-          <a class="list-group-item" href="/writer/mylist">Tất cả</a>
-          <a class="list-group-item" href="/writer/draft">Chờ duyệt</a>
-          <a class="list-group-item" href="/writer/approve">Đã được duyệt</a>
-          <a class="list-group-item" href="/writer/reject">Bị từ chối</a>
+          <a class="list-group-item" href="/users/mylist">Tất cả</a>
+          <a class="list-group-item" href="/users/draft">Chờ duyệt</a>
+          <a class="list-group-item" href="/users/approve">Đã được duyệt</a>
+          <a class="list-group-item" href="/users/reject">Bị từ chối</a>
         </div>
-     </div>
+      </div>
       <div class="col-9 left-col">
         <div class="row">
           <div class="col-1">
             <div class="vl"></div>
           </div>
           {{#with post}}
-          <div class="col-11">
-            <div class="row">
+            <div class="col-11">
+              <div class="row">
                 <div class="col-9">
-                    <h3 class="text-black"> Chi tiết bài viết</h3>
+                  <h3 class="text-black"> Chi tiết bài viết</h3>
                 </div>
                 <div class="col-3 button-div">
-                    <button class="btn btn-primary text-light" >{{status}}</button>
+                  <button class="btn btn-primary text-light">{{status}}</button>
                 </div>
-            </div>
-            <div class="container my-3 py-2" style="background-color: #F8F8F8;">
-               <h3>{{title}}</h3>
-               <p><span class="font-weight-bold">{{Category.category_name}}</span>    
-               <span class="font-italic">{{createDay}}</span></p>
-               <div class="row">
+              </div>
+              <div
+                class="container my-3 py-2"
+                style="background-color: #F8F8F8;"
+              >
+                <h3>{{title}}</h3>
+                <p><span
+                    class="font-weight-bold"
+                  >{{Category.category_name}}</span>
+                  <span class="font-italic">{{createDay}}</span></p>
+                <div class="row">
                   <div class="col-4">
-                    <img src="{{image_thumbnail}}" alt="..." class="container">
+                    <img
+                      src="{{image_thumbnail}}"
+                      alt="..."
+                      class="container"
+                    />
                   </div>
                   <div class="col-8"><p>{{briefDescription}}</p></div>
-               </div>
+                </div>
 
-              {{#each Images}}
+                {{#each Images}}
+                  <p> {{description}} </p>
+                  <img src="{{imagePath}}" alt="" class="d-block mx-auto" />
+                {{/each}}
                 <p> {{description}} </p>
-                <img src="{{imagePath}}" alt="" class="d-block mx-auto"/>
-              {{/each}}
-              <p> {{description}} </p>
-              <p class="font-weight-bold">{{Writer.User.name}}</p>
+                <p class="font-weight-bold">{{Writer.User.name}}</p>
+              </div>
             </div>
-          </div>
           {{/with}}
         </div>
       </div>
@@ -50,4 +59,4 @@
   </div>
 </main>
 
- <script src="../javascript/EditorPost.js"></script>
+<script src="../javascript/EditorPost.js"></script>

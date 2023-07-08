@@ -37,7 +37,6 @@ router.post("/post", upload.single("image"), async (req, res) => {
     const category = await models.Category.findOne({
       where: { category_name: selectedCategory },
     });
-    console.log("hello vo duoc r ne111111111111111111111");
 
     if (!category) {
       // Xử lý khi không tìm thấy category
@@ -45,7 +44,6 @@ router.post("/post", upload.single("image"), async (req, res) => {
       res.redirect("/404");
       return;
     }
-    console.log("hello vo duoc r ne2222222222222222222");
     // Loại bỏ các thẻ HTML không an toàn và chỉ lưu lại những thẻ cho phép, bao gồm cả thẻ iframe
     const sanitizedDescription = sanitizeHtml(summernote, {
       allowedTags: [
@@ -77,22 +75,23 @@ router.post("/post", upload.single("image"), async (req, res) => {
       description: sanitizedDescription,
       view_count: 0,
       image_thumbnail: "/uploads/" + image.filename,
-      writer_id: req.user.id,
+      writer_id: 61,
+      // req.user.id
     });
-    console.log("hello vo duoc r n3333333333333333333333333333333");
 
     // Kiểm tra và lưu hình ảnh
     if (image) {
-      console.log("hello vo duoc r ne3444444444444444444444444444");
-
       await models.Image.create({
         article_id: newPost.id,
         imagePath: "/uploads/" + image.filename,
         name: image.filename,
       });
     }
-
-    res.redirect("/writer/mylist");
+    await models.ArticleStatus.create({
+      status: "Draft",
+      article_id: newPost.id,
+    });
+    res.redirect("/users/mylist");
   } catch (error) {
     // Xử lý lỗi nếu có
     console.log("hello vo duoc r ne0000000000000000000000000000");

@@ -117,9 +117,9 @@ app.use("/users", require("./routes/authRoute"));
 app.use("/users", require("./routes/userRoute"));
 app.use("/users/login/google", require("./routes/authGoogleRoute"));
 
-app.use("/admin", require("./routes/adminRoute.js"));
-app.use("/editor", require("./routes/editorRoute.js"));
-app.use("/writer", require("./routes/writerRoute.js"));
+app.use("/users", require("./routes/adminRoute.js"));
+app.use("/users", require("./routes/editorRoute.js"));
+app.use("/users", require("./routes/writerRoute.js"));
 // tao db
 app.get("/createTables", (req, res) => {
   let models = require("./models");

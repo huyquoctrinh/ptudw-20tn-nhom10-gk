@@ -4,7 +4,7 @@
         <img style="width: 100%; height: 100%;" src="{{Article.image_thumbnail}}"/>
     </div>
     <div class="col-6">
-        <a href="/editor/EditorViewPostDetail?articleId={{article_id}}&id={{id}}">
+        <a href="/users/EditorViewPostDetail?articleId={{article_id}}&id={{id}}">
             <h5>{{Article.title}}</h5>
             <p class="mt-0 mb-0">{{created_at}}</p>
             <p class="mt-0 mb-0">{{briefDescription}}</p>
@@ -13,7 +13,7 @@
     <div class="col-3 button-div">
         <button class="btn btn-danger text-light mb-1" id="rejectBtn{{articleStatusId}}" onclick="openReject({{id}})">Từ chối <i class="bi bi-x-circle text-white"></i></button>
         <div class="form-popup" id="rejectform{{id}}">
-            <form action="/editor/reject" method="post" onsubmit="updateRejectReason(event, {{id}})" class="form-container">
+            <form action="/users/reject" method="post" onsubmit="updateRejectReason(event, {{id}})" class="form-container">
                 <button type="button" id="rejectBtn{{id}}" onclick="closeReject({{id}})">x</button>
                 <h3 class="text-center">Lí do từ chối</h3>
                 <!-- <p class="text-center">Thời sự</p> -->
@@ -25,7 +25,7 @@
         <button class="btn btn-success text-light" id="approveBtn{{id}}" onclick="openApprove({{id}})">Duyệt <i class="bi bi-check-circle text-white"></i></button>
         <!-- The form -->
         <div class="form-popup" id="approveForm{{id}}" >
-            <form action="/editor/approve" method="post" class="form-container" onsubmit="approve(event, {{id}}, {{article_id}})">
+            <form action="/users/approve" method="post" class="form-container" onsubmit="approve(event, {{id}}, {{article_id}})">
                 <button type="button" onclick="closeApprove({{id}})">x</button>
                 <h3 class="text-center">Cập nhật thông tin</h3>
                 <!-- <p class="text-center">Thời sự</p> -->

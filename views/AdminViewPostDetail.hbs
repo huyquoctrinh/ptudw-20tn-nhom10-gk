@@ -2,13 +2,14 @@
   <div class="container">
     <div class="row">
       <div class="col-3">
-        <h1 >Quản lý</h1>
-        <a href="/admin/AdminViewAllPost"><p class="active">Xem danh sách bài viết</p></a>
-        <a href="/admin/AdminManageCategories"><p>Quản lý chuyên mục</p></a>
-        <a href="/admin/AdminTag"><p>Quản lý nhãn tag</p></a>
-        <a href="/admin/AdmineditorDetail"><p>Quản lý biên tập viên</p></a>
-        <a href="/admin/AdminUserManagement"><p>Quản lý người dùng</p></a>
-        <a href="/admin/admin-addpremium"><p>Gia hạn tài khoản cho độc giả</p></a>
+        <h1>Quản lý</h1>
+        <a href="/users/AdminViewAllPost"><p class="active">Xem danh sách bài
+            viết</p></a>
+        <a href="/users/AdminManageCategories"><p>Quản lý chuyên mục</p></a>
+        <a href="/users/AdminTag"><p>Quản lý nhãn tag</p></a>
+        <a href="/users/AdmineditorDetail"><p>Quản lý biên tập viên</p></a>
+        <a href="/users/AdminUserManagement"><p>Quản lý người dùng</p></a>
+        <a href="/users/admin-addpremium"><p>Gia hạn tài khoản cho độc giả</p></a>
       </div>
       <div class="col-9 left-col">
         <div class="row">
@@ -16,53 +17,81 @@
             <div class="vl"></div>
           </div>
           {{#with post}}
-          <div class="col-11">
-            <div class="row">
-              <div class="col-10">
-                <h3 class="text-black"> <a href="/admin/AdminViewAllPost">Danh sách bài viết</a></h3>
-              </div>
-              <div class="col-2">
-                <div class="dropdown open">
-                  <button class="btn btn-primary dropdown-toggle" type="button" id="articleStatusDetail{{id}}" data-bs-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false">
-                    {{status}}
-                 </button>
-                <div class="dropdown-menu" aria-labelledby="articleStatusDetail{{id}}">
-                  {{#if isPublished}}
-                      <button class="dropdown-item" onclick="updateStatus({{id}}, 'Published', 'articleStatusDetail{{id}}')">
-                      Published
-                      </button>
-                  {{else}}
-                      <button class="dropdown-item" onclick="updateStatus({{id}}, 'Draft', 'articleStatusDetail{{id}}')">
-                      Draft
-                      </button>
-                      <button class="dropdown-item" onclick="updateStatus({{id}}, 'Published', 'articleStatusDetail{{id}}')">
-                      Published
-                      </button>
-                  {{/if}}
+            <div class="col-11">
+              <div class="row">
+                <div class="col-10">
+                  <h3 class="text-black">
+                    <a href="/users/AdminViewAllPost">Danh sách bài viết</a></h3>
                 </div>
+                <div class="col-2">
+                  <div class="dropdown open">
+                    <button
+                      class="btn btn-primary dropdown-toggle"
+                      type="button"
+                      id="articleStatusDetail{{id}}"
+                      data-bs-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
+                      {{status}}
+                    </button>
+                    <div
+                      class="dropdown-menu"
+                      aria-labelledby="articleStatusDetail{{id}}"
+                    >
+                      {{#if isPublished}}
+                        <button
+                          class="dropdown-item"
+                          onclick="updateStatus({{id}}, 'Published', 'articleStatusDetail{{id}}')"
+                        >
+                          Published
+                        </button>
+                      {{else}}
+                        <button
+                          class="dropdown-item"
+                          onclick="updateStatus({{id}}, 'Draft', 'articleStatusDetail{{id}}')"
+                        >
+                          Draft
+                        </button>
+                        <button
+                          class="dropdown-item"
+                          onclick="updateStatus({{id}}, 'Published', 'articleStatusDetail{{id}}')"
+                        >
+                          Published
+                        </button>
+                      {{/if}}
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="container my-3 py-2" style="background-color: #F8F8F8;">
-               <h3>{{title}}</h3>
-               <p><span class="font-weight-bold">{{Category.category_name}}</span>    <span class="font-italic">{{createDay}}</span></p>
-               <div class="row">
+              <div
+                class="container my-3 py-2"
+                style="background-color: #F8F8F8;"
+              >
+                <h3>{{title}}</h3>
+                <p><span
+                    class="font-weight-bold"
+                  >{{Category.category_name}}</span>
+                  <span class="font-italic">{{createDay}}</span></p>
+                <div class="row">
                   <div class="col-4">
-                    <img src="{{image_thumbnail}}" alt="..." class="container">
+                    <img
+                      src="{{image_thumbnail}}"
+                      alt="..."
+                      class="container"
+                    />
                   </div>
                   <div class="col-8"><p>{{briefDescription}}</p></div>
-               </div>
+                </div>
 
-              {{#each Images}}
+                {{#each Images}}
+                  <p> {{description}} </p>
+                  <img src="{{imagePath}}" alt="" class="d-block mx-auto" />
+                {{/each}}
                 <p> {{description}} </p>
-                <img src="{{imagePath}}" alt="" class="d-block mx-auto"/>
-              {{/each}}
-              <p> {{description}} </p>
-              <p class="font-weight-bold">{{Writer.User.name}}</p>
+                <p class="font-weight-bold">{{Writer.User.name}}</p>
+              </div>
             </div>
-          </div>
           {{/with}}
         </div>
       </div>
@@ -70,4 +99,4 @@
   </div>
 </main>
 
- <script src="../javascript/AdminManageCategories.js"></script>
+<script src="../javascript/AdminManageCategories.js"></script>

@@ -3,12 +3,12 @@
         <div class="row">
             <div class="col-3">
                 <h1>Quản lý</h1>
-                <a href="/admin/AdminViewAllPost"><p>Xem danh sách bài viết</p></a>
-                <a href="/admin/AdminManageCategories"><p class="active">Quản lý chuyên mục</p></a>
-                <a href="/admin/AdminTag"><p>Quản lý nhãn tag</p></a>
-                <a href="/admin/"><p>Quản lý biên tập viên</p></a>
-                <a href="/admin/AdminUserManagement"><p>Quản lý người dùng</p></a>
-                <a href="/admin/admin-addpremium"><p>Gia hạn tài khoản cho độc giả</p></a>
+                <a href="/users/AdminViewAllPost"><p>Xem danh sách bài viết</p></a>
+                <a href="/users/AdminManageCategories"><p class="active">Quản lý chuyên mục</p></a>
+                <a href="/users/AdminTag"><p>Quản lý nhãn tag</p></a>
+                <a href="/users/"><p>Quản lý biên tập viên</p></a>
+                <a href="/users/AdminUserManagement"><p>Quản lý người dùng</p></a>
+                <a href="/users/admin-addpremium"><p>Gia hạn tài khoản cho độc giả</p></a>
             </div>
             {{#with category}}
             <div class="col-9 left-col">
@@ -17,7 +17,7 @@
                         <div class="vl"></div>
                     </div>
                     <div class="col-11">
-                        <h3><a href="/admin/AdminManageCategories" class="text-black">Quản lý chuyên mục</a> > {{category_name}}</h3>
+                        <h3><a href="/users/AdminManageCategories" class="text-black">Quản lý chuyên mục</a> > {{category_name}}</h3>
                         <div class="container">
                             <div class="row justify-content-center">
                                 <div class="col-7 h-100">
@@ -38,7 +38,7 @@
                                 <div class="col-5 h-100">
                                     <button class="btn btn-primary h-100" onclick="openAdd()">+ Thêm chuyên mục con</button>
                                     <div class="form-popup" id="addForm">
-                                        <form action="/admin/CategoriesDetail/add" method="post" class="form-container" onsubmit="addItemCategory(event, {{categoryId}})">
+                                        <form action="/users/CategoriesDetail/add" method="post" class="form-container" onsubmit="addItemCategory(event, {{categoryId}})">
                                             <div class="mb-3">
                                                 <button type="button" onclick="closeAdd()">x</button>
                                                 <h3 class="text-center">Thêm chuyên mục</h3>
