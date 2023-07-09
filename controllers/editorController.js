@@ -4,7 +4,7 @@ const controller = {};
 const models = require('../models');
 
 controller.showStatus = async (req, res) => {
-    let editor_id = 9;
+    let editor_id = req.user.id;
     let categories = await models.Category.findAll();
     let tags = await models.Tag.findAll();
     let editor = await models.Editor.findOne({
@@ -78,7 +78,7 @@ controller.showPostDetail = async (req, res) => {
 }
 
 controller.reject = async (req, res) => {
-    let editor_id = 9;
+    let editor_id = req.user.id;
     let id = req.body.id;
     let reason = req.body.reason;
     await models.ArticleStatus.update(
@@ -110,7 +110,7 @@ function changeToDate(pubday){
 }
 
 controller.approve = async (req, res) => {
-    let editor_id = 9;
+    let editor_id = req.user.id;
     let tag = req.body.tag; 
     let category = req.body.category;
     let article_id = req.body.articleId;
@@ -140,7 +140,7 @@ controller.approve = async (req, res) => {
     })
 }
 controller.showProcessed = async (req, res) => {
-    let editor_id = 9; 
+    let editor_id = req.user.id;
     let {rows, count} = await models.ArticleStatus.findAndCountAll(
     { 
         where: { editor_id: editor_id },
@@ -204,7 +204,7 @@ controller.showProcessedPostDetail = async (req, res) => {
     let day = d + '/' + m + '/' + y;
     post.createDay = day;
     post.Images.forEach (image => {
-        image.description = post.description;
+        image.description = post.description; 
     })
     if (post.ArticleStatuses[0].status == 'Rejected') post.isReject = true;
     else post.isReject = false;

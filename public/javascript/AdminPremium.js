@@ -3,7 +3,7 @@ async function extendReader(id){
         let details = {
             id: id,
         }
-        let res = await fetch(`/admin/Premium/extend`, {
+        let res = await fetch(`/users/Premium/extend`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

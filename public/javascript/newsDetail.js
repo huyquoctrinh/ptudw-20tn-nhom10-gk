@@ -7,7 +7,6 @@ async function addItem(e) {
     let details = {
         comment: form.querySelector('[name=comment]').value,
         article_id: form.querySelector('[name=article_id]').value,
-        user_id: form.querySelector('[name=user_id]').value,
     }
 
     let res = await fetch('/newsDetail/comment', {
@@ -57,6 +56,7 @@ async function addItem(e) {
 
 function demoFromHTML() {
     var pdf = new jsPDF();
+    pdf.setFont('courier', 'italic');
     source = document.getElementById('newspdf');
 
     console.log(source); 
