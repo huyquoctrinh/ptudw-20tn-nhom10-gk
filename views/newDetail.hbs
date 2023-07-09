@@ -1,39 +1,28 @@
 <main>
-  <div class="container new-detail mt-5">
+  <div class="container new-detail mt-5" id="news-pdf">
       {{#with article}}
       <div class="row">
-          <div class="col-8">
-              <!-- Tags -->
-              <a href="/Categories?id={{Category.id}}">
-                <p class="fw-bold">{{Category.category_name}}</p>
-              </a>
-              <p class="heading-title-news-detail">{{title}}</p>
-              <div class="row ">
-                  <div class="col-1">
-                      <div class="vl"></div>
-                  </div>
-                  <div class="col-11">
-                      <ul>
-                        {{briefDescription}}
-                      </ul>
-                  </div>
-                  
-              </div>
-              
+        <div class="col-8">
+          <!-- Tags -->
+          <a href="/Categories?id={{Category.id}}">
+            <p class="fw-bold">{{Category.category_name}}</p>
+          </a>
+          <p class="heading-title-news-detail">{{title}}</p>
+          <div class="row ">
+            <div class="col-1">
+                <div class="vl"></div>
+            </div>
+            <div class="col-11">
+              <p>{{briefDescription}}</p>
+            </div>
           </div>
-          <div class="col-4">
-              <img src="{{image_thumbnail}}" alt="" class="img-fluid">
-          </div>
+        </div>
+        <div class="col-4">
+            <img src="{{image_thumbnail}}" alt="" class="img-fluid">
+        </div>
       </div>
-
-      <p>{{description}}</p>
-      {{#each Images}}
-        <img src="{{imagePath}}" alt="" class="d-block mx-auto"/>
-        <p>
-          {{description}}
-        </p>
-        <br>
-      {{/each}}
+      <div class="descriptionDetail">
+        {{{description}}}
       </div>
       <div class="row">
           <div class="col">
@@ -43,6 +32,10 @@
             <p class="p-date-news">{{createDay}}</p>
           </div>
       </div>
+  </div>
+  <div>
+    <button type="button" class="btn btn-primary" onclick="demoFromHTML()">Tải bài báo</button>
+  </div>
       
       <!-- tin cung chuyen muc -->
       <div class="container relevant-news-container">
@@ -93,3 +86,4 @@
 </main>
 
 <script src="../javascript/newsDetail.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
