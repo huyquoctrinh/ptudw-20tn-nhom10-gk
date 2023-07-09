@@ -13,10 +13,6 @@ const flash = require("express-flash");
 const Recaptcha = require("express-recaptcha").RecaptchaV2;
 const moment = require("moment");
 
-// expressHandleBars.registerHelper("formatDate", function (date) {
-//   // Sử dụng momentjs để định dạng ngày tháng
-//   return moment(date).format("MM/DD/YYYY");
-// });
 app.use(
   session({
     secret: "your-secret-key",
@@ -69,7 +65,6 @@ app.engine(
         return a === b;
       },
       formatDate: function (date) {
-        // Sử dụng momentjs để định dạng ngày tháng
         return moment(date).format("MM/DD/YYYY");
       },
     },
@@ -112,14 +107,13 @@ app.use(recaptcha.middleware.render);
 app.use("/", require("./routes/indexRoute"));
 app.use("/Categories", require("./routes/categoryRoute"));
 app.use("/newsDetail", require("./routes/newsDetailRoute"));
-
 app.use("/users", require("./routes/authRoute"));
 app.use("/users", require("./routes/userRoute"));
-app.use("/users/login/google", require("./routes/authGoogleRoute"));
-
+app.use("/users", require("./routes/authGoogleRoute"));
 app.use("/users", require("./routes/adminRoute.js"));
 app.use("/users", require("./routes/editorRoute.js"));
 app.use("/users", require("./routes/writerRoute.js"));
+
 // tao db
 app.get("/createTables", (req, res) => {
   let models = require("./models");
@@ -127,11 +121,6 @@ app.get("/createTables", (req, res) => {
     res.send("table created!");
   });
 });
-
-// app.use((err, req, res, next) => {
-//   const statusCode = err.statusCode | 500;
-//   res.status(statusCode).send(err.message);
-// });
 
 //404 router
 app.use("/404", (req, res) => {

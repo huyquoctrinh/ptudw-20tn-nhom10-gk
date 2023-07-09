@@ -92,21 +92,22 @@
               </li>
             </ul>
 
-            <form class="d-flex my-2 my-lg-0 w-50" id="searchForm">
-              <input
-                class="form-control me-sm-2"
-                type="text"
-                id="newsQuery"
-                placeholder="Bạn đang tìm gì..."
-              />
-              <button
-                class="btn btn-dark my-2 my-sm-0"
-                type="submit"
-                id="searchBtn"
-              >
-                Tìm
-              </button>
-            </form>
+          <form class="d-flex my-2 my-lg-0 w-50" id="searchForm" action="/search" method="GET">
+            <input
+              class="form-control me-sm-2"
+              type="text"
+              id="newsQuery"
+              name="query"
+              placeholder="Bạn đang tìm gì..."
+            />
+            <button
+              class="btn btn-dark my-2 my-sm-0"
+              type="submit"
+              id="searchBtn"
+            >
+              Tìm
+            </button>
+          </form>
 
             <div class="dropdown user">
               <a
@@ -272,5 +273,7 @@
     <script src="../lib/slick/slick.min.js"></script>
 
     <script src="../javascript/adjust.js"></script>
+   
+   
   </body>
 </html>

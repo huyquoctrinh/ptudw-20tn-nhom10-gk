@@ -4,14 +4,10 @@ const router = express.Router();
 const controller = require("../controllers/indexController");
 
 router.get("/", controller.showHomepage);
-router.get('/AllTag', controller.showAllTag);
-router.get('/TagPost', controller.showTagPost)
-// router.get('/createTables', (req, res) =>{
-//     let models = require('../models');
-//     models.sequelize.sync().then(() => {
-//         res.send('table created!');
-//     });
-// })
+router.get("/AllTag", controller.showAllTag);
+router.get("/TagPost", controller.showTagPost);
+router.get("/search", controller.showSearchResults);
+// router.post("/search");
 
 router.get("/:page", controller.showPage);
 

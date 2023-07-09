@@ -7,12 +7,12 @@ require("../controllers/passportController");
 
 // set route dang nhap bang google
 router.get(
-  "/",
+  "/login/google",
   passport.authenticate("google", { scope: ["profile", "email"] })
 );
 
 router.get(
-  "/callback",
+  "/login/google/callback",
   passport.authenticate("google", { failureRedirect: "failed" }),
   function (req, res) {
     const profile = req.user;

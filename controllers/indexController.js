@@ -216,4 +216,29 @@ controller.showTagPost = async (req, res) => {
   res.locals.tag = tag;
   res.render("TagPost");
 };
+
+controller.showSearchResults = async (req, res) => {
+  const { query } = req.query;
+
+  try {
+    // Sử dụng Sequelize để thực hiện tìm kiếm full-text
+    const searchResults = await models.Article.findAll({
+      where: {
+        [Op.or]: [
+          { title: { [Op.iLike]: `%${query}%` } }, // Tìm theo title (không phân biệt hoa thường)
+          { briefDescription: { [Op.iLike]: `%${query}%` } }, // Tìm theo abstract (không phân biệt hoa thường)
+          { description: { [Op.iLike]: `%${query}%` } }, // Tìm theo nội dung (không phân biệt hoa thường)
+        ],
+      },
+    });
+
+    // Render kết quả tìm kiếm
+    res.render("search", { searchResults });
+  } catch (error) {
+    // Xử lý lỗi nếu có
+    console.error(error);
+    res.render("error");
+  }
+};
+
 module.exports = controller;

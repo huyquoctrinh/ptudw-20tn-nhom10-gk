@@ -15,9 +15,9 @@ controller.showSignUp = (req, res) => {
 };
 
 controller.show = (req, res) => {
-  if (req.isAuthenticated()) {
-    return res.redirect("/");
-  }
+  // if (req.isAuthenticated()) {
+  //   return res.redirect("/");
+  // }
   res.render("login", {
     loginMessage: req.flash("loginMessage"),
   });
@@ -96,9 +96,6 @@ controller.isLoggedIn = (req, res, next) => {
 };
 
 controller.register = (req, res, next) => {
-  let reqUrl = req.body.reqUrl ? req.body.reqUrl : "/users/login";
-  let user = req.session.user;
-
   // Khởi tạo CAPTCHA
   const recaptcha = new Recaptcha(
     CAPTCHA_APIKEY_PUBLIC,
@@ -111,13 +108,16 @@ controller.register = (req, res, next) => {
       return res.redirect("/404");
     }
     // Đánh dấu rằng captcha đã được hoàn thành
-    req.session.captchaVerified = true;
+    // req.session.captchaVerified = true;
+    if (!req.session.captchaVerified) {
+      req.flash("registerMessage", "Vui lòng xác minh captcha!");
+    }
     passport.authenticate("local-register", (error, user) => {
       if (error) {
         return next(error);
       }
       if (!user) {
-        return res.redirect(`${reqUrl}`);
+        return res.redirect("/404");
       }
       // Lấy token từ cookie và gửi nó kèm theo yêu cầu
       const token = req.cookies.token;
@@ -128,7 +128,7 @@ controller.register = (req, res, next) => {
           return next(error);
         }
         req.session.user = user;
-        res.redirect(reqUrl);
+        res.redirect("/users/login");
       });
     })(req, res, next);
   });

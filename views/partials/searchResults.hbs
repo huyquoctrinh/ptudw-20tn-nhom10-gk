@@ -1,0 +1,25 @@
+<a href="/newsDetail?id={{id}}">
+  <div class="card mb-3 card-hor">
+    <div class="row g-0 align-items-center">
+      <div class="col-md-4">
+        <img src="{{image_thumbnail}}" class="img-fluid" alt="..." />
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">{{title}}
+          </h5>
+          <p class="card-text">{{briefDescription}}
+          </p>
+          <div class="row news-tag tag-hor">
+            <div class="col">
+              <p class="p-tag-news">{{Category.category_name}}</p>
+            </div>
+            <div class="col">
+              <p class="p-date-news">{{createDay}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</a>

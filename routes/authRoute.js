@@ -40,9 +40,13 @@ router.post(
     .isEmail()
     .withMessage("Địa chỉ email không hợp lệ!"),
   body("password").trim().notEmpty().withMessage("Mật khẩu là bắt buộc"),
-  body("cofirmPassword").custom((cofirmPassword, { req }) => {
-    if (cofirmPassword != req.body.password) {
-      throw new Error("Mật khẩu không đúng!");
+  body("confirmPassword")
+    .trim()
+    .notEmpty()
+    .withMessage("Nhập lại mật khẩu là bắt buộc"),
+  body("confirmPassword").custom((confirmPassword, { req }) => {
+    if (confirmPassword !== req.body.password) {
+      throw new Error("Mật khẩu không khớp!");
     }
     return true;
   }),

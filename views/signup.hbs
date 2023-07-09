@@ -53,7 +53,7 @@
                   <span>Nhập lại mật khẩu</span>
                   <input
                     class="w-100 form-control"
-                    name="cofirmPassword"
+                    name="confirmPassword"
                     type="password"
                     placeholder="Nhập lại mật khẩu"
                     required
@@ -96,7 +96,10 @@
                 value="false"
                 required
               />
-              {{{captcha}}}
+
+              <div id="captcha" onclick="verifyCaptcha()">
+                {{{captcha}}}
+              </div>
 
             </div>
             <div class="mb-3">
@@ -126,8 +129,7 @@
     </div>
   </div>
 </main>
-
 <script>
-  document.getElementById('submitBtn').addEventListener('click', function() {
-  document.getElementById('captchaVerified').value = 'true'; });
+  function verifyCaptcha() { document.getElementById("captchaVerified").value =
+  "true"; }
 </script>
