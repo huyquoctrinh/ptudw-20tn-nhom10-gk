@@ -1,17 +1,26 @@
 <li class="list-groupitem">
-    <div class="row align-items-center g-2 category-item">
-        <div class="col-3">
-            <img style="width: 100%; height: 100%;" src="{{image_thumbnail}}"/>
-        </div>
-        <div class="col-6">
-            <a href="/users/WriterViewPostDetail?articleId={{id}}">
-                <h5>{{title}}</h5>
-                <p class="mt-0 mb-0">{{createDay}}</p>
-                <p class="mt-0 mb-0">{{briefDescription}}</p>
-            </a>
-        </div>
-        <div class="col-3 button-div">
-            <button class="btn btn-primary text-light"> {{status}} </button>
-        </div>
+  <div class="row align-items-center g-2 category-item">
+    <div class="col-3">
+      <img style="width: 100%; height: 100%;" src="{{image_thumbnail}}" />
     </div>
-</li>       
+    <div class="col-6">
+      <a href="/users/WriterViewPostDetail?articleId={{id}}">
+        <h5>{{title}}</h5>
+        <p class="mt-0 mb-0">{{createDay}}</p>
+        <p class="mt-0 mb-0">{{briefDescription}}</p>
+      </a>
+    </div>
+    <div class="col-3 button-div">
+      <button class="btn btn-primary text-light"> {{status}} </button>
+      {{#if (eq status "Draft")}}
+        <a href="/users/WriterEditPostDetail?articleId={{id}}">
+          <button class="btn btn-danger text-light mt-2">Edit
+            <i class="bi bi-pencil-fill text-light"></i>
+          </button>
+        </a>
+
+      {{/if}}
+
+    </div>
+  </div>
+</li>

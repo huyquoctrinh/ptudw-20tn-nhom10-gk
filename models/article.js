@@ -38,15 +38,25 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: "Article",
-      // indexes: [
-      //   {
-      //     name: "idx_article_description_fts",
-      //     fields: [
-      //       sequelize.literal(`to_tsvector('vietnamese', "description")`),
-      //     ],
-      //     using: "gin",
-      //   },
-      // ],
+      indexes: [
+        {
+          name: "idx_article_title_fts",
+          fields: [sequelize.literal(`to_tsvector('vietnamese', title)`)],
+          using: "gin",
+        },
+        {
+          name: "idx_article_briefDescription_fts",
+          fields: [
+            sequelize.literal(`to_tsvector('vietnamese', briefDescription)`),
+          ],
+          using: "gin",
+        },
+        {
+          name: "idx_article_description_fts",
+          fields: [sequelize.literal(`to_tsvector('vietnamese', description)`)],
+          using: "gin",
+        },
+      ],
     }
   );
   return Article;

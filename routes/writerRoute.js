@@ -6,6 +6,8 @@ const controller = require("../controllers/writerController");
 const path = require("path");
 const models = require("../models");
 const sanitizeHtml = require("sanitize-html");
+// const methodOverride = require("method-override");
+
 // const user = req.user;
 // Khai báo thư mục lưu trữ hình ảnh tải lên
 const storage = multer.diskStorage({
@@ -27,6 +29,7 @@ router.get("/draft", controller.showDraft);
 router.get("/approve", controller.showApprove);
 router.get("/reject", controller.showReject);
 router.get("/WriterViewPostDetail", controller.showPostDetail);
+router.get("/WriterEditPostDetail", controller.showEditPostDetail);
 router.get("/post", controller.showCreatePost);
 router.post("/post", upload.single("image"), async (req, res) => {
   try {
@@ -75,8 +78,7 @@ router.post("/post", upload.single("image"), async (req, res) => {
       description: sanitizedDescription,
       view_count: 0,
       image_thumbnail: "/uploads/" + image.filename,
-      writer_id: 61,
-      // req.user.id
+      writer_id: req.user.id,
     });
 
     // Kiểm tra và lưu hình ảnh
@@ -100,5 +102,164 @@ router.post("/post", upload.single("image"), async (req, res) => {
     res.redirect("/404"); // Điều hướng đến trang lỗi
   }
 });
+// router.put(
+//   "/WriterEditPostDetail",
+//   upload.single("image"),
+//   async (req, res) => {
+//     try {
+//       const { postId, title, briefDescription, description } = req.body;
+//       const image = req.file;
+//       console.log("0000000000000000000000000000000000000 redirect");
 
+//       // Kiểm tra nếu không tồn tại postId
+//       if (!postId) {
+//         console.log("Post ID not found");
+//         res.redirect("/404");
+//         return;
+//       }
+
+//       // Lấy dữ liệu hiện tại của bài viết
+//       const currentPost = await models.Article.findByPk(postId);
+
+//       if (!currentPost) {
+//         console.log("Post not found");
+//         res.redirect("/404");
+//         return;
+//       }
+//       console.log("1111111111111111111111111111111111111111 redirect");
+
+//       // Kiểm tra và cập nhật từng trường đã thay đổi
+//       if (title !== currentPost.title) {
+//         await models.Article.update({ title }, { where: { id: postId } });
+//       }
+//       if (briefDescription !== currentPost.briefDescription) {
+//         await models.Article.update(
+//           { briefDescription },
+//           { where: { id: postId } }
+//         );
+//       }
+//       if (description !== currentPost.description) {
+//         await models.Article.update({ description }, { where: { id: postId } });
+//       }
+//       if (image) {
+//         if (currentPost.image_thumbnail !== "/uploads/" + image.filename) {
+//           await models.Article.update(
+//             { image_thumbnail: "/uploads/" + image.filename },
+//             { where: { id: postId } }
+//           );
+
+//           const existingImage = await models.Image.findOne({
+//             where: { article_id: postId },
+//           });
+
+//           if (existingImage) {
+//             // Cập nhật thông tin hình ảnh
+//             await existingImage.update({
+//               imagePath: "/uploads/" + image.filename,
+//               name: image.filename,
+//             });
+//           } else {
+//             // Tạo hình ảnh mới
+//             await models.Image.create({
+//               article_id: postId,
+//               imagePath: "/uploads/" + image.filename,
+//               name: image.filename,
+//             });
+//           }
+//         }
+//       }
+//       console.log("0000000000000000000000000000000000000Before redirect");
+//       res.redirect("/users/mylist");
+//       console.log("0000000000000000000000000000000000000After redirect");
+//     } catch (error) {
+//       console.error("Error updating post:", error);
+//       res.redirect("/404");
+//     }
+//   }
+// );
+
+router.put(
+  "/WriterEditPostDetail",
+  upload.single("image"),
+  async (req, res) => {
+    try {
+      const { postId, title, briefDescription, summernote } = req.body;
+      const image = req.file;
+      console.log("redirect");
+
+      // Check if postId exists
+      if (!postId) {
+        console.log("Post ID not found");
+        res.redirect("/404");
+        return;
+      }
+
+      // Fetch the current data of the post
+      const currentPost = await models.Article.findByPk(postId);
+
+      if (!currentPost) {
+        console.log("Post not found");
+        res.redirect("/404");
+        return;
+      }
+
+      console.log("redirect");
+
+      // Check and update each field if they have changed
+      if (title !== currentPost.title) {
+        await models.Article.update({ title }, { where: { id: postId } });
+      }
+      if (briefDescription !== currentPost.briefDescription) {
+        await models.Article.update(
+          { briefDescription },
+          { where: { id: postId } }
+        );
+      }
+      if (summernote !== currentPost.description) {
+        if (summernote !== currentPost.description) {
+          await models.Article.update(
+            { description: summernote },
+            { where: { id: postId } }
+          );
+        }
+      }
+      if (image) {
+        if (currentPost.image_thumbnail !== "/uploads/" + image.filename) {
+          await models.Article.update(
+            { image_thumbnail: "/uploads/" + image.filename },
+            { where: { id: postId } }
+          );
+
+          const existingImage = await models.Image.findOne({
+            where: { article_id: postId },
+          });
+
+          if (existingImage) {
+            // Update image data
+            await existingImage.update({
+              imagePath: "/uploads/" + image.filename,
+              name: image.filename,
+            });
+          } else {
+            // Create a new image
+            await models.Image.create({
+              article_id: postId,
+              imagePath: "/uploads/" + image.filename,
+              name: image.filename,
+            });
+          }
+        }
+      }
+
+      console.log("Before redirect");
+      // res.redirect(303, "/users/mylist");
+      res.status(200).json({ redirectURL: "/users/mylist" });
+
+      return;
+    } catch (error) {
+      console.error("Error updating post:", error);
+      res.redirect(303, "/404");
+    }
+  }
+);
 module.exports = router;

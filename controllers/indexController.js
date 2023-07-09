@@ -1,5 +1,6 @@
 "use strict";
-const Op = require("sequelize").Op;
+const sequelize = require("sequelize");
+const { Op, fn, col } = require("sequelize");
 const controller = {};
 const models = require("../models");
 let isSubcriber = true;
@@ -216,20 +217,67 @@ controller.showTagPost = async (req, res) => {
   res.locals.tag = tag;
   res.render("TagPost");
 };
-
 controller.showSearchResults = async (req, res) => {
   const { query } = req.query;
 
   try {
     // Sử dụng Sequelize để thực hiện tìm kiếm full-text
     const searchResults = await models.Article.findAll({
-      where: {
-        [Op.or]: [
-          { title: { [Op.iLike]: `%${query}%` } }, // Tìm theo title (không phân biệt hoa thường)
-          { briefDescription: { [Op.iLike]: `%${query}%` } }, // Tìm theo abstract (không phân biệt hoa thường)
-          { description: { [Op.iLike]: `%${query}%` } }, // Tìm theo nội dung (không phân biệt hoa thường)
+      where: sequelize.where(
+        sequelize.literal(
+          `to_tsvector('vietnamese', title) || to_tsvector('vietnamese', briefDescription) || to_tsvector('vietnamese', description) @@ to_tsquery('vietnamese', :query)`
+        ),
+        null,
+        {
+          query: query,
+        }
+      ),
+      attributes: {
+        include: [
+          [
+            sequelize.fn(
+              "ts_rank_cd",
+              sequelize.fn("to_tsvector", "vietnamese", sequelize.col("title")),
+              sequelize.fn("to_tsquery", "vietnamese", query)
+            ),
+            "title_rank",
+          ],
+          [
+            sequelize.fn(
+              "ts_rank_cd",
+              sequelize.fn(
+                "to_tsvector",
+                "vietnamese",
+                sequelize.col("briefDescription")
+              ),
+              sequelize.fn("to_tsquery", "vietnamese", query)
+            ),
+            "brief_description_rank",
+          ],
+          [
+            sequelize.fn(
+              "ts_rank_cd",
+              sequelize.fn(
+                "to_tsvector",
+                "vietnamese",
+                sequelize.col("description")
+              ),
+              sequelize.fn("to_tsquery", "vietnamese", query)
+            ),
+            "description_rank",
+          ],
         ],
       },
+      order: [
+        [
+          sequelize.fn(
+            "ts_rank_cd",
+            sequelize.fn("to_tsvector", "vietnamese", sequelize.col("title")),
+            sequelize.fn("to_tsquery", "vietnamese", query)
+          ),
+          "DESC",
+        ],
+      ],
     });
 
     // Render kết quả tìm kiếm
@@ -237,7 +285,7 @@ controller.showSearchResults = async (req, res) => {
   } catch (error) {
     // Xử lý lỗi nếu có
     console.error(error);
-    res.render("error");
+    res.render("404");
   }
 };
 
