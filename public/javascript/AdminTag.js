@@ -76,7 +76,7 @@ async function addItemTag(e) {
   let detail = {
     tag_name: itemValue.value,
   };
-  let res = await fetch(`/admin/tag/add`, {
+  let res = await fetch(`/users/tag/add`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -120,7 +120,7 @@ async function updateTag(e, id) {
     id: id,
     newName: newName,
   };
-  await fetch(`/admin/Tag/edit`, {
+  await fetch(`/users/Tag/edit`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

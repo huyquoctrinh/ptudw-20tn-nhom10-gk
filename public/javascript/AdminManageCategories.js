@@ -107,7 +107,7 @@ async function updateCategory(e, id) {
     id: id,
     newName: newName,
   };
-  await fetch(`/admin/Category/edit`, {
+  await fetch(`/users/Category/edit`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -128,7 +128,7 @@ async function updateStatus(id, status, statusButtonId) {
     id: id,
     status: status,
   };
-  await fetch(`/admin/AdminViewAllPost/update`, {
+  await fetch(`/users/AdminViewAllPost/update`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

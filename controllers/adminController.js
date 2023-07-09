@@ -116,11 +116,15 @@ controller.showAdminManageCategories = async (req, res) => {
 
     rootCategory.forEach((category) => {
         let subCategories = ""
-        for (let i = 0; i < min(categories.length, 3); i++){
+        let count = 0;
+        for (let i = 0; i < categories.length; i++){
             if (categories[i].root_category_id == category.id){
+                count += 1;
                 subCategories += categories[i].category_name + ", ";
+                if (count >= 2) break;
             }
         }
+        category.hasSub = false;
         if (subCategories.length > 0){
             category.hasSub = true;
             subCategories += "..."; 
@@ -336,7 +340,7 @@ controller.updateStatus = async (req, res) => {
         await models.ArticleStatus.create({
             article_id: req.body.id,
             status: req.body.status,
-            editor_id: 10,
+            editor_id: req.user.id,
             reason: ""
         }).then(() => {
             console.log(555);

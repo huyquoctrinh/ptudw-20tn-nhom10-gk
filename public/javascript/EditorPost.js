@@ -23,7 +23,7 @@ async function updateRejectReason(e, id) {
         reason: reason,
         id: id
     }
-    let res = await fetch('/editor/reject', {
+    let res = await fetch('/users/editorReject', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -54,7 +54,7 @@ async function approve(e, statusId, articleId){
         articleId: articleId,
         pubDay: pubDay
     }
-    let res = await fetch('/editor/approve', {
+    let res = await fetch('/users/editorApprove', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -68,4 +68,17 @@ async function approve(e, statusId, articleId){
         document.getElementById(`approveBtn${statusId}`).disabled = true;
     }
 
+}
+
+function filterEditor(keyword) {
+    document
+        .querySelectorAll("li.list-groupitem")
+        .forEach((item) => {
+            let text = item.childNodes[1].childNodes[3].childNodes[1].childNodes[1].innerText.toLowerCase();
+            if (text.indexOf(keyword.toLowerCase()) >= 0) {
+                item.style.display = "block"; 
+            } else {
+                item.style.display = "none"; 
+            }
+        });  
 }

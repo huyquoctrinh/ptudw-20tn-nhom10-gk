@@ -17,7 +17,7 @@ async function updateUser(id, role, roleButtonId){
         role: role,
         oldRole: currentrole
     }
-    await fetch(`/admin/User/update`, {
+    await fetch(`/users/User/update`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

@@ -1,39 +1,28 @@
 <main>
-  <div class="container new-detail mt-5">
+  <div class="container new-detail mt-5" id="newspdf">
       {{#with article}}
       <div class="row">
-          <div class="col-8">
-              <!-- Tags -->
-              <a href="/Categories?id={{Category.id}}">
-                <p class="fw-bold">{{Category.category_name}}</p>
-              </a>
-              <p class="heading-title-news-detail">{{title}}</p>
-              <div class="row ">
-                  <div class="col-1">
-                      <div class="vl"></div>
-                  </div>
-                  <div class="col-11">
-                      <ul>
-                        {{briefDescription}}
-                      </ul>
-                  </div>
-                  
-              </div>
-              
+        <div class="col-8">
+          <!-- Tags -->
+          <a href="/Categories?id={{Category.id}}">
+            <p class="fw-bold">{{Category.category_name}}</p>
+          </a>
+          <p class="heading-title-news-detail">{{title}}</p>
+          <div class="row ">
+            <div class="col-1">
+                <div class="vl"></div>
+            </div>
+            <div class="col-11">
+              <p>{{briefDescription}}</p>
+            </div>
           </div>
-          <div class="col-4">
-              <img src="{{image_thumbnail}}" alt="" class="img-fluid">
-          </div>
+        </div>
+        <div class="col-4">
+            <img src="{{image_thumbnail}}" alt="" class="img-fluid">
+        </div>
       </div>
-
-      <p>{{description}}</p>
-      {{#each Images}}
-        <img src="{{imagePath}}" alt="" class="d-block mx-auto"/>
-        <p>
-          {{description}}
-        </p>
-        <br>
-      {{/each}}
+      <div class="descriptionDetail">
+        {{{description}}}
       </div>
       <div class="row">
           <div class="col">
@@ -43,7 +32,12 @@
             <p class="p-date-news">{{createDay}}</p>
           </div>
       </div>
-      
+  </div>
+  {{#if isPremiumUser}}
+  <div>
+    <button type="button" class="btn btn-primary" onclick="demoFromHTML()">Tải bài báo</button>
+  </div>
+  {{/if}}      
       <!-- tin cung chuyen muc -->
       <div class="container relevant-news-container">
           <div class="title-relevant-news">
@@ -64,25 +58,27 @@
         {{/each}}
       </p>
   </div>
+      
+
   <!-- binh luan -->
   <div class="container comment-container">
     <h4>Binh Luan</h4>
-    {{!-- {{#if isLoggedIn}} --}}
+    {{#if isLogin}}
     <form action="/newsDetail/comment" method="post" onSubmit="addItem(event)">
       <div class="row">
         <div class="col-10 mb-3">
           <input type="text" class="form-control" placeholder="" required name="comment" id="comment" aria-describedby="helpId"/>
           <input type="hidden" name="article_id" value="{{id}}">
-          <input type="hidden" name="user_id" value="1">
         </div>
         <div class="col-1">
             <button class="btn btn-primary">Comment</button>
         </div>
       </div>
     </form>
-    {{#if done}}
     {{/if}}
     {{/with}}
+    {{#if done}}
+    {{/if}}
     {{!-- {{/if}} --}}
     <ul class="list-group" id="myList">
       {{#each comments}}
@@ -92,4 +88,5 @@
   </div>
 </main>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="../javascript/newsDetail.js"></script>
