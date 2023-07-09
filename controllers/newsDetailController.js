@@ -3,6 +3,18 @@
 const controller = {};
 const models = require('../models');
 
+async function validateUser(req) {
+    if (!req.user) return false;
+    let id = req.user.id;
+    let res = await models.Reader.findAll({
+        where: {id: id}
+    })
+    if (res.length == 0) return false;
+    console.log(res[0].expire_date < Date.now());
+    if (res[0].expire_date < Date.now()) return false;
+    return true; 
+}
+
 controller.showDetail = async (req, res) => {
     let id = isNaN(req.query.id) ? 0 : parseInt(req.query.id)
     let article = await models.Article.findOne({
@@ -40,6 +52,8 @@ controller.showDetail = async (req, res) => {
     let d = article.createdAt.getDate();
     let day = d + '/' + m + '/' + y;
     article.createDay = day;
+    article.isPremiumUser = (await validateUser(req) == true);
+    if (req.user) article.isLogin = true;
     res.locals.article = article
 
     article.Images.forEach (image => {
@@ -85,25 +99,25 @@ controller.showDetail = async (req, res) => {
         comment.createDay = day;
     })
     res.locals.comments = comments;
-
+    
     res.render('newDetail');
 }
 
 controller.addComment = async (req, res) => {
     let comment = req.body.comment;
     let article_id = req.body.article_id;
-    let user_id = req.body.user_id;
+    let user_id = req.user.id;
+    console.log("123" + article_id);
+    console.log(user_id);
     if (comment) {
         models.Comment.create({
             content: comment,
             article_id: article_id,
             user_id: user_id
         }).then(async (comment) => {
-            console.log(888);
-            let name = await models.User.findOne({where: {id: user_id}, attributes: ['name'] })
+            let name = await models.User.findOne({where: {id: user_id} })
             return res.json({name: name.name})
         }).catch((err) => {
-
             console.log("123" + err);
         });
     }

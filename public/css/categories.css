@@ -267,6 +267,7 @@ footer{
 
 .product-item .product-image img {
     width: 100%; 
+    height: 150px; 
 }
 
 .product-item .product-image .product-action {

@@ -2,7 +2,19 @@
 const Op = require("sequelize").Op;
 const controller = {};
 const models = require("../models");
-let isSubcriber = true;
+
+async function validateUser(req) {
+  if (!req.user) return false;
+  let id = req.user.id;
+  let res = await models.Reader.findAll({
+      where: {id: id}
+  })
+  if (res.length == 0) return false;
+  console.log(res[0].expire_date < Date.now());
+  if (res[0].expire_date < Date.now()) return false;
+  return true; 
+}
+
 controller.showNav = async (req, res) => {
   const categories = await models.Category.findAll();
   let rootCate = [];
@@ -25,6 +37,7 @@ controller.showNav = async (req, res) => {
 
 controller.showHomepage = async (req, res) => {
   // 1.noi bat trong tuan: filter theo view_count + #createdAt trong tuan
+  let isSubcribeValid = (await validateUser(req) == true);
   let featureOptions = {
     include: models.Category,
     order: [["view_count", "DESC"]],
@@ -36,7 +49,8 @@ controller.showHomepage = async (req, res) => {
     },
     limit: 10,
   };
-  if (isSubcriber) featureOptions.order.unshift(["is_premium", "DESC"]);
+  if (isSubcribeValid) featureOptions.order.unshift(["is_premium", "DESC"]);
+  else featureOptions.where.is_premium = false;
 
   let featureArticle = await models.Article.findAll(featureOptions);
   featureArticle.forEach((article) => {
@@ -66,7 +80,8 @@ controller.showHomepage = async (req, res) => {
     },
     limit: 10,
   };
-  if (isSubcriber) newesOptions.order.unshift(["is_premium", "DESC"]);
+  if (isSubcribeValid) newesOptions.order.unshift(["is_premium", "DESC"]);
+  else newesOptions.where.is_premium = false;
   let newestArticle = await models.Article.findAll(newesOptions);
   newestArticle.forEach((article) => {
     let y = article.createdAt.getFullYear();
@@ -87,11 +102,12 @@ controller.showHomepage = async (req, res) => {
       publishDay: {
         [Op.not]: null,
         [Op.lte]: Date.now(),
-      },
+      }
     },
     limit: 20,
   };
-  if (isSubcriber) mostViewOptions.order.unshift(["is_premium", "DESC"]);
+  if (isSubcribeValid) mostViewOptions.order.unshift(["is_premium", "DESC"]);
+  else mostViewOptions.where.is_premium = false;
   let mostViewArticle = await models.Article.findAll(mostViewOptions);
 
   mostViewArticle.forEach((article) => {
@@ -106,24 +122,27 @@ controller.showHomepage = async (req, res) => {
 
   // 4. moi chuyen muc
   let allCates = await models.Category.findAll();
+  
+  let allCateOptions = {
+    where: {
+      publishDay: {
+        [Op.not]: null,
+        [Op.lte]: Date.now(),
+      },
+    },
+    order: [["createdAt", "DESC"]],
+    limit: 1,
+  }
+  if (isSubcribeValid) allCateOptions.order.unshift(['is_premium', 'DESC']);
+  else allCateOptions.where.is_premium = false;
+
   for (let i = 0; i < allCates.length; i++) {
     console.log(allCates[i].id);
-    let post = await models.Article.findAll({
-      where: {
-        category_id: allCates[i].id,
-        publishDay: {
-          [Op.not]: null,
-          [Op.lte]: Date.now(),
-        },
-      },
-      order: [["createdAt", "DESC"]],
-      limit: 1,
-    });
+    allCateOptions.where.category_id = allCates[i].id;
+    let post = await models.Article.findAll(allCateOptions);
     allCates[i].article = post;
-    // console.log(cate.article);
   }
   res.locals.allCates = allCates;
-
   res.render("index");
 };
 
@@ -158,11 +177,12 @@ controller.showPage = (req, res, next) => {
 controller.showAllTag = async (req, res) => {
   const limit = 12;
   let page = isNaN(req.query.page) ? 1 : Math.max(1, parseInt(req.query.page));
-  let { rows, count } = await models.Tag.findAndCountAll({
+  let tagPostOptions = {
     order: [["createdAt", "DESC"]],
     limit: limit,
     offset: limit * (page - 1),
-  });
+  };
+  let { rows, count } = await models.Tag.findAndCountAll(tagPostOptions);
   res.locals.pagination = {
     page: page,
     limit: limit,
@@ -179,7 +199,7 @@ controller.showTagPost = async (req, res) => {
   let tag = await models.Tag.findOne({ where: { id: id } });
   const limit = 6;
   let page = isNaN(req.query.page) ? 1 : Math.max(1, parseInt(req.query.page));
-  let { rows, count } = await models.ArticleTag.findAndCountAll({
+  let tagOptions = {
     include: [
       {
         model: models.Article,
@@ -188,12 +208,14 @@ controller.showTagPost = async (req, res) => {
           attributes: ["category_name"],
         },
         order: [["createdAt", "DESC"]],
+        
       },
     ],
     where: { tag_id: id },
     limit: limit,
     offset: limit * (page - 1),
-  });
+  }; 
+  let { rows, count } = await models.ArticleTag.findAndCountAll(tagOptions);
 
   rows.forEach((article) => {
     let y = article.Article.createdAt.getFullYear();

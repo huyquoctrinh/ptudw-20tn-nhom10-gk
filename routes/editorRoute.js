@@ -5,8 +5,8 @@ const controller = require('../controllers/editorController');
 
 router.get('/checkStatus', controller.showStatus);
 router.get('/EditorViewPostDetail', controller.showPostDetail);
-router.post('/reject', controller.reject);
-router.post('/approve', controller.approve);
+router.post('/editorReject', controller.reject);
+router.post('/editorApprove', controller.approve);
 router.get('/EditorProcessed', controller.showProcessed);
 router.get('/EditorViewPostDetailProcess', controller.showProcessedPostDetail);
 module.exports = router;

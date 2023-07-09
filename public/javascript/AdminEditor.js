@@ -15,7 +15,7 @@ async function updateCategoryForEditor(e, id){
         id: id,
         newCategory: newCategory
     };
-    await fetch(`/admin/Editor/update`, {
+    await fetch(`/users/Editor/update`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

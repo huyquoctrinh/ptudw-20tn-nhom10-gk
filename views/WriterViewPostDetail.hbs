@@ -44,13 +44,17 @@
                   <div class="col-8"><p>{{briefDescription}}</p></div>
                 </div>
 
-                {{#each Images}}
+                {{!-- {{#each Images}}
                   <p> {{description}} </p>
                   <img src="{{imagePath}}" alt="" class="d-block mx-auto" />
                 {{/each}}
-                <p> {{description}} </p>
+                <p> {{description}} </p> --}}
+                <div class="descriptionDetail">
+                  {{{description}}}
+                </div>
                 <p class="font-weight-bold">{{Writer.User.name}}</p>
               </div>
+              
             </div>
           {{/with}}
         </div>

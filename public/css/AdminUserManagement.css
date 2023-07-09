@@ -188,3 +188,10 @@ ul {list-style-type: none;}
   color: white !important
 }
 
+.descriptionDetail > a > img {
+  width: 100%;
+}
+.descriptionDetail > img {
+  width: 100%;
+}
+
