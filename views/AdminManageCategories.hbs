@@ -18,14 +18,11 @@
           <div class="col-11">
             <h3>Quản lý chuyên mục</h3>
             <div class="container">
-              <div class="row justify-content-center g-2">
+              <div class="row justify-content-center ">
                 <div class="col-8">
-                  <div class="mb-3 icon-input">
-                    <i class="bi bi-search icon"></i>
-                    <input type="text" class="form-control" name="keyword" id="keyword" aria-describedby="helpId" placeholder="" required onkeyup="filter(this.value)"/>
-                  </div>
+                  
                 </div>
-                <div class="col-4">
+                <div class="col-4 mb-3">
                   <button class="btn btn-primary" onclick="openAdd()">+ Thêm chuyên mục</button>
                   <div class="form-popup" id="addForm">
                     <form action="/users/CategoriesDetail/add" method="post" class="form-container" onsubmit="addItemCategory(event)">
@@ -39,6 +36,7 @@
                     </form>
                   </div>
                 </div>
+                
               </div>
               <ul class="list-group" id="myCategory">
                 {{#each category}}
