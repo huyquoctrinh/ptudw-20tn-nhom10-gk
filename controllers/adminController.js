@@ -337,14 +337,21 @@ controller.updateStatus = async (req, res) => {
     if (article.length > 0) {
         await models.ArticleStatus.update({status: req.body.status}, {where: {article_id: req.body.id}});
     } else {
+        
         await models.ArticleStatus.create({
             article_id: req.body.id,
             status: req.body.status,
-            editor_id: req.user.id,
             reason: ""
         }).then(() => {
             console.log(555);
         })
+    }
+    console.log(req.body.status);
+    if (req.body.status == "Published"){
+        await models.Article.update(
+            {publishDay: Date.now()},
+            {where: {id: req.body.id}},
+        )
     }
 }
 
