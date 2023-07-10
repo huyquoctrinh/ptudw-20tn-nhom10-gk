@@ -7,11 +7,11 @@
         <div class="list-group-flush mt-4">
           <a class="list-group-item active bg-dark" href="#">Hồ sơ của tôi</a>
           <a class="list-group-item" href="/users/update-profile">Cập nhật hồ sơ</a>
-          <a class="list-group-item" href="/users/change-pass">Thay đổi mật khẩu</a>
-          <a class="list-group-item" href="/users/premium">
+          {{! <a class="list-group-item" href="/users/change-pass">Thay đổi mật khẩu</a> }}
+          {{! <a class="list-group-item" href="/users/premium">
             <i class="bi bi-bookmark-star-fill text-warning"></i>
             Premium
-          </a>
+          </a> }}
         </div>
       </div>
       <div class="col-1">
@@ -35,15 +35,18 @@
               {{user.name}}
             </div>
           </div>
-          <div class="pseudonym mt-3">
-            <span>Bút danh</span>
-            <div
-              class="btn-outline-dark btn w-100 text-start none-hover text-secondary"
-              style="min-height:40px;"
-            >
-              {{user.username}}
+          {{#if (eq isUser 3)}}
+            <div class="pseudonym mt-3">
+              <span>Bút danh</span>
+              <div
+                class="btn-outline-dark btn w-100 text-start none-hover text-secondary"
+                style="min-height:40px;"
+              >
+                {{user.username}}
+              </div>
             </div>
-          </div>
+          {{/if}}
+
           <div class="mt-3 email-user">
             <span>Email</span>
             <div
