@@ -187,4 +187,79 @@ router.put(
     }
   }
 );
+
+router.post("/update-profile", upload.single("image"), async (req, res) => {
+  try {
+    const { name, username, dob } = req.body;
+    const userId = req.user.id;
+    const image = req.file;
+    console.log("helllo000000000000000000000");
+
+    console.log("BODY", req.body);
+    console.log("USER", userId);
+
+    const currentUser = await models.User.findOne({ where: { id: userId } });
+    console.log("USER", currentUser);
+
+    if (!currentUser) {
+      return res.status(404).json({ message: "Không tìm thấy người dùng" });
+    }
+
+    // Tạo object để lưu các trường cần cập nhật
+    let updateData = {};
+
+    // Xử lý file ảnh
+    let avatarPath = null;
+    if (image) {
+      avatarPath = "/img/avatar/" + image.filename;
+      await models.Image.update(
+        {
+          imagePath: avatarPath,
+          name: image.filename,
+        },
+        {
+          where: {
+            imagePath: currentUser.avatar,
+          },
+        }
+      );
+      // Kiểm tra xem avatar có thay đổi không
+      if (currentUser.avatar !== avatarPath) {
+        updateData.avatar = avatarPath;
+      }
+    }
+
+    // Kiểm tra xem thông tin người dùng có thay đổi không
+    if (name !== currentUser.name) {
+      updateData.name = name;
+    }
+    if (username !== currentUser.username) {
+      updateData.username = username;
+    }
+
+    if (dob != null && dob !== currentUser.dob.toISOString().split("T")[0]) {
+      const newDob = new Date(dob);
+      updateData.dob = newDob;
+    }
+
+    // Cập nhật thông tin người dùng trong bảng User
+    if (Object.keys(updateData).length > 0) {
+      await models.User.update(updateData, { where: { id: userId } });
+    }
+
+    // Kiểm tra nếu người dùng là writer, cập nhật bút danh trong bảng Writer
+    if (req.user.role === "writer") {
+      const writer = await models.Writer.findOne({ where: { id: userId } });
+      if (writer && username !== writer.pseudonym) {
+        await writer.update({ pseudonym: username });
+      }
+    }
+
+    res.redirect("/users/myprofile");
+  } catch (error) {
+    console.error(error);
+    res.redirect("/404");
+  }
+});
+
 module.exports = router;

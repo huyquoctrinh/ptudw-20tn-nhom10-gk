@@ -3,8 +3,9 @@
 const controller = {};
 const models = require("../models");
 
+let writer_id = 61;
+
 controller.showMylist = async (req, res) => {
-  let writer_id = req.user.id;
   let page = isNaN(req.query.page) ? 1 : Math.max(1, parseInt(req.query.page));
   const limit = 5;
   let { rows, count } = await models.Article.findAndCountAll({
@@ -26,10 +27,9 @@ controller.showMylist = async (req, res) => {
     let d = article.createdAt.getDate();
     let day = d + "/" + m + "/" + y;
     article.createDay = day;
-    if (article.publishDay != null) {
+    if (article.ArticleStatuses.length == 0) {
       article.status = "Published";
-    } else if (article.publishDay == null && article.ArticleStatuses.length == 0) article.status = "Draft";
-    else {
+    } else {
       article.status = article.ArticleStatuses[0].status;
     }
     article.briefDescription = article.briefDescription.substring(0, 100);
@@ -47,7 +47,6 @@ controller.showMylist = async (req, res) => {
 };
 
 controller.showDraft = async (req, res) => {
-  let writer_id = req.user.id;
   let page = isNaN(req.query.page) ? 1 : Math.max(1, parseInt(req.query.page));
   const limit = 5;
   let { rows, count } = await models.Article.findAndCountAll({
@@ -70,12 +69,9 @@ controller.showDraft = async (req, res) => {
     let d = article.createdAt.getDate();
     let day = d + "/" + m + "/" + y;
     article.createDay = day;
-    if ( article.publishDay == null &&
-        (article.ArticleStatuses.length == 0 || 
-          (article.ArticleStatuses.length != 0 &&
-            article.ArticleStatuses[0].status == "Draft"
-          )
-        )
+    if (
+      article.ArticleStatuses.length != 0 &&
+      article.ArticleStatuses[0].status == "Draft"
     ) {
       article.status = "Draft";
       posts.push(article);
@@ -96,8 +92,6 @@ controller.showDraft = async (req, res) => {
 };
 
 controller.showApprove = async (req, res) => {
-  let writer_id = req.user.id;
-
   let page = isNaN(req.query.page) ? 1 : Math.max(1, parseInt(req.query.page));
   const limit = 5;
   let { rows, count } = await models.Article.findAndCountAll({
@@ -120,7 +114,10 @@ controller.showApprove = async (req, res) => {
     let d = article.createdAt.getDate();
     let day = d + "/" + m + "/" + y;
     article.createDay = day;
-    if ( article.publishDay != null) {
+    if (
+      article.ArticleStatuses.length == 0 ||
+      article.ArticleStatuses[0].status == "Published"
+    ) {
       article.status = "Published";
       posts.push(article);
     }
@@ -140,8 +137,6 @@ controller.showApprove = async (req, res) => {
 };
 
 controller.showReject = async (req, res) => {
-  let writer_id = req.user.id;
-
   let page = isNaN(req.query.page) ? 1 : Math.max(1, parseInt(req.query.page));
   const limit = 5;
   let { rows, count } = await models.Article.findAndCountAll({
@@ -185,7 +180,6 @@ controller.showReject = async (req, res) => {
   res.locals.posts = posts;
   res.render("myPostReject");
 };
-
 controller.showPostDetail = async (req, res) => {
   let article_id = parseInt(req.query.articleId);
   console.log(article_id);
@@ -271,6 +265,10 @@ controller.showEditPostDetail = async (req, res) => {
   else post.status = post.ArticleStatuses[0].status;
   res.locals.post = post;
   res.render("WriterEditPostDetail");
+};
+
+controller.showCreatePost = (req, res) => {
+  res.render("post");
 };
 
 module.exports = controller;
