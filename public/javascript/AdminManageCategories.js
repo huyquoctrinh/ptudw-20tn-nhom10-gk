@@ -54,19 +54,24 @@ async function addItemCategory(e, root_category_id = null) {
     body: JSON.stringify(details),
   });
   let json = await res.json();
+  console.log(json);
   let inner = `
     <div class="row align-items-center g-2 category-item">
       <div class="col-5">
-        <p class="title-categories text-black" id="Category${json.id}>Chuyên mục: ${itemValue.value}</p>
+        <p class="title-categories text-black" id="Category${json.id}">Chuyên mục:
+        ${json.category_name}</p>
       </div>
       <div class="col-7 button-div">
-        <button class="btn btn-danger delete" onclick="deleteCategory(event,${json.id})">Xóa<i class="bi bi-trash-fill text-white"></i></button>
+      <button
+      class="btn btn-danger delete"
+      onclick="deleteCategory(event, ${json.id})"
+    >Xóa<i class="bi bi-trash-fill text-white"></i></button>
         <button class="btn btn-warning text-light" onclick="openEdit(${json.id})">Sửa <i class="bi bi-pencil text-white"></i></button>
         <div class="form-popup" id="editForm${json.id}">
           <form action="/users/Category/edit" method="post" onclick="updateCategory(event, ${json.id})" class="form-container">
             <button type="button" onclick="closeEdit(${json.id})">x</button>
             <h3 class="text-center">Sửa chuyên mục</h3>
-            <p class="text-center">${itemValue.value}</p>
+            <p class="text-center">${json.category_name}</p>
             <label for="newNameCategory${json.id}"><b>Nhập tên chuyên mục mới</b></label>
             <input type="text" placeholder="" name="newNameCategory${json.id}" id="newNameCategory${json.id}" required/>
             <button type="submit" class="btn btn-secondary" onclick="closeEditAndChange(${json.id})">Sửa</button>

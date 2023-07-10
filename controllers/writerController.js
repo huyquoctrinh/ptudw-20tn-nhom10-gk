@@ -48,7 +48,6 @@ controller.showMylist = async (req, res) => {
 
 controller.showDraft = async (req, res) => {
   let page = isNaN(req.query.page) ? 1 : Math.max(1, parseInt(req.query.page));
-  const limit = 5;
   let { rows, count } = await models.Article.findAndCountAll({
     where: { writer_id: writer_id },
     include: [
@@ -59,8 +58,6 @@ controller.showDraft = async (req, res) => {
       },
     ],
     order: [["createdAt", "DESC"]],
-    limit: limit,
-    offset: limit * (page - 1),
   });
   let posts = [];
   rows.forEach((article) => {
@@ -78,13 +75,6 @@ controller.showDraft = async (req, res) => {
     }
     article.briefDescription = article.briefDescription.substring(0, 100);
   });
-
-  res.locals.pagination = {
-    page: page,
-    limit: limit,
-    totalRows: posts.length,
-    queryParams: req.query,
-  };
   if (posts.length > 0) res.locals.hasPost = true;
   else res.locals.hasPost = false;
   res.locals.posts = posts;
@@ -93,7 +83,6 @@ controller.showDraft = async (req, res) => {
 
 controller.showApprove = async (req, res) => {
   let page = isNaN(req.query.page) ? 1 : Math.max(1, parseInt(req.query.page));
-  const limit = 5;
   let { rows, count } = await models.Article.findAndCountAll({
     where: { writer_id: writer_id },
     include: [
@@ -104,32 +93,25 @@ controller.showApprove = async (req, res) => {
       },
     ],
     order: [["createdAt", "DESC"]],
-    limit: limit,
-    offset: limit * (page - 1),
   });
   let posts = [];
+  console.log(rows.length);
   rows.forEach((article) => {
     let y = article.createdAt.getFullYear();
     let m = article.createdAt.getMonth() + 1;
     let d = article.createdAt.getDate();
     let day = d + "/" + m + "/" + y;
     article.createDay = day;
-    if (
-      article.ArticleStatuses.length == 0 ||
-      article.ArticleStatuses[0].status == "Published"
-    ) {
+
+    if (article.publishDay != null) {
       article.status = "Published";
+      console.log("ok");
       posts.push(article);
     }
     article.briefDescription = article.briefDescription.substring(0, 100);
   });
-
-  res.locals.pagination = {
-    page: page,
-    limit: limit,
-    totalRows: posts.length,
-    queryParams: req.query,
-  };
+  console.log(posts);
+  
   if (posts.length > 0) res.locals.hasPost = true;
   else res.locals.hasPost = false;
   res.locals.posts = posts;
@@ -138,7 +120,7 @@ controller.showApprove = async (req, res) => {
 
 controller.showReject = async (req, res) => {
   let page = isNaN(req.query.page) ? 1 : Math.max(1, parseInt(req.query.page));
-  const limit = 5;
+  
   let { rows, count } = await models.Article.findAndCountAll({
     where: { writer_id: writer_id },
     include: [
@@ -149,8 +131,7 @@ controller.showReject = async (req, res) => {
       },
     ],
     order: [["createdAt", "DESC"]],
-    limit: limit,
-    offset: limit * (page - 1),
+    
   });
   let posts = [];
   rows.forEach((article) => {
@@ -168,13 +149,6 @@ controller.showReject = async (req, res) => {
     }
     article.briefDescription = article.briefDescription.substring(0, 100);
   });
-
-  res.locals.pagination = {
-    page: page,
-    limit: limit,
-    totalRows: posts.length,
-    queryParams: req.query,
-  };
   if (posts.length > 0) res.locals.hasPost = true;
   else res.locals.hasPost = false;
   res.locals.posts = posts;
