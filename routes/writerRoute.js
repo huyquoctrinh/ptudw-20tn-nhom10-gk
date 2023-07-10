@@ -211,7 +211,7 @@ router.post("/update-profile", upload.single("image"), async (req, res) => {
     // Xử lý file ảnh
     let avatarPath = null;
     if (image) {
-      avatarPath = "/img/avatar/" + image.filename;
+      avatarPath = "/uploads/" + image.filename;
       await models.Image.update(
         {
           imagePath: avatarPath,
