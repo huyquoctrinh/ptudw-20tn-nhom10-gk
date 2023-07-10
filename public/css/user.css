@@ -3,6 +3,13 @@
   width: 150px;
   height: 150px;
 }
+
+#imagePreview{
+  border-radius: 50%;
+  cursor: pointer; 
+  width: 150px;
+  height: 150px;
+}
 .vertical {
   height: 300px;
   border-left: 2px solid black;
