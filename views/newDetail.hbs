@@ -1,6 +1,7 @@
 <main>
-  <div class="container new-detail mt-5" id="newspdf">
-      {{#with article}}
+  {{#with article}}
+  <div class="container new-detail mt-5">
+    <div id="newspdf">
       <div class="row">
         <div class="col-8">
           <!-- Tags -->
@@ -24,6 +25,7 @@
       <div class="descriptionDetail">
         {{{description}}}
       </div>
+    </div>
       <div class="row">
           <div class="col">
             <p class="p-tag-news">{{Writer.User.name}}</p>
@@ -32,10 +34,11 @@
             <p class="p-date-news">{{createDay}}</p>
           </div>
       </div>
-  </div>
+    </div>
+  {{!-- </div> --}}
   {{#if isPremiumUser}}
   <div>
-    <button type="button" class="btn btn-primary" onclick="demoFromHTML()">Tải bài báo</button>
+    <button type="button" class="btn btn-primary" onclick="generatePDF()">Tải bài báo</button>
   </div>
   {{/if}}      
       <!-- tin cung chuyen muc -->
@@ -87,6 +90,7 @@
     </ul>
   </div>
 </main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="../javascript/newsDetail.js"></script>
+<script src="../javascript/exportPDF.js"></script>

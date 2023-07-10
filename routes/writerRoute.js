@@ -30,7 +30,6 @@ router.get("/approve", controller.showApprove);
 router.get("/reject", controller.showReject);
 router.get("/WriterViewPostDetail", controller.showPostDetail);
 router.get("/WriterEditPostDetail", controller.showEditPostDetail);
-router.get("/post", controller.showCreatePost);
 router.post("/post", upload.single("image"), async (req, res) => {
   try {
     const { title, summary, selectedCategory, summernote } = req.body;
