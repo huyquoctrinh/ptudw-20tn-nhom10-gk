@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Web developments for News paper (including FE and BE)",
   "main": "index.js",
+  "engines": {
+    "node": "^18.12.1"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -39,6 +42,8 @@
     "passport-oauth2": "^1.7.0",
     "pg": "^8.11.1",
     "pg-hstore": "^2.3.4",
+    "puppeteer": "^20.8.0",
+    "puppeteer-report": "^3.1.0",
     "sanitize-html": "^2.11.0",
     "sequelize": "^6.32.1",
     "sequelize-cli": "^6.6.0"

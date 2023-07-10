@@ -12,7 +12,8 @@ const { createPagination } = require("express-handlebars-paginate");
 const flash = require("express-flash");
 const Recaptcha = require("express-recaptcha").RecaptchaV2;
 const moment = require("moment");
-
+const {report} = require("puppeteer-report");
+const {puppeteer} = require("puppeteer");
 app.use(
   session({
     secret: "your-secret-key",

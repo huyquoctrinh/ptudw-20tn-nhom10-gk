@@ -52,7 +52,8 @@ controller.showDetail = async (req, res) => {
     let d = article.createdAt.getDate();
     let day = d + '/' + m + '/' + y;
     article.createDay = day;
-    article.isPremiumUser = (await validateUser(req) == true);
+    // article.isPremiumUser = (await validateUser(req) == true);
+    article.isPremiumUser = true;
     if (req.user) article.isLogin = true;
     res.locals.article = article
 
