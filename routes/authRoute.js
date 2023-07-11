@@ -63,7 +63,17 @@ router.post(
       req.flash("registerMessage", message);
       return res.redirect("/users/login");
     }
-    return res.redirect("/users/login");
+   // return res.redirect("/users/login");
+    req.session.destroy((err) => {
+      if (err) {
+        console.log("Error logging out:", err);
+      }
+      console.log(
+        "User logged out heeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+      );
+      req.user = null; // Xóa thông tin người dùng
+      res.redirect("/users/login"); // Chuyển hướng về trang login sau khi đăng xuất
+    });
     next();
   },
   controller.register
