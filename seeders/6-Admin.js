@@ -5,6 +5,8 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     const items = [
       {"id" : 18},
+      {"id" : 57},
+      {"id" : 63},
     ];
     items.forEach(item => {
       item.createdAt = Sequelize.literal('NOW()');
